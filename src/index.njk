@@ -105,14 +105,25 @@ layout: base.njk
   <section class="stall" aria-labelledby="stall-title">
     <div class="wrap stall__head">
       <h2 id="stall-title">In season</h2>
+      <p>Not sure what to do with something? Tap it for an idea.</p>
     </div>
     <div class="strip">
       <ul class="strip__track">
         {%- for n in [1, 2] %}
         {%- for p in produce %}
         <li class="bubble-{{ loop.index0 % 4 }}{% if loop.index0 % 2 %} low{% endif %}"{% if n == 2 %} aria-hidden="true"{% endif %}>
+          {%- if p.meal %}
+          <button type="button" data-recipe="{{ loop.index0 }}" aria-haspopup="dialog" aria-label="{{ p.label }}: recipe idea"{% if n == 2 %} tabindex="-1"{% endif %}>
+            <span class="strip__pic">
+              <img src="/images/{{ p.img }}-600.jpg" alt="" width="600" height="800" loading="lazy">
+              <span class="strip__tag" aria-hidden="true">Recipe idea</span>
+            </span>
+            <span class="strip__name">{{ p.label }}</span>
+          </button>
+          {%- else %}
           <img src="/images/{{ p.img }}-600.jpg" alt="" width="600" height="800" loading="lazy">
-          <span>{{ p.label }}</span>
+          <span class="strip__name">{{ p.label }}</span>
+          {%- endif %}
         </li>
         {%- endfor %}
         {%- endfor %}
@@ -257,6 +268,24 @@ layout: base.njk
     <button class="share__close" value="close" aria-label="Close">×</button>
   </form>
 </dialog>
+
+<!-- "What do I do with this?": one card, filled in from produce.json by main.js -->
+<dialog class="recipe" id="recipe-dialog" aria-labelledby="recipe-title">
+  <form method="dialog">
+    <p class="recipe__kicker">What do I do with this?</p>
+    <div class="recipe__head">
+      <img class="recipe__photo" data-recipe-photo src="" alt="" width="600" height="800">
+      <h2 id="recipe-title" data-recipe-title></h2>
+    </div>
+    <dl class="recipe__lines">
+      <dt>Try this</dt><dd data-recipe-meal></dd>
+      <dt>Keeping it</dt><dd data-recipe-keep></dd>
+      <dt>What you can eat</dt><dd data-recipe-eat></dd>
+    </dl>
+    <button class="recipe__close" value="close" aria-label="Close">×</button>
+  </form>
+</dialog>
+<script id="recipes" type="application/json">{{ produce | dump | safe }}</script>
 
 <script type="application/ld+json">
 {

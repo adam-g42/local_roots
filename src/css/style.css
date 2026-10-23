@@ -378,7 +378,7 @@ p { margin: 0 0 1em; }
   display: flex; align-items: flex-start; width: max-content;
   animation: drift 70s linear infinite;
 }
-.strip:hover .strip__track { animation-play-state: paused; }
+.strip button { display: block; width: 100%; padding: 0; border: 0; background: none; color: inherit; font: inherit; cursor: pointer; border-radius: 1rem; }
 .strip li { flex: none; width: clamp(8.5rem, 30vw, 11rem); margin-right: clamp(1rem, 2.4vw, 1.75rem); text-align: center; }
 /* each photo gets its own lumpy bubble, like a squashed pebble */
 .strip img {
@@ -390,8 +390,31 @@ p { margin: 0 0 1em; }
 .strip .bubble-2 img { border-radius: 52% 48% 38% 62% / 42% 52% 48% 58%; }
 .strip .bubble-3 img { border-radius: 63% 37% 52% 48% / 52% 62% 38% 48%; }
 .strip .low { margin-top: 1.25rem; }
-.strip li:hover img { border-radius: 50%; scale: 1.04; }
-.strip span { display: block; font: var(--accent-style) var(--accent-weight) calc(var(--fs-m) * var(--accent-scale))/1.2 var(--accent); margin-top: .7rem; }
+.strip li:hover img, .strip button:focus-visible img { border-radius: 50%; scale: 1.04; }
+.strip__name { display: block; font: var(--accent-style) var(--accent-weight) calc(var(--fs-m) * var(--accent-scale))/1.2 var(--accent); margin-top: .7rem; }
+
+/* veg with a recipe card show a label in the middle of the bubble on hover; touch screens can't hover, so there it always shows */
+.strip__pic { display: block; position: relative; }
+.strip__tag {
+  position: absolute; left: 50%; top: 50%; translate: -50% -50%;
+  padding: .3em .85em .35em;
+  font: var(--accent-style) var(--accent-weight) calc(.95rem * var(--accent-scale))/1.1 var(--accent);
+  color: var(--paper); background: var(--terra); border-radius: 999px;
+  white-space: nowrap;
+  transition: opacity .3s var(--ease), scale .3s var(--ease);
+}
+@media (hover: hover) {
+  .strip__tag { opacity: 0; scale: .9; }
+  .strip button:hover .strip__tag, .strip button:focus-visible .strip__tag { opacity: 1; scale: 1; }
+}
+/* the name gets the same wavy underline as every link */
+.strip button .strip__name { position: relative; width: fit-content; margin-inline: auto; padding-bottom: 5px; }
+.strip button .strip__name::before {
+  content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 7px;
+  background: var(--wave) left center / 21px 7px repeat-x;
+  clip-path: inset(0 100% 0 0); transition: clip-path .45s var(--ease);
+}
+.strip button:hover .strip__name::before, .strip button:focus-visible .strip__name::before { clip-path: inset(0); }
 @keyframes drift { to { translate: -50% 0; } }
 
 /* ---------- fair to you, fair to the farm: prices and suppliers side by side ---------- */
@@ -565,12 +588,40 @@ p { margin: 0 0 1em; }
 .share h2 { font-size: calc(2.4rem * var(--accent-scale)); font-family: var(--accent); font-style: var(--accent-style); font-weight: var(--accent-weight); margin-bottom: 1.25rem; }
 .share__list { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: .6rem; }
 .share__done { margin: 1rem 0 0; font-weight: 500; color: var(--forest); }
-.share__close {
+.share__close, .recipe__close {
   position: absolute; top: .75rem; right: .75rem;
   width: 2.5rem; height: 2.5rem; border: 0; background: none;
-  font: 1.8rem/1 var(--serif); color: var(--ink); cursor: pointer; border-radius: 50%;
+  font: 1.8rem/1 var(--sans); color: var(--ink); cursor: pointer; border-radius: 50%;
 }
-.share__close:hover { background: var(--oat); }
+.share__close:hover, .recipe__close:hover { background: var(--oat); }
+
+/* ---------- "What do I do with this?": an index card from the kitchen drawer ---------- */
+
+.recipe {
+  border: 0; padding: 0; width: min(30rem, calc(100vw - 2rem)); max-height: calc(100svh - 2rem);
+  color: var(--ink); border-radius: 6px; background: #FCF9F3;
+  box-shadow: 0 30px 80px rgb(47 42 34 / .35);
+  rotate: -1deg;
+}
+.recipe[open] { animation: rise .45s var(--ease); }
+.recipe::backdrop { background: rgb(47 42 34 / .45); backdrop-filter: blur(3px); }
+.recipe form { padding: 1.25rem 1.5rem 1.75rem; position: relative; }
+/* a red rule under the kicker, then faint blue lines under every row of text, like a ruled card */
+.recipe__kicker {
+  margin: 0 -1.5rem; padding: 0 4.5rem 0 1.5rem; height: 2.6rem; display: flex; align-items: center;
+  border-bottom: 1.5px solid var(--terra);
+  font: var(--accent-style) var(--accent-weight) calc(1.05rem * var(--accent-scale))/1.1 var(--accent); color: var(--terra-deep);
+}
+.recipe__head { display: flex; align-items: center; gap: 1rem; margin: 1rem 0 .6rem; }
+.recipe__photo { flex: none; width: 4.5rem; aspect-ratio: 1; object-fit: cover; border-radius: 58% 42% 55% 45% / 47% 56% 44% 53%; }
+.recipe h2 { margin: 0; font-size: calc(2.2rem * var(--head-scale)); }
+.recipe__lines {
+  margin: 0; line-height: 1.7rem;
+  background: repeating-linear-gradient(transparent 0 calc(1.7rem - 1px), rgb(132 169 183 / .4) calc(1.7rem - 1px) 1.7rem);
+}
+.recipe__lines dt { margin-top: 1.7rem; font: var(--accent-style) var(--accent-weight) calc(1.15rem * var(--accent-scale))/1.7rem var(--accent); color: var(--forest); }
+.recipe__lines dt:first-child { margin-top: 0; }
+.recipe__lines dd { margin: 0; }
 
 /* ---------- thanks page ---------- */
 

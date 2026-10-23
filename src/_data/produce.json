@@ -1,16 +1,81 @@
 [
-  { "img": "squash", "label": "Squash" },
-  { "img": "rainbow-chard", "label": "Rainbow chard" },
-  { "img": "tomatoes", "label": "Tomatoes" },
-  { "img": "leeks", "label": "Leeks" },
-  { "img": "lollo-rosso-lettuce", "label": "Lollo rosso" },
-  { "img": "cavolo-nero", "label": "Cavolo nero" },
-  { "img": "fennel", "label": "Fennel" },
-  { "img": "green-chillies", "label": "Green chillies" },
-  { "img": "radicchio", "label": "Radicchio" },
-  { "img": "red-pepper", "label": "Peppers" },
-  { "img": "pak-choi", "label": "Pak choi" },
-  { "img": "spring-onions", "label": "Spring onions" },
-  { "img": "mint", "label": "Fresh herbs" },
+  {
+    "img": "squash", "label": "Squash",
+    "meal": "Cut into wedges, toss with oil, salt and chilli flakes, and roast at 200°C for 35–40 minutes until the edges catch. Good with a spoon of yoghurt.",
+    "keep": "Whole, somewhere cool and dry, it keeps for months. Once cut, wrap it and use within a week.",
+    "eat": "No need to peel: the skin of most squash goes soft when roasted. Scoop out the seeds and roast them too for a crunchy snack."
+  },
+  {
+    "img": "rainbow-chard", "label": "Rainbow chard",
+    "meal": "Slice the stems and fry them in butter with garlic for 5 minutes, then add the shredded leaves until they wilt. Pile onto toast or stir through pasta.",
+    "keep": "Wrapped in a damp tea towel in the fridge, it stays perky for 4–5 days.",
+    "eat": "Stems and leaves. The stems just need a few minutes' head start."
+  },
+  {
+    "img": "tomatoes", "label": "Tomatoes",
+    "meal": "Chop, salt and leave for 10 minutes, then toss with olive oil and torn stale bread. That's a panzanella.",
+    "keep": "Out of the fridge, stalk side down and out of the sun. The fridge dulls the flavour.",
+    "eat": "All of it. Soft or split ones make the best sauce."
+  },
+  {
+    "img": "leeks", "label": "Leeks",
+    "meal": "Slice thinly and cook slowly in butter with a pinch of salt for 15 minutes until silky. Fold through pasta, or pile on toast with cheese and grill.",
+    "keep": "Unwashed in the fridge, they keep for 1–2 weeks.",
+    "eat": "The white and pale green slice up best. The dark tops are tougher but good in stock or soup. Rinse grit from between the layers."
+  },
+  {
+    "img": "lollo-rosso-lettuce", "label": "Lollo rosso",
+    "meal": "Dress just before eating: 1 tsp mustard, 1 tbsp vinegar and 3 tbsp oil, shaken in a jar with salt.",
+    "keep": "In a bag or damp tea towel in the salad drawer, 3–5 days. Limp leaves perk up in a bowl of cold water.",
+    "eat": "Every leaf. The frilly red edges are just colour, not bitterness."
+  },
+  {
+    "img": "cavolo-nero", "label": "Cavolo nero",
+    "meal": "Strip the leaves, shred them, and fry in olive oil with garlic and chilli for 5 minutes. Toss with pasta and lots of cheese.",
+    "keep": "In a bag in the fridge, up to a week.",
+    "eat": "Leaves cooked, or raw if you rub them with oil and lemon first. Chop the stems finely and fry them a few minutes before the leaves."
+  },
+  {
+    "img": "fennel", "label": "Fennel",
+    "meal": "Slice as thinly as you can and toss with orange segments, olive oil and salt for a crisp salad. Or roast in wedges until soft and sweet.",
+    "keep": "In the fridge, about a week.",
+    "eat": "The bulb raw or cooked. The feathery fronds are a herb, like dill. The stalks are good in stock."
+  },
+  {
+    "img": "green-chillies", "label": "Green chillies",
+    "meal": "Slice into scrambled eggs, dal, noodles or a fried rice. Heat varies, so taste a sliver first.",
+    "keep": "In the fridge for up to 2 weeks, or freeze whole and grate straight from frozen.",
+    "eat": "All but the stalk. Most of the heat is in the seeds and pale ribs, so scrape them out for a milder bite."
+  },
+  {
+    "img": "radicchio", "label": "Radicchio",
+    "meal": "Cut into wedges, brush with oil, and roast or griddle for 10 minutes. Finish with a drizzle of honey. Cooking tames the bitterness.",
+    "keep": "Wrapped in the fridge, 1–2 weeks.",
+    "eat": "The whole head. Tougher outer leaves are best cooked."
+  },
+  {
+    "img": "red-pepper", "label": "Peppers",
+    "meal": "Roast whole at 220°C until blistered, cover in a bowl for 10 minutes, then peel and tear over toast with olive oil and salt.",
+    "keep": "In the fridge, about a week.",
+    "eat": "Everything except the stalk and seeds."
+  },
+  {
+    "img": "pak-choi", "label": "Pak choi",
+    "meal": "Halve, fry cut side down in a hot pan for 2 minutes, then add a splash of soy sauce and water, cover and steam for 2 more. Serve with rice.",
+    "keep": "In the fridge, 3–5 days.",
+    "eat": "Stems and leaves. The stems stay juicy and crunchy."
+  },
+  {
+    "img": "spring-onions", "label": "Spring onions",
+    "meal": "Chop and stir through hot rice with soy sauce and sesame oil, or fold into an omelette.",
+    "keep": "In the fridge, about a week. Stand the roots in a glass of water on the windowsill and they'll grow back.",
+    "eat": "White and green. Only trim off the roots."
+  },
+  {
+    "img": "mint", "label": "Fresh herbs",
+    "meal": "Blitz a big handful of soft herbs with a garlic clove, lemon juice, olive oil and salt. Spoon this green sauce over eggs, potatoes or anything grilled.",
+    "keep": "Stems in a glass of water, like flowers. Basil stays on the worktop; others go in the fridge, loosely covered.",
+    "eat": "The soft stems of parsley and coriander chop up with the leaves. Woody stems like rosemary go in whole and come out after cooking."
+  },
   { "img": "zinnia", "label": "Cut flowers" }
 ]

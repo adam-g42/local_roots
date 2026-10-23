@@ -1,4 +1,4 @@
-// Open-now / next-open line, and the share button. Everything else is plain HTML.
+// Open-now / next-open line, the share button and the recipe cards. Everything else is plain HTML.
 
 const DAYS = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 
@@ -80,6 +80,25 @@ dialog?.querySelector("[data-copy]")?.addEventListener("click", async (e) => {
 
 dialog?.addEventListener("close", () => { dialog.querySelector("[data-copied]").hidden = true; });
 dialog?.addEventListener("click", (e) => { if (e.target === dialog) dialog.close(); });
+
+// "What do I do with this?": tap a vegetable in the strip to open its card
+const recipeDialog = document.getElementById("recipe-dialog");
+const recipes = JSON.parse(document.getElementById("recipes")?.textContent || "[]");
+
+document.querySelectorAll("[data-recipe]").forEach((btn) => {
+  btn.addEventListener("click", () => {
+    const r = recipes[btn.dataset.recipe];
+    if (!r || !recipeDialog) return;
+    recipeDialog.querySelector("[data-recipe-photo]").src = `/images/${r.img}-600.jpg`;
+    recipeDialog.querySelector("[data-recipe-title]").textContent = r.label;
+    recipeDialog.querySelector("[data-recipe-meal]").textContent = r.meal;
+    recipeDialog.querySelector("[data-recipe-keep]").textContent = r.keep;
+    recipeDialog.querySelector("[data-recipe-eat]").textContent = r.eat;
+    recipeDialog.showModal();
+  });
+});
+
+recipeDialog?.addEventListener("click", (e) => { if (e.target === recipeDialog) recipeDialog.close(); });
 
 // Font preview: /?font=3 tries pairing 3 from _data/fonts.json across the page
 const fontParam = Number(new URLSearchParams(location.search).get("font"));
