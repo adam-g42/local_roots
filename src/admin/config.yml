@@ -55,7 +55,7 @@ collections:
               - { label: "11 · Where we were (Fraunces)", value: 11 }
           - { name: name, label: Name, widget: string }
           - { name: url, label: Website address, widget: string, hint: "Only change this if you move to a new domain." }
-          - { name: badge, label: "\"New\" badge", widget: string, required: false, hint: "Sticker on the opening-times card, e.g. 'New in Cowley'. Leave empty once the stall is well known." }
+          - { name: badge, label: "\"New\" badge", widget: string, required: false, hint: "Small line above the tagline, e.g. 'New in Cowley'. Leave empty once the stall is well known." }
           - { name: tagline, label: Tagline, widget: string, hint: "Short and punchy, shown on the label at the top." }
           - { name: intro, label: One-line introduction, widget: text }
 

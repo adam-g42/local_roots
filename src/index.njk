@@ -29,12 +29,12 @@ layout: base.njk
 
   <section class="hero" id="top" aria-labelledby="hero-title">
     <div class="hero__text">
+      {% if site.badge %}<p class="hero__eyebrow">{{ site.badge }}</p>{% endif %}
       <h1 class="hero__promise" id="hero-title">{{ site.tagline }}</h1>
       <p class="hero__intro">{{ site.intro }}</p>
 
       <!-- one callout: when and where to find the stall -->
       <div class="hero__stall when">
-        {% if site.badge %}<p class="when__badge">{{ site.badge }}</p>{% endif %}
         <p class="when__time">{{ o.day }}s<br> {{ hoursText }}</p>
         <p class="when__where">{{ loc.venue }}, {{ loc.address }}</p>
         <p class="status" data-status
@@ -45,19 +45,66 @@ layout: base.njk
           <a class="ulink when__cal" href="/local-roots.ics">Add to calendar</a>
         </div>
       </div>
-    </div>
 
-    <!-- hand-drawn Oxford, with the pin on the cafe and the chard laid on top -->
-    <div class="hero__plate">
-      {% include "map.svg" %}
+      <!-- the chard stands beside the card, the card laid over its edge -->
       <figure class="frame frame--arch hero__photo">
         <img src="/images/rainbow-chard-from-above-600.jpg"
              srcset="/images/rainbow-chard-from-above-600.jpg 600w, /images/rainbow-chard-from-above.jpg 900w"
-             sizes="(min-width: 960px) 14rem, 8rem"
+             sizes="(min-width: 760px) 13rem, 1px"
              alt="Rainbow chard seen from above, red stems fanning out through crinkled leaves"
              width="600" height="800" fetchpriority="high">
       </figure>
     </div>
+
+    <!-- hand-drawn Oxford, with the pin on the cafe -->
+    <div class="hero__plate">
+      {% include "map.svg" %}
+    </div>
+    <script>
+      // Frame the map to its box: on phones zoom in around the pin; everywhere, set the scale bar in the
+      // bottom-right corner of what's showing, with the north arrow above it. Inline so the map never jumps.
+      (() => {
+        const map = document.querySelector(".hero__plate .map");
+        const W = 1200, H = 800, PIN = [540, 380], ZOOM = 1.5;
+        const scaleBar = map.querySelector(".map__scale"), compass = map.querySelector(".map__compass");
+        const clamp = (v, lo, hi) => Math.min(Math.max(v, lo), hi);
+        // the compass and scale sit inside a shifted group, so add up the shifts above them
+        const offset = (el) => {
+          let x = 0, y = 0;
+          for (let n = el.parentNode; n !== map; n = n.parentNode) {
+            const t = n.transform && n.transform.baseVal.consolidate();
+            if (t) { x += t.matrix.e; y += t.matrix.f; }
+          }
+          return [x, y];
+        };
+        // move el so its bottom-right corner lands on (right, bottom), in map units
+        const place = (el, right, bottom) => {
+          const b = el.getBBox(), [ox, oy] = offset(el);
+          el.setAttribute("transform", `translate(${right - ox - b.x - b.width} ${bottom - oy - b.y - b.height})`);
+          return bottom - b.height;
+        };
+        const fit = () => {
+          const r = map.getBoundingClientRect();
+          if (!r.width || !r.height) return;
+          const aspect = r.width / r.height;
+          let w = Math.min(W, H * aspect), h = w / aspect, x, y;
+          if (matchMedia("(max-width: 759px)").matches) {
+            w /= ZOOM; h /= ZOOM;
+            // the pin sits a little left of centre so its name fits beside it, and a touch below the middle,
+            // since the top of the map fades under the words
+            x = clamp(PIN[0] - w * .4, 0, W - w); y = clamp(PIN[1] - h * .45, 0, H - h);
+          } else {
+            x = (W - w) / 2; y = (H - h) / 2;
+          }
+          map.setAttribute("viewBox", `${x} ${y} ${w} ${h}`);
+          const m = 20 * w / r.width;   // 20px in map units
+          const top = place(scaleBar, x + w - m, y + h - m);
+          place(compass, x + w - m - 8 * w / r.width, top - m * .6);
+        };
+        fit();
+        new ResizeObserver(fit).observe(map);
+      })();
+    </script>
   </section>
 
   <section class="fair" id="prices" aria-labelledby="prices-title">

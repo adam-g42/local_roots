@@ -128,7 +128,7 @@ p { margin: 0 0 1em; }
 /* the header holds the name. It starts tall with the name large, and settles to a slim bar once you scroll.
    It's fixed, so the page never shifts as it shrinks; the bar's height and the name's scale are the only things that move. */
 :root { --nav-h: 4.05rem; --nav-tall: 9rem; --mark-big: 2.15; }
-@media (max-width: 759px) { :root { --nav-tall: 5.75rem; --mark-big: 1.3; } }
+@media (max-width: 959px) { :root { --nav-tall: 5.75rem; --mark-big: 1.3; } }
 
 .nav {
   position: fixed; top: 0; left: 0; right: 0; z-index: 20;
@@ -173,32 +173,31 @@ p { margin: 0 0 1em; }
   container-type: inline-size;
 }
 
+/* while the stall is new, a small line over the promise says so */
+.hero__eyebrow {
+  display: flex; align-items: center; gap: .6rem;
+  margin: 0 0 .7rem;
+  font: 700 .8rem/1 var(--sans); letter-spacing: .14em; text-transform: uppercase;
+  color: var(--terra-deep);
+}
+.hero__eyebrow::before { content: ""; width: 1.75rem; height: 1.5px; background: currentColor; }
+
 /* the promise leads the hero; the name lives in the header */
 .hero__promise {
   font: var(--head-weight, 400) min(calc(2.75rem * var(--head-scale)), 9.5cqi, 5svh)/1 var(--serif);
   letter-spacing: -.01em; color: var(--ink); text-wrap: balance;
   margin: 0;
 }
-.hero__intro { max-width: 40ch; margin: .6rem 0 0; font-size: 1.08rem; line-height: 1.5; color: var(--ink-soft); }
+.hero__intro { max-width: 40ch; margin: .9rem 0 0; font-size: 1.08rem; line-height: 1.5; color: var(--ink-soft); }
 
 /* the stall callout: when and where, and how to get there */
 .hero__stall {
   position: relative;
-  max-width: 26rem; margin-top: clamp(1rem, 3svh, 1.75rem);
+  max-width: 26rem; margin-top: clamp(1.5rem, 4svh, 2.25rem);
   padding: clamp(.9rem, 3cqi, 1.25rem) clamp(1rem, 4cqi, 1.75rem);
   background: #FBF8F2;
   border: 1px solid var(--line); border-radius: 22px;
   box-shadow: 0 22px 40px -28px rgb(42 38 33 / .45);
-}
-
-/* a clay sticker on the card's corner while the stall is new */
-.when .when__badge {
-  position: absolute; top: 0; right: clamp(.75rem, 4cqi, 1.5rem); translate: 0 -50%;
-  padding: .3em .9em .35em;
-  font: var(--accent-style) var(--accent-weight) calc(1rem * var(--accent-scale))/1.1 var(--accent);
-  color: var(--terra-deep); background: var(--clay-soft);
-  border: 1.5px solid var(--terra); border-radius: 999px;
-  rotate: 4deg; white-space: nowrap;
 }
 
 /* when and where */
@@ -255,11 +254,24 @@ p { margin: 0 0 1em; }
 /* a crumpled sheet showing faintly through, under the drawing (photo by SJ Objio on Unsplash) */
 .hero__plate::before { content: ""; position: absolute; inset: 0; z-index: -1; background: url(/images/paper.jpg) center / cover; opacity: .3; animation: appear 1.8s ease both .2s; }
 
-/* the chard, laid on the map below and right of the pin */
-.hero__photo {
-  position: absolute; right: calc(var(--gutter) + 8px); bottom: clamp(1.25rem, 4svh, 2.5rem);
-  height: min(70%, 9rem); width: auto;
-  outline: 1px solid var(--sage); outline-offset: 8px;
+/* from tablets up, the words and card share a column with a tall arch of chard: it stands beside the intro and the card,
+   and the card is laid over its edge, so the colour sits with the words and the map stays clear */
+@media (min-width: 760px) {
+  .hero__text {
+    --chard-w: clamp(6.5rem, 11vw, 12.5rem);
+    display: grid; grid-template-columns: minmax(0, 26rem) var(--chard-w); justify-content: start;
+    /* the eyebrow's row is simply empty when there's no "new" line */
+    grid-template-areas: "eyebrow eyebrow" "promise promise" "intro photo" "stall photo";
+  }
+  .hero__eyebrow { grid-area: eyebrow; }
+  .hero__promise { grid-area: promise; }
+  .hero__intro { grid-area: intro; max-width: min(40ch, 100% - 3rem); }
+  .hero__stall { grid-area: stall; z-index: 1; }
+  .hero__photo {
+    grid-area: photo; align-self: stretch;
+    margin: .75rem 0 -1.5rem -3rem; aspect-ratio: auto;
+    outline: 1px solid var(--sage); outline-offset: 8px;
+  }
 }
 
 /* phones and tablets: the map is the picture, so the words and the card pack in tight and the map takes the rest of the first screen */
@@ -267,8 +279,8 @@ p { margin: 0 0 1em; }
   .hero { grid-template-rows: auto minmax(min(40svh, 24rem), 1fr); }
   .hero__text { padding-top: clamp(.9rem, 2.5svh, 1.5rem); padding-bottom: .25rem; }
   .hero__promise { font-size: min(calc(1.9rem * var(--head-scale)), 8cqi, 4.5svh); }
-  .hero__intro { font-size: 1rem; margin-top: .4rem; }
-  .hero__stall { margin-top: 1rem; padding: .8rem 1rem .9rem; border-radius: 18px; }
+  .hero__intro { font-size: 1rem; margin-top: .6rem; }
+  .hero__stall { margin-top: 1.4rem; padding: .8rem 1rem .9rem; border-radius: 18px; }
   /* the day and the hours on one line */
   .when__time { font-size: min(calc(1.6rem * var(--accent-scale)), 9cqi); }
   .when__time br { display: none; }
@@ -276,18 +288,20 @@ p { margin: 0 0 1em; }
   .when__actions { margin-top: .75rem; }
   .when__actions .btn { min-height: 2.6rem; padding: .5rem 1.15rem; font-size: .95rem; }
 }
-/* on phones the map is the picture: no chard laid over it */
+/* on phones the map is the picture, so no chard; the map is zoomed in there, so the pin's words come back down a size */
 @media (max-width: 759px) {
   .hero__photo { display: none; }
+  .map__pin-label { font-size: 30px; }
 }
 
 @media (min-width: 960px) {
-  .hero { grid-template-columns: minmax(0, 50fr) minmax(0, 50fr); grid-template-rows: none; }
+  /* the words get a little more room than the map, so the card and the chard fit side by side */
+  .hero { grid-template-columns: minmax(0, 55fr) minmax(0, 45fr); grid-template-rows: none; }
+  /* the words start a short way under the header rather than floating mid-screen */
   .hero__text {
-    align-self: center;
-    padding: 1.5rem 2rem 1.75rem max(var(--gutter), calc((100vw - var(--max)) / 2 + var(--gutter)));
+    align-self: start;
+    padding: clamp(2rem, 7svh, 4rem) 2rem 1.75rem max(var(--gutter), calc((100vw - var(--max)) / 2 + var(--gutter)));
   }
-  .hero__photo { right: 7%; bottom: 9%; height: min(38%, 19rem); outline-offset: 14px; }
   .hero__plate {
     --fade: rgb(0 0 0 / 0) 0%, rgb(0 0 0 / 0.028) 4.5%, rgb(0 0 0 / 0.104) 9%, rgb(0 0 0 / 0.216) 13.5%, rgb(0 0 0 / 0.352) 18%, rgb(0 0 0 / 0.500) 22.5%, rgb(0 0 0 / 0.648) 27%, rgb(0 0 0 / 0.784) 31.5%, rgb(0 0 0 / 0.896) 36%, rgb(0 0 0 / 0.972) 40.5%, rgb(0 0 0 / 1) 45%;
   }
@@ -297,12 +311,12 @@ p { margin: 0 0 1em; }
   }
 }
 
-/* the one orchestrated moment: the words settle, the card lands, the chard is laid on the map */
-.hero__promise, .hero__intro, .hero__stall { animation: rise 1s var(--ease) both; }
+/* the one orchestrated moment: the words settle, the chard is set down, and the card lands on it */
+.hero__eyebrow, .hero__promise, .hero__intro, .hero__stall { animation: rise 1s var(--ease) both; }
 .hero__promise { animation-delay: .1s; }
 .hero__intro { animation-delay: .28s; }
-.hero__stall { animation-delay: .38s; }
-.hero__photo { animation: rise 1s var(--ease) both .5s; }
+.hero__stall { animation-delay: .45s; }
+.hero__photo { animation: rise 1s var(--ease) both .32s; }
 
 /* ---------- the hand-drawn map ---------- */
 
