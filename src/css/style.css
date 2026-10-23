@@ -356,8 +356,29 @@ p { margin: 0 0 1em; }
   .fair__farms { padding-left: clamp(2rem, 4vw, 3.5rem); border-left: 1px solid rgb(192 96 61 / .22); }
 }
 
-/* the farms' photos in a neat row of arches, the same frame as the rest of the site */
-.farm-photos { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(.6rem, 2vw, 1rem); margin: .5rem 0 1.25rem; }
+/* the farms: a band each, its own photo behind and the name laid over it */
+.farms { list-style: none; margin: .5rem 0 0; padding: 0; display: grid; gap: .5rem; }
+.farm {
+  position: relative; isolation: isolate; overflow: hidden;
+  display: grid; align-content: center; justify-items: start; gap: .15rem;
+  min-height: 4.25rem; padding: .8rem 1.1rem;
+  border-radius: 14px; background: var(--forest); color: var(--paper);
+}
+.farm img { position: absolute; inset: 0; z-index: -2; width: 100%; height: 100%; object-fit: cover; transition: scale .6s var(--ease); }
+/* darker on the left where the name sits, so it reads over any photo */
+.farm::before { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(90deg, rgb(28 34 26 / .82), rgb(28 34 26 / .45) 65%, rgb(28 34 26 / .2)); }
+/* farms without a photo yet get a plain colour band */
+.farm--plain::before { display: none; }
+.farm--plain:nth-child(odd) { background: var(--terra-deep); }
+.farm p { margin: 0; }
+.farm__name { font: var(--head-weight) calc(1.35rem * var(--head-scale))/1.1 var(--serif); }
+.farm__name a { color: inherit; text-decoration: underline 1.5px var(--clay); text-underline-offset: .2em; }
+/* the whole band is the link */
+.farm__name a::after { content: ""; position: absolute; inset: 0; }
+.farm:has(a:hover) img { scale: 1.05; }
+.farm__name a:focus-visible { outline: none; }
+.farm:has(a:focus-visible) { outline: 2px solid var(--forest); outline-offset: 3px; }
+.farm__grows { font-size: .88rem; opacity: .85; }
 
 .menu {
   position: relative;
@@ -376,11 +397,6 @@ p { margin: 0 0 1em; }
 .menu__rows p { margin: .15rem 0 0; color: var(--ink-soft); max-width: 30em; font-size: .92rem; line-height: 1.4; }
 .menu__rows li:nth-child(2) .menu__price { color: var(--ink); }
 .menu__rows li:nth-child(3) .menu__price { color: var(--terra); }
-.farm-list { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(12rem, 1fr)); column-gap: 1.5rem; border-top: 1px solid rgb(192 96 61 / .22); }
-.farm-list li { display: grid; gap: 0; padding: .55rem 0; border-bottom: 1px solid rgb(192 96 61 / .22); }
-.farm-list a, .farm-list__name { font: var(--head-weight) calc(1.2rem * var(--head-scale))/1.15 var(--serif); justify-self: start; }
-.farm-list a { text-decoration: underline 1px var(--sage); text-underline-offset: .2em; margin-bottom: -5px; } /* the wavy underline's room shouldn't make its row taller */
-.farm-list a:hover { text-decoration-color: transparent; }
 
 /* ---------- maryam ---------- */
 

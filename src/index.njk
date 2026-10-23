@@ -89,15 +89,13 @@ layout: base.njk
 
       <div class="fair__farms" id="farms">
         <h2 id="farms-title">Where it comes from</h2>
-        <div class="farm-photos" aria-hidden="true">
-          {%- for s in site.suppliers %}{% if s.photo %}
-          <figure class="frame frame--arch"><img src="{{ s.photo }}" alt="" width="600" height="800" loading="lazy"></figure>
-          {%- endif %}{% endfor %}
-        </div>
-        <ul class="farm-list" role="list">
+        <!-- one band per farm: its photo behind, the name on top -->
+        <ul class="farms" role="list">
           {% for s in site.suppliers %}
-          <li>
-            {% if s.website %}<a class="ulink" href="{{ s.website }}" target="_blank" rel="noopener">{{ s.name }}</a>{% else %}<span class="farm-list__name">{{ s.name }}</span>{% endif %}
+          <li class="farm{% if not s.photo %} farm--plain{% endif %}">
+            {% if s.photo %}<img src="{{ s.photo }}" alt="" width="600" height="800" loading="lazy">{% endif %}
+            <p class="farm__name">{% if s.website %}<a href="{{ s.website }}" target="_blank" rel="noopener">{{ s.name }}</a>{% else %}{{ s.name }}{% endif %}</p>
+            <p class="farm__grows">{{ s.grows }}</p>
           </li>
           {% endfor %}
         </ul>
