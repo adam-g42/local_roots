@@ -10,6 +10,11 @@ export default function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy("images");
   eleventyConfig.addPassthroughCopy({ "src/css": "css", "src/js": "js" });
   eleventyConfig.addPassthroughCopy("src/admin/config.yml");
+  // d3-geo draws the food-miles globe
+  eleventyConfig.addPassthroughCopy({
+    "node_modules/d3-array/dist/d3-array.min.js": "js/vendor/d3-array.min.js",
+    "node_modules/d3-geo/dist/d3-geo.min.js": "js/vendor/d3-geo.min.js",
+  });
 
   eleventyConfig.addFilter("time12", time12);
   eleventyConfig.addFilter("urlencode", (s) => encodeURIComponent(s ?? ""));
@@ -27,6 +32,7 @@ export default function (eleventyConfig) {
   eleventyConfig.addFilter("byDay", (dayName) => dayName.slice(0, 2).toUpperCase());
   eleventyConfig.addFilter("unique", (list) => [...new Set(list)]);
   eleventyConfig.addFilter("year", () => new Date().getFullYear());
+  eleventyConfig.addFilter("commas", (n) => Number(n).toLocaleString("en-GB"));
 
   return {
     dir: { input: "src", output: "_site" },

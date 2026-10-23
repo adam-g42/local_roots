@@ -175,6 +175,54 @@ layout: base.njk
     </div>
   </section>
 
+  <!-- food miles: a supermarket's veg crosses the globe, then it zooms in until ours show. Data and distances in _data/foodmiles.js -->
+  {%- set fm = foodmiles -%}
+  {%- set first = fm.trips[0] -%}
+  <section class="miles" id="miles" aria-labelledby="miles-title">
+    <div class="wrap miles__grid">
+      <div class="miles__text">
+        <h2 id="miles-title">How far it travels</h2>
+        <p class="lede">Pick something from the stall. See where a supermarket's usually comes from out of season, and where ours does.</p>
+
+        <fieldset class="miles__pick">
+          <legend class="vh">Pick something from the stall</legend>
+          {%- for t in fm.trips %}
+          <label>
+            <input type="radio" name="trip" value="{{ loop.index0 }}"{% if loop.first %} checked{% endif %}>
+            <img src="/images/{{ t.img }}-600.jpg" alt="" width="600" height="800" loading="lazy">
+            <span>{{ t.produce }}</span>
+          </label>
+          {%- endfor %}
+        </fieldset>
+
+        <dl class="miles__tally">
+          <div class="miles__row miles__row--theirs">
+            <dt>Supermarket</dt>
+            <dd><span class="miles__num" data-theirs>{{ first.miles | commas }}</span> miles
+              <span class="miles__how" data-theirs-how>by {{ first.by }} from {{ first.from }}</span></dd>
+          </div>
+          <div class="miles__row miles__row--ours">
+            <dt>Local Roots</dt>
+            <dd><span class="miles__num">{{ fm.ours }}</span> miles
+              <span class="miles__how">at most, from farms around Oxford</span></dd>
+          </div>
+        </dl>
+        <p class="miles__times" data-times>That's about {{ first.times | commas }} times further.</p>
+        <p class="miles__note">Origins are typical for UK supermarkets out of season. Their miles follow the usual road, sea or air route; ours are as the crow flies.</p>
+      </div>
+
+      <figure class="miles__globe">
+        <svg class="globe" viewBox="0 0 640 580" role="img" aria-labelledby="globe-desc" data-globe></svg>
+        <button class="btn btn--small btn--ghost miles__zoom" type="button" data-zoom hidden>Zoom in to our farms</button>
+        <figcaption class="vh" id="globe-desc" data-globe-desc>A globe showing the route a supermarket's {{ first.produce | lower }} takes from {{ first.from }} to Oxford, and Local Roots' farms, all within {{ fm.ours }} miles of Cowley.</figcaption>
+      </figure>
+    </div>
+    <script id="foodmiles" type="application/json">{{ fm | dump | safe }}</script>
+    <script src="/js/vendor/d3-array.min.js" defer></script>
+    <script src="/js/vendor/d3-geo.min.js" defer></script>
+    <script src="/js/foodmiles.js" defer></script>
+  </section>
+
   <section class="maryam" aria-labelledby="maryam-title">
     <div class="wrap maryam__grid">
       <figure class="frame frame--arch maryam__photo">

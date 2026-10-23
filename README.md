@@ -16,6 +16,7 @@ In `src/_data/site.json`, or through `/admin` once that's set up:
 | `location.postcode`, `lat`, `lng` | empty | add these to show a map pin (otherwise a photo is shown) |
 | `suppliers[].website` | mostly empty | farm websites, if they have one |
 | `tiers[].example` | £1.00 / £1.80 / £2.50 | real prices for the example item |
+| `FARMS` in `src/_data/foodmiles.js` | rough pins for Brighthampton and Oxford City Farm | each farm's real location; these set the "Local Roots: N miles" figure in *How far it travels* |
 
 In `src/admin/config.yml`, set `repo: OWNER/REPO` to the GitHub repo name.
 

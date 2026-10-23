@@ -509,6 +509,92 @@ p { margin: 0 0 1em; }
 .menu__rows li:nth-child(2) .menu__price { color: var(--ink); }
 .menu__rows li:nth-child(3) .menu__price { color: var(--terra); }
 
+/* ---------- how far it travels: the supermarket's veg crosses a globe, ours fits on a dot ---------- */
+
+.miles { padding-block: clamp(3rem, 7vw, 5rem); }
+.miles__grid { display: grid; gap: 2rem; align-items: center; }
+.miles .lede { color: var(--ink-soft); }
+@media (min-width: 900px) {
+  .miles__grid { grid-template-columns: minmax(0, 27rem) minmax(0, 1fr); gap: clamp(2rem, 5vw, 4.5rem); }
+}
+/* phones: the globe comes straight after the picker, so a tap shows its trip without scrolling */
+@media (max-width: 899px) {
+  .miles__grid { gap: 0; }
+  .miles__text { display: contents; }
+  .miles__globe { order: 1; margin-bottom: 1.5rem; }
+  .miles__tally, .miles__times, .miles__note { order: 2; }
+  /* one row of pebbles that scrolls sideways, running to the screen's edges */
+  .miles .miles__pick { min-width: 0; flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; margin-inline: calc(var(--gutter) * -1); padding: .4rem var(--gutter); }
+  .miles__pick label { flex: none; }
+}
+
+/* the chooser: a pebble photo for each vegetable, ringed when picked */
+.miles__pick { border: 0; margin: 1.5rem 0 1.75rem; padding: 0; display: flex; flex-wrap: wrap; gap: .9rem .35rem; }
+.miles__pick label { position: relative; display: grid; justify-items: center; align-content: start; gap: .35rem; width: 4.1rem; cursor: pointer; text-align: center; }
+.miles__pick input { position: absolute; opacity: 0; pointer-events: none; }
+.miles__pick img {
+  width: 3.3rem; aspect-ratio: 1; object-fit: cover;
+  border-radius: 58% 42% 55% 45% / 47% 56% 44% 53%;
+  outline: 1.5px solid transparent; outline-offset: 4px;
+  transition: outline-color .25s ease, scale .4s var(--ease);
+}
+.miles__pick label:nth-of-type(2n) img { border-radius: 42% 58% 46% 54% / 58% 44% 56% 42%; }
+.miles__pick label:nth-of-type(3n) img { border-radius: 52% 48% 38% 62% / 42% 52% 48% 58%; }
+.miles__pick span { font-size: .8rem; line-height: 1.15; color: var(--ink-soft); }
+.miles__pick label:hover img { scale: 1.05; }
+.miles__pick input:checked + img { outline-color: var(--terra); }
+.miles__pick input:checked ~ span { color: var(--ink); font-weight: 700; }
+.miles__pick input:focus-visible + img { outline: 2px solid var(--forest); }
+
+/* the two distances, theirs over ours */
+.miles__tally { margin: 0; display: grid; gap: 1rem; }
+.miles__row { display: grid; grid-template-columns: 7.5rem 1fr; align-items: baseline; gap: 1rem; padding-bottom: 1rem; border-bottom: 2px dotted var(--clay); }
+.miles__row dt { font-size: var(--fs-s); font-weight: 700; color: var(--ink-soft); }
+.miles__row dd { margin: 0; font: var(--accent-style) var(--accent-weight) calc(var(--fs-m) * var(--accent-scale))/1.1 var(--accent); }
+.miles__num { font-size: 1.9em; font-variant-numeric: tabular-nums; }
+.miles__row--theirs .miles__num { color: var(--terra-deep); }
+.miles__row--ours .miles__num { color: var(--forest); }
+.miles__how { display: block; margin-top: .25rem; font: 400 .92rem/1.4 var(--sans); color: var(--ink-soft); }
+.miles__times { min-height: 1.3em; margin: 1.1rem 0 .5rem; font: var(--accent-style) var(--accent-weight) calc(var(--fs-m) * var(--accent-scale))/1.2 var(--accent); color: var(--ink); }
+.miles__note { max-width: 34em; margin: 0; font-size: var(--fs-s); color: var(--ink-soft); }
+
+.miles__globe { width: 100%; max-width: 40rem; justify-self: center; }
+
+/* the globe, drawn in the hero map's ink: blue-washed sea, paper land, pencilled lines of latitude */
+.globe { --k: 1; --map-ink: #4E3D2C; display: block; width: 100%; height: auto; overflow: visible; }
+.globe__sea { fill: rgb(132 169 183 / .3); }
+.globe__ripple { fill: none; stroke: var(--river); stroke-width: .8; }
+.globe__ripple-1 { opacity: .6; }
+.globe__ripple-2 { opacity: .38; }
+.globe__ripple-3 { opacity: .2; }
+.globe__grid { fill: none; stroke: #8C857C; stroke-width: .6; stroke-dasharray: 2 4; opacity: .45; }
+.globe__land { fill: #FBF7EF; stroke: rgb(78 61 44 / .7); stroke-width: 1; stroke-linejoin: round; }
+.globe__rim { fill: none; stroke: var(--map-ink); stroke-width: 1.4; opacity: .8; }
+/* the whole route pencilled in, then inked over as the trip is made */
+.globe__plan { fill: none; stroke: var(--terra); stroke-width: 1.4; stroke-dasharray: .5 5; stroke-linecap: round; opacity: .8; }
+.globe__trail { fill: none; stroke: var(--terra-deep); stroke-width: 2.4; stroke-dasharray: 8 5; stroke-linecap: round; stroke-linejoin: round; }
+.globe__origin { fill: var(--paper); stroke: var(--terra-deep); stroke-width: 2.5; }
+.globe__label {
+  font: var(--accent-style) var(--accent-weight) calc(22px * var(--accent-scale) * var(--k)) var(--accent);
+  fill: var(--ink); paint-order: stroke; stroke: #FBF7EF; stroke-width: 5px; stroke-linejoin: round;
+}
+.globe__vehicle path { fill: var(--paper); stroke: var(--ink); stroke-width: 1.4; stroke-linejoin: round; }
+.globe__home { fill: var(--forest); }
+
+/* zoomed in: our farms, each with its straight line in to Cowley */
+.farms-near__route { fill: none; stroke: var(--forest); stroke-width: 2.6; stroke-linecap: round; }
+.farms-near__farm { fill: var(--paper); stroke: var(--forest); stroke-width: 2.5; }
+.farms-near__label { font-size: calc(19px * var(--accent-scale) * var(--k)); }
+.farms-near__label--home { fill: var(--forest); }
+.farms-near__miles { fill: var(--forest); }
+.farms-near__ring { fill: none; stroke: var(--sage); stroke-width: 1.2; stroke-dasharray: 3 5; }
+.farms-near__theirs { font-size: calc(17px * var(--accent-scale) * var(--k)); fill: var(--terra-deep); }
+.farms-near__ring-label { font: italic 400 calc(13px * var(--k)) Georgia, "Times New Roman", serif; fill: var(--leaf); paint-order: stroke; stroke: #FBF7EF; stroke-width: 4px; }
+
+.miles__zoom:not([hidden]) { display: flex; margin: .5rem auto 0; }
+
+.vh { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+
 /* ---------- maryam ---------- */
 
 .maryam { background: var(--forest); color: var(--paper); padding-block: clamp(3.5rem, 8vw, 5.5rem); }
