@@ -223,10 +223,9 @@ p { margin: 0 0 1em; }
   .when__actions .btn { min-height: 2.6rem; padding: .5rem 1.15rem; font-size: .95rem; }
 }
 
-/* the plate: hand-drawn Oxford on a slightly deeper paper, dissolving at its edge */
+/* the plate: hand-drawn Oxford on the page's own colour, dissolving at its edge; only the paper texture sets it apart */
 .hero__plate {
   position: relative; isolation: isolate; overflow: hidden;
-  background: var(--oat);
   -webkit-mask-image: linear-gradient(transparent, #000 30%);
           mask-image: linear-gradient(transparent, #000 30%);
 }
@@ -284,7 +283,7 @@ p { margin: 0 0 1em; }
 .map__house-rows { fill: rgb(78 61 44 / .06); stroke: var(--map-ink); stroke-width: .45; stroke-opacity: .26; }
 .map__house-walls { stroke: var(--map-ink); stroke-width: .35; opacity: .2; }
 .map__sights { stroke: var(--map-ink); stroke-width: .8; }
-.map__sight-fill { fill: var(--oat); }
+.map__sight-fill { fill: var(--paper); }
 .map__sight-solid { fill: var(--map-ink); stroke: none; }
 .map__cows path { fill: #8A5A3B; stroke: none; }
 .map__horns path { stroke: var(--map-ink); stroke-width: .6; }
@@ -300,9 +299,6 @@ p { margin: 0 0 1em; }
 .map__scale text { font: italic 400 10px Georgia, "Times New Roman", serif; fill: currentColor; stroke: none; letter-spacing: .05em; }
 .map__scale .map__scale-note { font-size: 11px; }
 
-.map__label text, .map__pin text { paint-order: stroke; stroke: var(--oat); stroke-width: 8px; stroke-linejoin: round; }
-.map__path-names text { stroke: none; }
-.map__path-names .map__halo text { fill: var(--oat); stroke: var(--oat); }
 .map__drop path { fill: var(--terra); }
 .map__pulse { fill: var(--terra); opacity: 0; transform-box: fill-box; transform-origin: center; }
 .map__pin-label { font: var(--accent-style) var(--accent-weight) calc(30px * var(--accent-scale)) var(--accent); fill: var(--ink); }

@@ -125,15 +125,8 @@
         <text x="546" y="430" class="map__label--small map__label--minor">Christ Church Meadow</text>
         <text x="960" y="352">East Oxford</text>
         <text x="1185" y="132" class="map__label--tiny" text-anchor="middle">the shark</text>
-        <!-- names along roads and rivers: on a curve each letter is drawn on its own, so the halo goes in a layer underneath or it eats the letter before -->
+        <!-- names along roads and rivers -->
         <g class="map__path-names">
-          <g class="map__halo">
-            <text class="map__label--small"><textPath href="#road-cowley" startOffset="6%">Cowley Road</textPath></text>
-            <text class="map__label--small"><textPath href="#road-iffley" startOffset="44%">Iffley Road</textPath></text>
-            <text class="map__label--small"><textPath href="#road-clements" startOffset="34%">St Clement's</textPath></text>
-            <text class="map__label--water" dy="-9"><textPath href="#river-thames" startOffset="63%">River Thames or Isis</textPath></text>
-            <text class="map__label--water" dy="-8"><textPath href="#river-cherwell" startOffset="22%">Cherwell</textPath></text>
-          </g>
           <text class="map__label--small"><textPath href="#road-cowley" startOffset="6%">Cowley Road</textPath></text>
           <text class="map__label--small"><textPath href="#road-iffley" startOffset="44%">Iffley Road</textPath></text>
           <text class="map__label--small"><textPath href="#road-clements" startOffset="34%">St Clement's</textPath></text>
@@ -151,7 +144,7 @@
       <g class="map__compass" transform="translate(1196 286)">
         <circle r="17" stroke-width=".8"></circle>
         <circle r="13.5" stroke-width=".4"></circle>
-        <path d="M0 -26L3.2 0L0 0ZM9.2 -9.2L1.4 1.4L0 0ZM26 0L-0 3.2L0 0ZM9.2 9.2L-1.4 1.4L0 0ZM0 26L-3.2 -0L0 0ZM-9.2 9.2L-1.4 -1.4L0 0ZM-26 0L-0 -3.2L0 0ZM-9.2 -9.2L1.4 -1.4L0 0Z" stroke-width=".6" fill="var(--oat)"></path>
+        <path d="M0 -26L3.2 0L0 0ZM9.2 -9.2L1.4 1.4L0 0ZM26 0L-0 3.2L0 0ZM9.2 9.2L-1.4 1.4L0 0ZM0 26L-3.2 -0L0 0ZM-9.2 9.2L-1.4 -1.4L0 0ZM-26 0L-0 -3.2L0 0ZM-9.2 -9.2L1.4 -1.4L0 0Z" stroke-width=".6" fill="var(--paper)"></path>
         <path d="M0 -26L-3.2 -0L0 0ZM9.2 -9.2L-1.4 -1.4L0 0ZM26 0L0 -3.2L0 0ZM9.2 9.2L1.4 -1.4L0 0ZM0 26L3.2 0L0 0ZM-9.2 9.2L1.4 1.4L0 0ZM-26 0L0 3.2L0 0ZM-9.2 -9.2L-1.4 1.4L0 0Z" stroke="none" fill="currentColor"></path>
         <text x="0" y="-31" text-anchor="middle">N</text>
       </g>
