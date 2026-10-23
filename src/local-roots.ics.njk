@@ -31,7 +31,7 @@ DTSTAMP:{{ start }}T000000Z
 DTSTART;TZID=Europe/London:{{ start }}T{{ o.opens | icsTime }}
 DTEND;TZID=Europe/London:{{ start }}T{{ o.closes | icsTime }}
 RRULE:FREQ=WEEKLY;BYDAY={{ o.day | byDay }}
-SUMMARY:Local Roots greengrocer
+SUMMARY:Local Roots veg stall
 LOCATION:{{ (site.location.venue + ", " + site.location.address) | icsEscape | safe }}
 DESCRIPTION:{{ (site.tagline + " " + site.url) | icsEscape | safe }}
 URL:{{ site.url }}

@@ -1,6 +1,6 @@
 # Local Roots
 
-Website for Local Roots, a Sunday pop-up greengrocer at Workshop Cafe in Cowley, Oxford.
+Website for Local Roots, a Sunday veg stall at Workshop Cafe in Cowley, Oxford.
 
 It's a single page built with [Eleventy](https://www.11ty.dev/) and hosted free on Netlify. Every detail that changes (hours, address, socials, email, Ko-fi, price tiers, suppliers, and the "Meet Maryam" words) lives in **one file: `src/_data/site.json`**. Maryam can also edit it from a form at `/admin`.
 

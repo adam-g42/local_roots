@@ -2,7 +2,7 @@
   "name": "local-roots",
   "private": true,
   "type": "module",
-  "description": "Website for Local Roots, a Sunday pop-up greengrocer in Cowley, Oxford",
+  "description": "Website for Local Roots, a Sunday veg stall in Cowley, Oxford",
   "scripts": {
     "start": "eleventy --serve",
     "build": "eleventy",

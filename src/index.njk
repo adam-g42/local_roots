@@ -92,9 +92,10 @@ layout: base.njk
             w /= ZOOM; h /= ZOOM;
             // the pin sits a little left of centre so its name fits beside it, and a touch below the middle,
             // since the top of the map fades under the words
-            x = clamp(PIN[0] - w * .4, 0, W - w); y = clamp(PIN[1] - h * .45, 0, H - h);
+            x = clamp(PIN[0] - w * .47, 0, W - w); y = clamp(PIN[1] - h * .45, 0, H - h);
           } else {
-            x = (W - w) / 2; y = (H - h) / 2;
+            // nudged left of centre so more of the river shows
+            x = clamp((W - w) / 2 - 30, 0, W - w); y = (H - h) / 2;
           }
           map.setAttribute("viewBox", `${x} ${y} ${w} ${h}`);
           const m = 20 * w / r.width;   // 20px in map units
