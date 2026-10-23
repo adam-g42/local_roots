@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  {%- set hours = site.opening.day + "s, " + (site.opening.opens | time12) + "–" + (site.opening.closes | time12) %}
+  {%- set where = site.location.venue + ", " + site.location.address %}
+  {%- set desc = site.tagline + " " + hours + " at " + where + "." %}
+  <title>{{ title or (site.name + " · Cowley's Sunday greengrocer") }}</title>
+  <meta name="description" content="{{ desc }}">
+  <meta name="theme-color" content="#F6F0E6">
+  <link rel="canonical" href="{{ site.url }}{{ page.url }}">
+
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="{{ site.name }}: {{ site.tagline }}">
+  <meta property="og:description" content="{{ hours }} at {{ where }}.">
+  <meta property="og:url" content="{{ site.url }}{{ page.url }}">
+  <meta property="og:image" content="{{ site.url }}/images/og-share.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:locale" content="en_GB">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="icon" type="image/png" sizes="192x192" href="/images/brand/icon-192.png">
+  <link rel="apple-touch-icon" href="/images/brand/apple-touch-icon.png">
+  <link rel="manifest" href="/manifest.webmanifest">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="/css/style.css">
+  {% include "fonts-head.njk" %}
+</head>
+<body>
+  {{ content | safe }}
+  <script id="font-options" type="application/json">{{ fonts | dump | safe }}</script>
+  <script src="/js/main.js" defer></script>
+</body>
+</html>

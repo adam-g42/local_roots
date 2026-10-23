@@ -1,0 +1,16 @@
+[
+  { "img": "squash", "label": "Squash" },
+  { "img": "rainbow-chard", "label": "Rainbow chard" },
+  { "img": "tomatoes", "label": "Tomatoes" },
+  { "img": "leeks", "label": "Leeks" },
+  { "img": "lollo-rosso-lettuce", "label": "Lollo rosso" },
+  { "img": "cavolo-nero", "label": "Cavolo nero" },
+  { "img": "fennel", "label": "Fennel" },
+  { "img": "green-chillies", "label": "Green chillies" },
+  { "img": "radicchio", "label": "Radicchio" },
+  { "img": "red-pepper", "label": "Peppers" },
+  { "img": "pak-choi", "label": "Pak choi" },
+  { "img": "spring-onions", "label": "Spring onions" },
+  { "img": "mint", "label": "Fresh herbs" },
+  { "img": "zinnia", "label": "Cut flowers" }
+]

@@ -1,0 +1,83 @@
+<svg class="map" viewBox="0 0 1200 800" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false">
+  <defs>
+    <!-- a little wobble so every line looks drawn with a dip pen -->
+    <filter id="pen" x="-5%" y="-5%" width="110%" height="110%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.035" numOctaves="2" seed="4"/>
+      <feDisplacementMap in="SourceGraphic" scale="5"/>
+    </filter>
+    <pattern id="hatch" width="7" height="7" patternUnits="userSpaceOnUse" patternTransform="rotate(35)">
+      <line x1="0" y1="0" x2="0" y2="7" stroke="#A3B994" stroke-width="1"/>
+    </pattern>
+  </defs>
+
+  <g class="map__lines">
+    <!-- the whole drawing is laid out around Carfax, then shifted so the cafe pin sits just right of centre -->
+    <g transform="translate(-310 -61)" filter="url(#pen)" fill="none" stroke-linecap="round" stroke-linejoin="round">
+
+      <!-- parks and meadows -->
+      <g class="map__green">
+        <path d="M548 384c30-14 64-10 82 8 14 18 6 52-8 70-22 18-60 16-78-2-16-20-14-58 4-76z" fill="url(#hatch)"/>
+        <path d="M560 182c26-12 64-8 80 10 10 20 2 50-16 62-26 12-58 6-70-14-10-18-8-46 6-58z" fill="url(#hatch)"/>
+        <path d="M960 330c22-8 50-2 58 16 6 18-8 38-30 42-22 4-42-6-44-24-2-14 4-28 16-34z" fill="url(#hatch)"/>
+      </g>
+
+      <!-- rivers -->
+      <g class="map__water">
+        <path pathLength="1" d="M290-20c40 70 58 140 70 210 14 80 30 160 70 230 24 30 56 34 84 26 40-10 76 20 98 54 30 46 70 76 100 120 22 36 32 80 44 140" stroke-width="7"/>
+        <path pathLength="1" d="M290-20c40 70 58 140 70 210 14 80 30 160 70 230 24 30 56 34 84 26 40-10 76 20 98 54 30 46 70 76 100 120 22 36 32 80 44 140" stroke-width="1.2" transform="translate(9 3)"/>
+        <path pathLength="1" d="M630-20c14 60 24 120 26 180 2 60 8 120-6 170-10 30-30 54-36 86-6 30-6 60-10 82" stroke-width="5"/>
+      </g>
+
+      <!-- main roads -->
+      <g class="map__road">
+        <path pathLength="1" d="M0 330c90 2 180 6 250 2 60-4 120-8 180-6 30 0 62 2 90 4" stroke-width="2.6"/>
+        <path pathLength="1" d="M520 330c40 6 82 14 120 22 18 4 34 6 50 8" stroke-width="3"/>
+        <path pathLength="1" d="M520 330c-2-30-4-60-6-90-2-26-6-50-10-70-12-60-30-120-40-190" stroke-width="2.4"/>
+        <path pathLength="1" d="M505 170c20-50 36-110 52-190" stroke-width="2.2"/>
+        <path pathLength="1" d="M520 330c2 40 4 80 6 120 2 70 2 160 4 360" stroke-width="2.4"/>
+        <path pathLength="1" id="road-cowley" d="M690 360c50 24 100 50 150 76 60 30 110 64 170 104 60 40 120 80 200 130" stroke-width="3.4"/>
+        <path pathLength="1" id="road-iffley" d="M690 360c14 50 30 100 44 160 16 70 30 140 50 290" stroke-width="2.6"/>
+        <path pathLength="1" id="road-clements" d="M690 360c24-22 48-44 80-70 40-34 80-70 120-110 40-40 80-90 110-200" stroke-width="2.6"/>
+        <path d="M0 640c160-30 300-20 420 30 80 32 150 80 200 140" stroke-width="1.6" stroke-dasharray="2 9"/>
+      </g>
+
+      <!-- the side streets of East Oxford, sketched loosely -->
+      <g class="map__street" stroke-width="1.1">
+        <path d="M760 420l-40 70M800 440l-36 74M846 462l-40 80M890 486l-36 76M934 512l-34 74M980 540l-30 70"/>
+        <path d="M790 410l50-60M836 432l56-62M884 458l54-56M932 484l56-50M984 516l52-46"/>
+        <path d="M600 260c20 20 40 40 50 60M440 280c10 30 20 50 40 60M560 470c-30 30-60 50-90 70M460 360c-10 40-20 70-40 100"/>
+        <path d="M720 600c60-10 120-14 190-6M740 690c70-14 140-20 220-12"/>
+      </g>
+
+      <!-- labels -->
+      <g class="map__label">
+        
+        <text x="702" y="350" class="map__label--small">The Plain</text>
+        <text x="546" y="430" class="map__label--small map__label--minor">Christ Church Meadow</text>
+        <text x="236" y="470" class="map__label--small" transform="rotate(-62 236 470)">River Thames</text>
+        <text x="652" y="120" class="map__label--small" transform="rotate(84 652 120)">Cherwell</text>
+        <text x="960" y="352">East Oxford</text>
+        <text class="map__label--small"><textPath href="#road-cowley" startOffset="6%">Cowley Road</textPath></text>
+        <text class="map__label--small"><textPath href="#road-iffley" startOffset="44%">Iffley Road</textPath></text>
+        <text class="map__label--small"><textPath href="#road-clements" startOffset="34%">St Clement's</textPath></text>
+      </g>
+
+      <!-- compass -->
+      <g class="map__compass" transform="translate(1340 230)">
+        <path d="M0 -26 7 6 0 0 -7 6Z" fill="currentColor" stroke="none"/>
+        <path d="M0 0v22" stroke-width="1.2"/>
+        <text x="0" y="-34" text-anchor="middle">N</text>
+      </g>
+    </g>
+  </g>
+
+  <!-- Workshop Cafe, drawn last and outside the fade so it stays crisp -->
+  <g class="map__pin" transform="translate(540 380)">
+    <circle class="map__pulse" r="10"/>
+    <g class="map__drop">
+      <path d="M0 0c-4-8-14-16-14-28a14 14 0 0 1 28 0c0 12-10 20-14 28z"/>
+      <circle cx="0" cy="-28" r="5" fill="var(--paper)"/>
+    </g>
+    <text x="24" y="-30" class="map__pin-label">Workshop Cafe</text>
+  </g>
+</svg>

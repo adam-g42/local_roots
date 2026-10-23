@@ -1,0 +1,35 @@
+---
+layout: base.njk
+title: Font options · Local Roots
+permalink: /fonts/
+eleventyExcludeFromCollections: true
+---
+{#- A page for choosing the site's font pairing. Not linked from the site. -#}
+{%- set o = site.opening -%}
+{%- set families = [] -%}
+{%- for f in fonts -%}{%- set families = (families.push(f.gfHead), families) -%}{%- if f.gfAccent %}{%- set families = (families.push(f.gfAccent), families) -%}{% endif -%}{%- endfor %}
+<link href="https://fonts.googleapis.com/css2?{% for fam in families | unique %}family={{ fam }}&{% endfor %}family=Nunito:ital,wght@0,400..800;1,400&display=swap" rel="stylesheet">
+<meta name="robots" content="noindex">
+
+<main class="specimens wrap" id="main">
+  <header class="specimens__head">
+    <h1>Pick a font</h1>
+    <p>Ten pairings built around Modak and Caveat Brush, plus the current look at the end. Each shows a heading font, a hand-drawn accent font and an easy-reading body font. Try one across the whole page with <strong>See it on the whole site</strong>. To choose one, set <code>"font"</code> in <code>site.json</code> to its number, or pick it in the editor.</p>
+  </header>
+
+  <ol class="specimens__grid" role="list">
+    {% for f in fonts %}
+    <li class="specimen{% if loop.index == (site.font or 1) %} specimen--current{% endif %}" style="--serif: '{{ f.head }}', Georgia, serif; --accent: '{{ f.accent }}', cursive; --sans: '{{ f.body }}', sans-serif; --head-weight: {{ f.headWeight }}; --head-scale: {{ f.headScale }}; --accent-style: {{ f.accentStyle }}; --accent-weight: {{ f.accentWeight }}; --accent-scale: {{ f.accentScale }};">
+      <p class="specimen__meta"><span class="specimen__num">{{ loop.index }}</span> {{ f.name }}{% if loop.index == (site.font or 1) %} <span class="specimen__now">in use</span>{% endif %}<br><small>{{ f.head }}{% if f.accent != f.head %} + {{ f.accent }}{% endif %} + {{ f.body }}</small></p>
+      <h2 class="specimen__name"><span>Local</span> <span>Roots</span></h2>
+      <p class="specimen__tagline">{{ site.tagline }}</p>
+      <div class="when specimen__when">
+        <p class="when__time">{{ o.day }}s {{ o.opens | time12 }}–{{ o.closes | time12 }}</p>
+        <p class="when__where">{{ site.location.venue }}, Cowley</p>
+      </div>
+      <p class="specimen__body">{{ f.note }} {{ site.intro }}</p>
+      <a class="btn" href="/?font={{ loop.index }}">See it on the whole site</a>
+    </li>
+    {% endfor %}
+  </ol>
+</main>

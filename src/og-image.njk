@@ -1,0 +1,40 @@
+---
+permalink: /og-image/
+eleventyExcludeFromCollections: true
+---
+{#- Rendered to images/og-share.jpg by `npm run og`. Not linked from the site. -#}
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex">
+<link rel="stylesheet" href="/css/style.css">
+{% include "fonts-head.njk" %}
+<style>
+  body { width: 1200px; height: 630px; margin: 0; display: grid; grid-template-columns: 1fr 440px; overflow: hidden; }
+  body::before { display: none; }
+  .og-left { padding: 70px 0 0 80px; }
+  .og-left h1 { font-size: calc(112px * var(--head-scale)); line-height: 1; white-space: nowrap; margin-top: 40px; }
+  .og-left h1 { display: flex; align-items: stretch; gap: 22px; line-height: .92; }
+  .og-logo { height: 1.85em; align-self: stretch; color: var(--forest); }
+  .og-left h1 span span { font-style: var(--accent-style); color: var(--leaf); }
+  .og-left .tag { font-family: var(--accent) !important; font-style: var(--accent-style) !important; font-size: calc(40px * var(--accent-scale)) !important; }
+  .og-left .tag { font: italic 500 40px/1.2 var(--serif); color: var(--terra); margin: 34px 0 30px; }
+  .og-left .fact { font: 500 34px/1.25 var(--serif); margin: 0; padding: 10px 0; border-top: 1px solid var(--line); width: 560px; }
+  .og-left .fact:last-child { border-bottom: 1px solid var(--line); }
+  .og-right { background: var(--oat); display: grid; place-items: end center; padding-bottom: 50px; }
+  .og-right .frame { width: 300px; outline: 1px solid var(--leaf); outline-offset: 12px; }
+</style>
+</head>
+<body>
+  <div class="og-left">
+    <h1><span class="logo og-logo" aria-hidden="true"></span><span>Local<br><span>Roots</span></span></h1>
+    <p class="tag">{{ site.tagline }}</p>
+    <p class="fact">Every {{ site.opening.day }}, {{ site.opening.opens | time12 }}–{{ site.opening.closes | time12 }}</p>
+    <p class="fact">{{ site.location.venue }}, {{ site.location.address }}</p>
+  </div>
+  <div class="og-right">
+    <figure class="frame frame--arch"><img src="/images/rainbow-chard-from-above-600.jpg" alt=""></figure>
+  </div>
+</body>
+</html>

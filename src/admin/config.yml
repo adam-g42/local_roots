@@ -1,0 +1,109 @@
+# Decap CMS: the editing screen at /admin
+# Replace OWNER/REPO below with the GitHub repo, e.g. maryam-localroots/local-roots
+backend:
+  name: github
+  repo: OWNER/REPO
+  branch: main
+  commit_messages:
+    update: "Update {{slug}} via the site editor"
+
+# For testing on your own computer: run `npm run cms` alongside `npm start`
+local_backend: true
+
+site_url: https://local-roots.netlify.app
+display_url: https://local-roots.netlify.app
+logo_url: /images/brand/icon-192.png
+
+media_folder: images/uploads
+public_folder: /images/uploads
+
+collections:
+  - name: settings
+    label: Website
+    editor: { preview: false }
+    files:
+      - name: site
+        label: Opening times, contact & everything else
+        file: src/_data/site.json
+        format: json
+        fields:
+          - name: opening
+            label: Opening times
+            widget: object
+            collapsed: false
+            fields:
+              - { name: day, label: Day, widget: select, options: [Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday] }
+              - { name: opens, label: Opens, hint: "24-hour time, e.g. 10:00", widget: string, pattern: ['^([01]\d|2[0-3]):[0-5]\d$', "Use 24-hour time like 10:00"] }
+              - { name: closes, label: Closes, hint: "24-hour time, e.g. 15:00", widget: string, pattern: ['^([01]\d|2[0-3]):[0-5]\d$', "Use 24-hour time like 15:00"] }
+              - { name: notice, label: Notice banner, widget: string, required: false, hint: "e.g. 'No stall on 28 December, back in the new year!' Leave empty to hide." }
+
+          - name: font
+            label: Font pairing
+            widget: select
+            hint: "See all ten side by side at /fonts/"
+            options:
+              - { label: "1 · Bubble & brush (Modak + Caveat Brush)", value: 1 }
+              - { label: "2 · Bubble & pen (Modak + Caveat)", value: 2 }
+              - { label: "3 · Rounded & brush (Baloo 2 + Caveat Brush)", value: 3 }
+              - { label: "4 · Hand-cut poster (Londrina Solid + Caveat Brush)", value: 4 }
+              - { label: "5 · Retro sign (Shrikhand + Caveat Brush)", value: 5 }
+              - { label: "6 · Soft & chunky (Bagel Fat One + Gochi Hand)", value: 6 }
+              - { label: "7 · Rounded bold (Lilita One + Caveat Brush)", value: 7 }
+              - { label: "8 · Bouncy (Chewy + Gochi Hand)", value: 8 }
+              - { label: "9 · Gooey (Gluten + Caveat)", value: 9 }
+              - { label: "10 · Felt tip (Permanent Marker + Caveat Brush)", value: 10 }
+              - { label: "11 · Where we were (Fraunces)", value: 11 }
+          - { name: name, label: Name, widget: string }
+          - { name: url, label: Website address, widget: string, hint: "Only change this if you move to a new domain." }
+          - { name: tagline, label: Tagline, widget: string, hint: "Short and punchy, shown on the label at the top." }
+          - { name: intro, label: One-line introduction, widget: text }
+
+          - name: location
+            label: Location
+            widget: object
+            fields:
+              - { name: venue, label: Venue name, widget: string }
+              - { name: address, label: Street and town, widget: string }
+              - { name: postcode, label: Postcode, widget: string, required: false }
+              - { name: mapsQuery, label: What to search on Google Maps, widget: string, hint: "Used for the Get directions button." }
+              - { name: lat, label: Map latitude, widget: string, required: false, hint: "Optional. Right-click the spot in Google Maps to copy it. Leave empty to show a photo instead of a map." }
+              - { name: lng, label: Map longitude, widget: string, required: false }
+              - { name: notes, label: Handy notes, widget: string, required: false, hint: "e.g. payment methods, bring a bag" }
+
+          - name: contact
+            label: Contact, socials and donations
+            widget: object
+            fields:
+              - { name: email, label: Email, widget: string }
+              - { name: instagram, label: Instagram handle, widget: string, hint: "Just the handle, without the @" }
+              - { name: facebook, label: Facebook page link, widget: string, required: false }
+              - { name: whatsapp, label: WhatsApp group or community link, widget: string, required: false }
+              - { name: kofi, label: Ko-fi link, widget: string }
+
+          - name: tiers
+            label: Price tiers
+            widget: list
+            allow_add: true
+            summary: "{{fields.name}}: {{fields.example}}"
+            fields:
+              - { name: name, label: Tier name, widget: string }
+              - { name: description, label: One sentence, widget: string }
+              - { name: example, label: Example price, widget: string }
+          - { name: exampleItem, label: Example item for the prices, widget: string, hint: "e.g. 'A bunch of rainbow chard'" }
+
+          - name: suppliers
+            label: Farms and suppliers
+            widget: list
+            summary: "{{fields.name}}"
+            fields:
+              - { name: name, label: Name, widget: string }
+              - { name: grows, label: What they supply, widget: string }
+              - { name: website, label: Website, widget: string, required: false }
+              - { name: photo, label: Photo, widget: image, required: false, hint: "Optional. Portrait photos look best." }
+
+          - name: maryam
+            label: About Maryam
+            widget: object
+            fields:
+              - { name: heading, label: Heading, widget: string }
+              - { name: text, label: Text, widget: text, hint: "Two or three sentences is plenty." }

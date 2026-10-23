@@ -1,0 +1,300 @@
+---
+layout: base.njk
+---
+{%- set o = site.opening -%}
+{%- set loc = site.location -%}
+{%- set c = site.contact -%}
+{%- set hoursText = (o.opens | time12) + "–" + (o.closes | time12) -%}
+{%- set directions = "https://www.google.com/maps/dir/?api=1&destination=" + (loc.mapsQuery | urlencode) -%}
+{%- set insta = "https://www.instagram.com/" + (c.instagram | handle) + "/" -%}
+
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="nav">
+  <a class="nav__mark" href="#top" aria-label="Local Roots, back to top"><span class="logo" aria-hidden="true"></span>Local Roots</a>
+  <nav aria-label="Sections">
+    <a class="ulink" href="#prices">Prices</a>
+    <a class="ulink" href="#farms">Farms</a>
+    <a class="ulink" href="#help">Get involved</a>
+    <a class="ulink" href="#visit">Visit</a>
+  </nav>
+  <button class="btn btn--small btn--ghost" type="button" data-share>Share</button>
+</header>
+
+<main id="main">
+
+  {% if o.notice %}
+  <p class="notice" role="status">{{ o.notice }}</p>
+  {% endif %}
+
+  <section class="hero" id="top" aria-labelledby="hero-title">
+    <div class="hero__text">
+      <div class="lockup">
+        <span class="logo logo--hero" aria-hidden="true"></span>
+        <h1 id="hero-title"><span>Local</span> <span>Roots</span></h1>
+      </div>
+      <p class="hero__promise">{{ site.tagline }}</p>
+      <p class="hero__intro">{{ site.intro }}</p>
+
+      <!-- one card: the chard from the price list with its three prices, beside when and where to find them -->
+      <div class="hero__stall">
+        <div class="produce">
+          <figure class="frame frame--arch produce__photo">
+            <img src="/images/rainbow-chard-from-above-600.jpg"
+                 srcset="/images/rainbow-chard-from-above-600.jpg 600w, /images/rainbow-chard-from-above.jpg 900w"
+                 sizes="11rem"
+                 alt="Rainbow chard seen from above, red stems fanning out through crinkled leaves"
+                 width="600" height="800" fetchpriority="high">
+          </figure>
+          <ul class="stars" role="list" aria-label="Three prices for {{ site.exampleItem | lower }}">
+            {%- for t in site.tiers %}
+            <li class="star star--{{ loop.index }}"><a href="#prices"><span class="star__name">{{ t.name }}</span> <span class="star__price">{{ t.example }}</span></a></li>
+            {%- endfor %}
+          </ul>
+          <p class="produce__caption" aria-hidden="true">{{ site.exampleItem }}</p>
+        </div>
+
+        <div class="when">
+          <p class="when__time">{{ o.day }}s<br>{{ hoursText }}
+            <svg class="when__line" viewBox="0 0 300 14" preserveAspectRatio="none" aria-hidden="true"><path pathLength="1" d="M3 9.5c38-4.2 84-6.4 131-5.6 46 .7 92 3.4 130 1.6 12-.6 22-1.8 33-3.4"/></svg>
+          </p>
+          <p class="when__where">{{ loc.venue }}, {{ loc.address }}</p>
+          <p class="status" data-status
+             data-day="{{ o.day }}" data-opens="{{ o.opens }}" data-closes="{{ o.closes }}"
+             aria-live="polite"></p>
+          <div class="when__actions">
+            <a class="btn" href="{{ directions }}" target="_blank" rel="noopener">Get directions</a>
+            <a class="ulink when__cal" href="/local-roots.ics">Add to calendar</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- hand-drawn Oxford, with the pin on the cafe -->
+    <div class="hero__plate">
+      {% include "map.svg" %}
+    </div>
+  </section>
+
+  <section class="fair" id="prices" aria-labelledby="prices-title">
+    <div class="wrap fair__grid">
+      <div class="fair__prices">
+        <h2 id="prices-title">Pick your price</h2>
+        <p class="lede">Every item has three prices. Pick the one that fits your week. No one checks.</p>
+        <div class="menu">
+          <p class="menu__item">{{ site.exampleItem }}</p>
+          <ol class="menu__rows" role="list">
+            {% for t in site.tiers %}
+            <li>
+              <div class="menu__line">
+                <h3>{{ t.name }}</h3>
+                <span class="menu__dots" aria-hidden="true"></span>
+                <span class="menu__price">{{ t.example }}</span>
+              </div>
+              <p>{{ t.description }}</p>
+            </li>
+            {% endfor %}
+          </ol>
+        </div>
+      </div>
+
+      <div class="fair__farms" id="farms">
+        <h2 id="farms-title">Where it comes from</h2>
+        <div class="faces" aria-hidden="true">
+          {%- for s in site.suppliers %}{% if s.photo %}
+          <img src="{{ s.photo }}" alt="" width="600" height="800" loading="lazy">
+          {%- endif %}{% endfor %}
+        </div>
+        <ul class="farm-list" role="list">
+          {% for s in site.suppliers %}
+          <li>
+            {% if s.website %}<a class="ulink" href="{{ s.website }}" target="_blank" rel="noopener">{{ s.name }}</a>{% else %}<span class="farm-list__name">{{ s.name }}</span>{% endif %}
+          </li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="stall" aria-labelledby="stall-title">
+    <div class="wrap stall__head">
+      <h2 id="stall-title">In season</h2>
+    </div>
+    <div class="strip">
+      <ul class="strip__track">
+        {%- for n in [1, 2] %}
+        {%- for p in produce %}
+        <li class="bubble-{{ loop.index0 % 4 }}{% if loop.index0 % 2 %} low{% endif %}"{% if n == 2 %} aria-hidden="true"{% endif %}>
+          <img src="/images/{{ p.img }}-600.jpg" alt="" width="600" height="800" loading="lazy">
+          <span>{{ p.label }}</span>
+        </li>
+        {%- endfor %}
+        {%- endfor %}
+      </ul>
+    </div>
+  </section>
+
+  <section class="maryam" aria-labelledby="maryam-title">
+    <div class="wrap maryam__grid">
+      <figure class="frame frame--arch maryam__photo">
+        <img src="/images/headshot-600.jpg" srcset="/images/headshot-600.jpg 600w, /images/headshot.jpg 900w"
+             sizes="(min-width: 900px) 360px, 75vw"
+             alt="Maryam smiling, holding sunflowers on a farm" width="600" height="800" loading="lazy">
+      </figure>
+      <div class="maryam__text">
+        <h2 id="maryam-title">{{ site.maryam.heading }}</h2>
+        <p>{{ site.maryam.text }}</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="help" id="help" aria-labelledby="help-title">
+    <div class="wrap">
+      <h2 id="help-title">Get involved</h2>
+      <div class="help__grid">
+
+        <div class="pitch pitch--clay">
+          <h3>Chip in</h3>
+          <p>A donation tops up the Supported price, so a neighbour can take home a full bag for less.</p>
+          <a class="btn btn--terra" href="{{ c.kofi }}" target="_blank" rel="noopener">Donate on Ko-fi</a>
+        </div>
+
+        <details class="pitch pitch--sage" name="involve">
+          <summary>
+            <h3>Volunteer</h3>
+            <span class="pitch__text">Even one Sunday a month is a big help.</span>
+            <span class="btn">Offer to volunteer</span>
+          </summary>
+          <form class="form" name="volunteer" method="POST" action="/thanks/"
+                data-netlify="true" netlify-honeypot="bot-field">
+            <input type="hidden" name="form-name" value="volunteer">
+            <p class="hp"><label>Leave this empty <input name="bot-field" tabindex="-1" autocomplete="off"></label></p>
+            <label>Your name <input name="name" required autocomplete="name"></label>
+            <label>Email <input type="email" name="email" required autocomplete="email"></label>
+            <fieldset>
+              <legend>I'd like to help with</legend>
+              <label class="check"><input type="checkbox" name="help" value="Setting up and packing down"> Setting up and packing down</label>
+              <label class="check"><input type="checkbox" name="help" value="Serving on the stall"> Serving on the stall</label>
+              <label class="check"><input type="checkbox" name="help" value="Collecting from farms"> Collecting from farms</label>
+              <label class="check"><input type="checkbox" name="help" value="Posters and social media"> Posters and social media</label>
+            </fieldset>
+            <label>Anything else? <textarea name="message" rows="2"></textarea></label>
+            <button class="btn btn--ink" type="submit">Send offer</button>
+          </form>
+        </details>
+
+        <details class="pitch pitch--bone" name="involve">
+          <summary>
+            <h3>Say hello</h3>
+            <span class="pitch__text">An idea for the stall, a question, or something you grow?</span>
+            <span class="btn">Send a message</span>
+          </summary>
+          <form class="form" name="contact" method="POST" action="/thanks/"
+                data-netlify="true" netlify-honeypot="bot-field">
+            <input type="hidden" name="form-name" value="contact">
+            <p class="hp"><label>Leave this empty <input name="bot-field" tabindex="-1" autocomplete="off"></label></p>
+            <label>Your name <input name="name" required autocomplete="name"></label>
+            <label>Email <input type="email" name="email" required autocomplete="email"></label>
+            <label>This is about
+              <select name="topic">
+                <option>A suggestion</option>
+                <option>A question</option>
+                <option>I'm a grower or producer</option>
+                <option>Something else</option>
+              </select>
+            </label>
+            <label>Message <textarea name="message" rows="3" required></textarea></label>
+            <button class="btn btn--ink" type="submit">Send message</button>
+          </form>
+        </details>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="visit" id="visit" aria-labelledby="visit-title">
+    <div class="wrap visit__grid">
+      <div class="visit__text">
+        <h2 id="visit-title">Come and visit</h2>
+        <p class="visit__when">{{ o.day }}s, {{ hoursText }}</p>
+        <address>{{ loc.venue }}<br>{{ loc.address }}{% if loc.postcode %}<br>{{ loc.postcode }}{% endif %}</address>
+        {% if loc.notes %}<p class="visit__notes">{{ loc.notes }}</p>{% endif %}
+        <div class="actions">
+          <a class="btn btn--light" href="{{ directions }}" target="_blank" rel="noopener">Get directions</a>
+          <a class="btn btn--ghost-light" href="/local-roots.ics">Add to calendar</a>
+        </div>
+      </div>
+      {% if loc.lat and loc.lng %}
+      {%- set lat = loc.lat | float -%}{%- set lng = loc.lng | float -%}
+      <iframe class="visit__map" title="Map showing {{ loc.venue }}" loading="lazy"
+        src="https://www.openstreetmap.org/export/embed.html?bbox={{ lng - 0.006 }}%2C{{ lat - 0.003 }}%2C{{ lng + 0.006 }}%2C{{ lat + 0.003 }}&amp;layer=mapnik&amp;marker={{ lat }}%2C{{ lng }}"></iframe>
+      {% else %}
+      <figure class="frame frame--circle visit__photo">
+        <img src="/images/squash-600.jpg" alt="Crates of squash ready for the stall" width="600" height="800" loading="lazy">
+      </figure>
+      {% endif %}
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <div class="wrap footer__grid">
+    <p class="footer__name">
+      <span class="logo logo--footer" aria-hidden="true"></span>
+      Local Roots
+    </p>
+    <ul class="footer__links" role="list">
+      <li><a class="ulink" href="{{ insta }}" target="_blank" rel="noopener">Instagram</a></li>
+      {% if c.facebook %}<li><a class="ulink" href="{{ c.facebook }}" target="_blank" rel="noopener">Facebook</a></li>{% endif %}
+      {% if c.whatsapp %}<li><a class="ulink" href="{{ c.whatsapp }}" target="_blank" rel="noopener">WhatsApp group</a></li>{% endif %}
+      <li><a class="ulink" href="mailto:{{ c.email }}">{{ c.email }}</a></li>
+      <li><a class="ulink" href="{{ c.kofi }}" target="_blank" rel="noopener">Ko-fi</a></li>
+      <li><button type="button" class="ulink linkish" data-share>Share this page</button></li>
+    </ul>
+    <p class="footer__small">Grown nearby, sold in Cowley. © {{ "" | year }} Local Roots</p>
+  </div>
+</footer>
+
+<dialog class="share" id="share-dialog" aria-labelledby="share-title">
+  <form method="dialog">
+    <h2 id="share-title">Share Local Roots</h2>
+    {%- set shareText = site.name + ": " + site.tagline + " " + o.day + "s " + hoursText + ", " + loc.venue + ", Cowley." -%}
+    <ul class="share__list" role="list">
+      <li><button type="button" class="btn" data-copy="{{ site.url }}">Copy link</button></li>
+      <li><a class="btn btn--ghost" target="_blank" rel="noopener" href="https://wa.me/?text={{ (shareText + ' ' + site.url) | urlencode }}">WhatsApp</a></li>
+      <li><a class="btn btn--ghost" target="_blank" rel="noopener" href="https://www.facebook.com/sharer/sharer.php?u={{ site.url | urlencode }}">Facebook</a></li>
+      <li><a class="btn btn--ghost" target="_blank" rel="noopener" href="https://x.com/intent/post?text={{ shareText | urlencode }}&amp;url={{ site.url | urlencode }}">X</a></li>
+      <li><a class="btn btn--ghost" href="mailto:?subject={{ site.name | urlencode }}&amp;body={{ (shareText + ' ' + site.url) | urlencode }}">Email</a></li>
+    </ul>
+    <p class="share__done" data-copied hidden role="status">Link copied</p>
+    <button class="share__close" value="close" aria-label="Close">×</button>
+  </form>
+</dialog>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "GroceryStore",
+  "name": {{ site.name | dump | safe }},
+  "description": {{ site.intro | dump | safe }},
+  "url": {{ site.url | dump | safe }},
+  "image": {{ (site.url + "/images/og-share.jpg") | dump | safe }},
+  "email": {{ c.email | dump | safe }},
+  "priceRange": "£",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": {{ (loc.venue + ", " + loc.address) | dump | safe }},
+    "addressLocality": "Oxford",
+    "postalCode": {{ loc.postcode | dump | safe }},
+    "addressCountry": "GB"
+  },
+  "openingHoursSpecification": [{
+    "@type": "OpeningHoursSpecification",
+    "dayOfWeek": {{ ("https://schema.org/" + o.day) | dump | safe }},
+    "opens": {{ o.opens | dump | safe }},
+    "closes": {{ o.closes | dump | safe }}
+  }],
+  "sameAs": [{{ insta | dump | safe }}]
+}
+</script>

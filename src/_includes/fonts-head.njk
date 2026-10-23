@@ -1,0 +1,4 @@
+{#- The chosen font pairing (site.json "font", see _data/fonts.json). -#}
+{%- set f = fonts[(site.font or 1) - 1] %}
+  <link href="https://fonts.googleapis.com/css2?family={{ f.gfHead }}{% if f.gfAccent %}&family={{ f.gfAccent }}{% endif %}&family={{ f.gfBody }}&display=swap" rel="stylesheet">
+  <style>:root { --serif: "{{ f.head }}", Georgia, serif; --accent: "{{ f.accent }}", cursive; --sans: "{{ f.body }}", ui-rounded, ui-sans-serif, sans-serif; --head-weight: {{ f.headWeight }}; --head-scale: {{ f.headScale }}; --accent-style: {{ f.accentStyle }}; --accent-weight: {{ f.accentWeight }}; --accent-scale: {{ f.accentScale }}; }</style>
