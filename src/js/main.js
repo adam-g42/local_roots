@@ -46,13 +46,10 @@ function renderStatus(el) {
 
 document.querySelectorAll("[data-status]").forEach(renderStatus);
 
-// Show the name beside the nav logo once the hero's big one is out of view
-const heroLogo = document.querySelector(".logo--hero");
-if (heroLogo && "IntersectionObserver" in window) {
-  new IntersectionObserver(([e]) => document.body.classList.toggle("scrolled", !e.isIntersecting), { rootMargin: "-64px 0px 0px" }).observe(heroLogo);
-} else {
-  document.body.classList.add("scrolled");
-}
+// The header starts tall and settles to a slim bar once the page is scrolled
+const setScrolled = () => document.body.classList.toggle("scrolled", scrollY > 16);
+addEventListener("scroll", setScrolled, { passive: true });
+setScrolled();
 
 // Share: the phone's own share sheet where there is one, otherwise our dialog
 const dialog = document.getElementById("share-dialog");

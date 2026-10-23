@@ -11,7 +11,7 @@ layout: base.njk
 <a class="skip" href="#main">Skip to content</a>
 
 <header class="nav">
-  <a class="nav__mark" href="#top" aria-label="Local Roots, back to top"><span class="logo" aria-hidden="true"></span><span class="nav__name">Local Roots</span></a>
+  <a class="nav__mark" href="#top" aria-label="Local Roots, back to top"><span class="logo" aria-hidden="true"></span><span class="nav__name">Local <span>Roots</span></span></a>
   <nav aria-label="Sections">
     <a class="ulink" href="#prices">Prices</a>
     <a class="ulink" href="#farms">Farms</a>
@@ -29,17 +29,13 @@ layout: base.njk
 
   <section class="hero" id="top" aria-labelledby="hero-title">
     <div class="hero__text">
-      <div class="lockup">
-        <span class="logo logo--hero" aria-hidden="true"></span>
-        <h1 id="hero-title"><span>Local</span> <span>Roots</span></h1>
-      </div>
-      <p class="hero__promise">{{ site.tagline }}</p>
+      <h1 class="hero__promise" id="hero-title">{{ site.tagline }}</h1>
       <p class="hero__intro">{{ site.intro }}</p>
 
       <!-- one callout: when and where to find the stall -->
       <div class="hero__stall when">
         {% if site.badge %}<p class="when__badge">{{ site.badge }}</p>{% endif %}
-        <p class="when__time">{{ o.day }}s<br>{{ hoursText }}</p>
+        <p class="when__time">{{ o.day }}s<br> {{ hoursText }}</p>
         <p class="when__where">{{ loc.venue }}, {{ loc.address }}</p>
         <p class="status" data-status
            data-day="{{ o.day }}" data-opens="{{ o.opens }}" data-closes="{{ o.closes }}"
