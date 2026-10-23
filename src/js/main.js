@@ -46,7 +46,7 @@ function renderStatus(el) {
 
 document.querySelectorAll("[data-status]").forEach(renderStatus);
 
-// Show the small logo in the nav once the hero's big one is out of view
+// Show the name beside the nav logo once the hero's big one is out of view
 const heroLogo = document.querySelector(".logo--hero");
 if (heroLogo && "IntersectionObserver" in window) {
   new IntersectionObserver(([e]) => document.body.classList.toggle("scrolled", !e.isIntersecting), { rootMargin: "-64px 0px 0px" }).observe(heroLogo);

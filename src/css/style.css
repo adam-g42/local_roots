@@ -133,9 +133,10 @@ p { margin: 0 0 1em; }
   backdrop-filter: blur(10px);
   border-bottom: 1px solid rgb(214 200 174 / .6);
 }
-.nav__mark .logo { height: 2.1em; margin-block: -.4em; color: var(--forest); width: 0; opacity: 0; transition: width .4s var(--ease), opacity .4s ease; }
-/* the nav only shows the drawing once the big one in the hero has scrolled away */
-.scrolled .nav__mark .logo { width: 1.73em; opacity: 1; margin-right: .45rem; }
+.nav__mark .logo { height: 2.1em; margin-block: -.4em; color: var(--forest); }
+/* the nav keeps just the drawing; the name slides in once the big one in the hero has scrolled away */
+.nav__name { display: inline-block; overflow: hidden; white-space: nowrap; max-width: 0; opacity: 0; transition: max-width .45s var(--ease), opacity .4s ease, margin .45s var(--ease); }
+.scrolled .nav__name { max-width: 7em; opacity: 1; margin-left: .45rem; }
 .nav__mark { display: flex; align-items: center; gap: 0; font: var(--head-weight, 400) calc(1.6rem * var(--head-scale))/1 var(--serif); text-decoration: none; letter-spacing: -.01em; }
 .nav nav { display: none; gap: 2rem; margin-left: auto; }
 .nav .btn { margin-left: auto; }
@@ -161,7 +162,7 @@ p { margin: 0 0 1em; }
 }
 
 /* the lockup: the veg drawing on the left, "Local / Roots" stacked on the right, same height */
-.lockup { display: flex; align-items: center; gap: .15em; font-size: min(calc(5.5rem * var(--head-scale)), 16cqi, 9.5svh); }
+.lockup { display: flex; align-items: center; gap: .15em; font-size: min(calc(6.5rem * var(--head-scale)), 19cqi, 11svh); }
 .hero h1 { font-size: 1em; line-height: .92; letter-spacing: -.01em; white-space: nowrap; }
 .hero h1 span { display: block; }
 .hero h1 span + span { font-style: var(--accent-style); color: var(--leaf); font-variation-settings: "SOFT" 100, "WONK" 1; }
