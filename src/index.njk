@@ -38,9 +38,7 @@ layout: base.njk
 
       <!-- one callout: when and where to find the stall -->
       <div class="hero__stall when">
-        <p class="when__time">{{ o.day }}s<br>{{ hoursText }}
-          <svg class="when__line" viewBox="0 0 300 14" preserveAspectRatio="none" aria-hidden="true"><path pathLength="1" d="M3 9.5c38-4.2 84-6.4 131-5.6 46 .7 92 3.4 130 1.6 12-.6 22-1.8 33-3.4"/></svg>
-        </p>
+        <p class="when__time">{{ o.day }}s<br>{{ hoursText }}</p>
         <p class="when__where">{{ loc.venue }}, {{ loc.address }}</p>
         <p class="status" data-status
            data-day="{{ o.day }}" data-opens="{{ o.opens }}" data-closes="{{ o.closes }}"
