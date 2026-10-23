@@ -127,6 +127,19 @@
           <circle cx="0" cy="8.4" r="1.6" class="map__sight-solid"/>
           <path class="map__wake" d="M-3.4-15.5Q0-18.5 3.4-15.5M-4.6-19.5Q0-23 4.6-19.5"/>
         </g>
+        <!-- two eights on the Isis, one chasing the other down like a bumps race: oars out, cox in the stern -->
+        <g transform="translate(721.3 637.6) rotate(64.2)">
+            <path class="map__wake" d="M-16.5-.9Q-21.5-1.5-27-3.4M-16.5.9Q-21.5 1.5-27 3.4"/>
+            <path class="map__oars" d="M-9.5 -1.2L-11.7 -7.5M-7 1.2L-9.2 7.5M-4.5 -1.2L-6.7 -7.5M-2 1.2L-4.2 7.5M0.5 -1.2L-1.7 -7.5M3 1.2L0.8 7.5M5.5 -1.2L3.3 -7.5M8 1.2L5.8 7.5"/>
+            <path class="map__sight-fill" d="M-15 0Q-14-1.2-9-1.2H10Q14-1.2 16 0 14 1.2 10 1.2H-9Q-14 1.2-15 0Z"/>
+            <g class="map__sight-solid"><circle cx="-9.5" cy="0" r=".6"/><circle cx="-7" cy="0" r=".6"/><circle cx="-4.5" cy="0" r=".6"/><circle cx="-2" cy="0" r=".6"/><circle cx="0.5" cy="0" r=".6"/><circle cx="3" cy="0" r=".6"/><circle cx="5.5" cy="0" r=".6"/><circle cx="8" cy="0" r=".6"/><circle cx="-12.5" cy="0" r=".75"/></g>
+        </g>
+        <g transform="translate(739.8 688.2) rotate(74.6)">
+            <path class="map__wake" d="M-16.5-.9Q-21.5-1.5-27-3.4M-16.5.9Q-21.5 1.5-27 3.4"/>
+            <path class="map__oars" d="M-9.5 -1.2L-11.7 -7.5M-7 1.2L-9.2 7.5M-4.5 -1.2L-6.7 -7.5M-2 1.2L-4.2 7.5M0.5 -1.2L-1.7 -7.5M3 1.2L0.8 7.5M5.5 -1.2L3.3 -7.5M8 1.2L5.8 7.5"/>
+            <path class="map__sight-fill" d="M-15 0Q-14-1.2-9-1.2H10Q14-1.2 16 0 14 1.2 10 1.2H-9Q-14 1.2-15 0Z"/>
+            <g class="map__sight-solid"><circle cx="-9.5" cy="0" r=".6"/><circle cx="-7" cy="0" r=".6"/><circle cx="-4.5" cy="0" r=".6"/><circle cx="-2" cy="0" r=".6"/><circle cx="0.5" cy="0" r=".6"/><circle cx="3" cy="0" r=".6"/><circle cx="5.5" cy="0" r=".6"/><circle cx="8" cy="0" r=".6"/><circle cx="-12.5" cy="0" r=".75"/></g>
+        </g>
         <!-- and, up the hill, the Headington Shark -->
         <g transform="translate(1176 92) scale(1.25)">
           <path class="map__sight-fill" d="M0 14V6L7 .6 14 6V14Z"/>

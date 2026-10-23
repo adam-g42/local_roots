@@ -170,7 +170,7 @@ p { margin: 0 0 1em; }
 /* the promise, in the heading face but a step down so the name still leads */
 .hero__promise {
   font: var(--head-weight, 400) min(calc(2.75rem * var(--head-scale)), 9.5cqi, 5svh)/1 var(--serif);
-  letter-spacing: -.01em; color: var(--forest-deep); text-wrap: balance;
+  letter-spacing: -.01em; color: var(--ink); text-wrap: balance;
   margin: clamp(.75rem, 2svh, 1.25rem) 0 0;
 }
 .hero__intro { max-width: 40ch; margin: .6rem 0 0; font-size: 1.08rem; line-height: 1.5; color: var(--ink-soft); }
@@ -189,13 +189,13 @@ p { margin: 0 0 1em; }
 .when p { margin: 0; }
 .when__time {
   position: relative; width: fit-content;
-  font: var(--accent-style) var(--accent-weight) min(calc(2.6rem * var(--accent-scale)), 17cqi)/.95 var(--accent);
+  font: var(--accent-style) var(--accent-weight) min(calc(2rem * var(--accent-scale)), 14cqi)/.95 var(--accent);
   color: var(--forest); letter-spacing: -.01em; white-space: nowrap;
 }
 /* underlined with the same squiggle as every link, a size up to suit the lettering, wiped in with the map's roads */
 .when__time::after {
-  content: ""; position: absolute; left: 0; right: 0; top: calc(100% + .1em); height: 11px;
-  background: var(--wave) left center / 33px 11px repeat-x;
+  content: ""; position: absolute; left: 0; right: 0; top: calc(100% + .1em); height: 9px;
+  background: var(--wave) left center / 27px 9px repeat-x;
   animation: wipe 1.1s var(--ease) both 1.1s;
 }
 .when__where { margin-top: 1.3rem !important; line-height: 1.4; }
@@ -296,6 +296,7 @@ p { margin: 0 0 1em; }
 .map__cows path { fill: #8A5A3B; stroke: none; }
 .map__horns path { stroke: var(--map-ink); stroke-width: .6; }
 .map__wake { stroke: var(--river); }
+.map__oars { stroke: var(--map-ink); stroke-width: .55; }
 .map__label text { font: var(--accent-style) var(--accent-weight) calc(24px * var(--accent-scale)) var(--accent); fill: var(--map-ink-soft); }
 .map__label .map__label--small { font-size: 17px; }
 .map__label .map__label--tiny { font-size: 13px; }
