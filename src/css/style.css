@@ -231,6 +231,8 @@ p { margin: 0 0 1em; }
           mask-image: linear-gradient(transparent, #000 30%);
 }
 .hero__plate .map { position: absolute; inset: 0; width: 100%; height: 100%; }
+/* a crumpled sheet showing faintly through, under the drawing (photo by SJ Objio on Unsplash) */
+.hero__plate::before { content: ""; position: absolute; inset: 0; z-index: -1; background: url(/images/paper.jpg) center / cover; opacity: .3; animation: appear 1.8s ease both .2s; }
 
 /* the chard, laid on the map below and right of the pin */
 .hero__photo {
@@ -262,19 +264,45 @@ p { margin: 0 0 1em; }
 
 /* ---------- the hand-drawn map ---------- */
 
-.map { color: var(--ink); }
-.map__road path { stroke: var(--ink); opacity: .38; }
-.map__street path { stroke: var(--ink); opacity: .17; }
+/* drawn in a warm sepia ink, like an old survey sheet */
+.map { --map-ink: #4E3D2C; --map-ink-soft: #6F5B46; --tree: #6F8A5C; color: var(--map-ink); }
+.map__road path { stroke: var(--map-ink); opacity: .5; }
+.map__footpath { stroke: var(--map-ink); opacity: .35; }
+.map__street path { stroke: var(--map-ink); opacity: .3; }
 .map__water path { stroke: var(--river); opacity: .85; }
-.map__green path { stroke: var(--sage); stroke-width: 1.2; opacity: .6; }
-.map__label text { font: var(--accent-style) var(--accent-weight) calc(24px * var(--accent-scale)) var(--accent); fill: var(--ink-soft); }
+.map__ripples path { stroke: var(--river); stroke-width: .7; }
+.map__ripple-1 { opacity: .75; }
+.map__ripple-2 { opacity: .5; }
+.map__ripple-3 { opacity: .28; }
+.map__green path { fill: rgb(163 185 148 / .2); stroke: var(--sage); stroke-width: .9; opacity: .9; }
+.map__trees path { stroke: var(--tree); stroke-width: .7; }
+.map__tree-crown { fill: rgb(163 185 148 / .55); }
+.map__tree-shade { stroke: var(--map-ink) !important; opacity: .22; stroke-width: .9 !important; }
+.map__hachures path { stroke: var(--map-ink); stroke-width: .8; opacity: .32; }
+.map__pencil path { stroke: #8C857C; opacity: .28; }
+.map__blots { fill: var(--map-ink); opacity: .45; }
+.map__house-rows { fill: rgb(78 61 44 / .06); stroke: var(--map-ink); stroke-width: .45; stroke-opacity: .26; }
+.map__house-walls { stroke: var(--map-ink); stroke-width: .35; opacity: .2; }
+.map__sights { stroke: var(--map-ink); stroke-width: .8; }
+.map__sight-fill { fill: var(--oat); }
+.map__sight-solid { fill: var(--map-ink); stroke: none; }
+.map__cows path { fill: #8A5A3B; stroke: none; }
+.map__horns path { stroke: var(--map-ink); stroke-width: .6; }
+.map__wake { stroke: var(--river); }
+.map__label text { font: var(--accent-style) var(--accent-weight) calc(24px * var(--accent-scale)) var(--accent); fill: var(--map-ink-soft); }
 .map__label .map__label--small { font-size: 17px; }
-.map__compass { color: var(--ink-soft); stroke: var(--ink-soft); opacity: .7; }
-.map__compass text { font: var(--accent-style) var(--accent-weight) calc(18px * var(--accent-scale)) var(--accent); fill: currentColor; stroke: none; }
-/* a halo of the plate's paper behind words so they lift off the line-work */
+.map__label .map__label--tiny { font-size: 13px; }
+/* water is lettered the cartographer's way: spaced italic capitals */
+.map__label .map__label--water { font: italic 400 11.5px Georgia, "Times New Roman", serif; letter-spacing: .3em; text-transform: uppercase; fill: #5A8292; }
+.map__compass { color: var(--map-ink-soft); stroke: var(--map-ink-soft); opacity: .8; }
+.map__compass text { font: italic 400 13px Georgia, "Times New Roman", serif; fill: currentColor; stroke: none; }
+.map__scale { color: var(--map-ink-soft); stroke: var(--map-ink-soft); opacity: .85; }
+.map__scale text { font: italic 400 10px Georgia, "Times New Roman", serif; fill: currentColor; stroke: none; letter-spacing: .05em; }
+.map__scale .map__scale-note { font-size: 11px; }
+
 .map__label text, .map__pin text { paint-order: stroke; stroke: var(--oat); stroke-width: 8px; stroke-linejoin: round; }
-.map__road-names text { stroke: none; }
-.map__road-names .map__halo text { fill: var(--oat); stroke: var(--oat); }
+.map__path-names text { stroke: none; }
+.map__path-names .map__halo text { fill: var(--oat); stroke: var(--oat); }
 .map__drop path { fill: var(--terra); }
 .map__pulse { fill: var(--terra); opacity: 0; transform-box: fill-box; transform-origin: center; }
 .map__pin-label { font: var(--accent-style) var(--accent-weight) calc(30px * var(--accent-scale)) var(--accent); fill: var(--ink); }
@@ -285,7 +313,7 @@ p { margin: 0 0 1em; }
   .map__label--minor { display: none; }
 }
 
-/* roads draw in under the words, and the pin drops once the prices are on */
+/* roads draw in under the words, the detail is inked in after, and the pin drops once the prices are on */
 .map__road path[pathLength], .map__water path[pathLength] {
   stroke-dasharray: 1; stroke-dashoffset: 1;
   animation: draw 2.2s var(--ease) forwards .2s;
@@ -293,12 +321,13 @@ p { margin: 0 0 1em; }
 .map__water path[pathLength] { animation-duration: 2.8s; }
 .map__road path:nth-child(3n+2) { animation-delay: .4s; }
 .map__road path:nth-child(3n) { animation-delay: .6s; }
-.map__street, .map__label, .map__green, .map__compass { opacity: 0; animation: fade 1.2s ease forwards 1.1s; }
+.map__street, .map__label, .map__green, .map__compass, .map__footpath, .map__houses, .map__trees, .map__ripples, .map__hachures, .map__sights, .map__scale, .map__pencil, .map__blots { opacity: 0; animation: fade 1.2s ease forwards 1.1s; }
 .map__drop { animation: pin-drop .7s cubic-bezier(.3, 1.6, .5, 1) both 1.8s; transform-box: fill-box; transform-origin: 50% 100%; }
 .map__pin text { opacity: 0; animation: fade .8s ease forwards 2.2s; }
 .map__pulse { animation: pulse 2.8s ease-out infinite 2.5s; }
 
 @keyframes draw { to { stroke-dashoffset: 0; } }
+@keyframes appear { from { opacity: 0; } }
 @keyframes wipe { from { clip-path: inset(0 100% 0 0); } }
 @keyframes fade { from { opacity: 0; } to { opacity: 1; } }
 @keyframes rise { from { opacity: 0; translate: 0 18px; } }
@@ -541,7 +570,7 @@ p { margin: 0 0 1em; }
   .strip__track { padding-inline: var(--gutter); }
   .strip li[aria-hidden] { display: none; }
   .map__road path[pathLength], .map__water path[pathLength] { stroke-dashoffset: 0; }
-  .map__street, .map__label, .map__green, .map__compass, .map__pin text { opacity: 1; }
+  .map__street, .map__label, .map__green, .map__compass, .map__footpath, .map__houses, .map__trees, .map__ripples, .map__hachures, .map__sights, .map__scale, .map__pencil, .map__blots, .map__pin text { opacity: 1; }
 }
 
 /* ---------- /fonts/: a page for choosing the font pairing ---------- */

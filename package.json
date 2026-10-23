@@ -9,6 +9,7 @@
     "cms": "npx decap-server",
     "og": "node scripts/og.mjs",
     "map": "node scripts/bake-map.mjs",
+    "map:details": "node scripts/map-details.mjs",
     "logo": "node scripts/logo.mjs"
   },
   "devDependencies": {

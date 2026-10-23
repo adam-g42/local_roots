@@ -96,6 +96,7 @@ src/_data/produce.json   photos in the "On the stall" strip
 src/index.njk            the page
 src/_includes/map.svg    the hand-drawn Oxford map in the hero (generated, don't edit directly)
 scripts/map-source.svg   the map to edit; then run `npm run map` to bake in the pen wobble
+scripts/map-details.mjs  draws the terraces, trees, ripples and hill shading into the source: `npm run map:details`
 src/css/style.css        styles (colours and fonts at the top)
 src/js/main.js           "open now" line and the share button
 src/admin/               Decap CMS editor
