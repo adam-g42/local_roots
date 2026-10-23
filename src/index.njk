@@ -189,32 +189,37 @@ layout: base.njk
           {%- for t in fm.trips %}
           <label>
             <input type="radio" name="trip" value="{{ loop.index0 }}"{% if loop.first %} checked{% endif %}>
-            <img src="/images/{{ t.img }}-600.jpg" alt="" width="600" height="800" loading="lazy">
             <span>{{ t.produce }}</span>
           </label>
           {%- endfor %}
         </fieldset>
 
         <dl class="miles__tally">
-          <div class="miles__row miles__row--theirs">
+          <div class="miles__row miles__row--theirs" data-row="them">
             <dt>Supermarket</dt>
             <dd><span class="miles__num" data-theirs>{{ first.miles | commas }}</span> miles
               <span class="miles__how" data-theirs-how>by {{ first.by }} from {{ first.from }}</span></dd>
           </div>
-          <div class="miles__row miles__row--ours">
+          <div class="miles__row miles__row--ours" data-row="us">
             <dt>Local Roots</dt>
-            <dd><span class="miles__num">{{ fm.ours }}</span> miles
-              <span class="miles__how">at most, from farms around Oxford</span></dd>
+            <dd><span class="miles__num" data-ours>{{ first.near }}</span> <span data-ours-unit>{{ "mile" if first.near == 1 else "miles" }}</span>
+              <span class="miles__how" data-ours-how>from {{ fm.farms[first.farm].name }}, as the crow flies</span>
+              <ol class="miles__farms" role="list" aria-label="All our suppliers">
+                {%- for f in fm.farms %}
+                <li data-farm="{{ loop.index0 }}"{% if loop.index0 == first.farm %} class="is-from"{% endif %}><span class="miles__farm-num" aria-hidden="true">{{ loop.index }}</span>{{ f.name }}<span class="miles__farm-dots" aria-hidden="true"></span><span class="miles__farm-miles">{{ f.miles }} {{ "mile" if f.miles == 1 else "miles" }}</span></li>
+                {%- endfor %}
+              </ol></dd>
           </div>
         </dl>
         <p class="miles__times" data-times>That's about {{ first.times | commas }} times further.</p>
-        <p class="miles__note">Origins are typical for UK supermarkets out of season. Their miles follow the usual road, sea or air route; ours are as the crow flies.</p>
+        <p class="miles__note">Origins are typical examples for UK supermarkets out of season. Their miles follow the usual road, sea or air route; ours are as the crow flies. Map data © <a class="ulink" href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> contributors.</p>
       </div>
 
       <figure class="miles__globe">
+        <!-- says whose journey the globe is showing: theirs, then ours -->
+        <p class="miles__caption" data-caption aria-hidden="true"><span data-caption-them>{{ first.them }}</span><span data-caption-us>{{ first.us }}</span></p>
         <svg class="globe" viewBox="0 0 640 580" role="img" aria-labelledby="globe-desc" data-globe></svg>
-        <button class="btn btn--small btn--ghost miles__zoom" type="button" data-zoom hidden>Zoom in to our farms</button>
-        <figcaption class="vh" id="globe-desc" data-globe-desc>A globe showing the route a supermarket's {{ first.produce | lower }} takes from {{ first.from }} to Oxford, and Local Roots' farms, all within {{ fm.ours }} miles of Cowley.</figcaption>
+        <figcaption class="vh" id="globe-desc" data-globe-desc>A globe showing the route a supermarket's {{ first.produce | lower }} takes from {{ first.from }} to Oxford, {{ first.miles | commas }} miles, then zooming in on Oxford to show ours coming {{ first.near }} {{ "mile" if first.near == 1 else "miles" }} from {{ fm.farms[first.farm].name }}.</figcaption>
       </figure>
     </div>
     <script id="foodmiles" type="application/json">{{ fm | dump | safe }}</script>

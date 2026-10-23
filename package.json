@@ -11,7 +11,8 @@
     "map": "node scripts/bake-map.mjs",
     "map:details": "node scripts/map-details.mjs",
     "logo": "node scripts/logo.mjs",
-    "land": "node scripts/bake-land.mjs"
+    "land": "node scripts/bake-land.mjs",
+    "oxfordshire": "node scripts/bake-oxfordshire.mjs"
   },
   "devDependencies": {
     "@11ty/eleventy": "3.1.6",
