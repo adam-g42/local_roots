@@ -177,11 +177,22 @@ p { margin: 0 0 1em; }
 
 /* the stall callout: when and where, and how to get there */
 .hero__stall {
+  position: relative;
   max-width: 26rem; margin-top: clamp(1rem, 3svh, 1.75rem);
   padding: clamp(.9rem, 3cqi, 1.25rem) clamp(1rem, 4cqi, 1.75rem);
   background: #FBF8F2;
   border: 1px solid var(--line); border-radius: 22px;
   box-shadow: 0 22px 40px -28px rgb(42 38 33 / .45);
+}
+
+/* a clay sticker on the card's corner while the stall is new */
+.when .when__badge {
+  position: absolute; top: 0; right: clamp(.75rem, 4cqi, 1.5rem); translate: 0 -50%;
+  padding: .3em .9em .35em;
+  font: var(--accent-style) var(--accent-weight) calc(1rem * var(--accent-scale))/1.1 var(--accent);
+  color: var(--terra-deep); background: var(--clay-soft);
+  border: 1.5px solid var(--terra); border-radius: 999px;
+  rotate: 4deg; white-space: nowrap;
 }
 
 /* when and where */

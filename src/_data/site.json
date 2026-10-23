@@ -2,6 +2,7 @@
   "font": 4,
   "name": "Local Roots",
   "url": "https://local-roots.netlify.app",
+  "badge": "New in Cowley",
   "tagline": "Fresh food, grown nearby.",
   "intro": "Seasonal veg, eggs and sourdough from farms a short ride from Cowley, including certified organic growers. Fewer food miles, no plastic.",
   "opening": {
@@ -78,6 +79,6 @@
   ],
   "maryam": {
     "heading": "Hi, I'm Maryam",
-    "text": "I grew up around here and I've worked on local farms for years. Local Roots is my way of getting that food onto Cowley tables: grown nearby, with fewer food miles and no plastic, and priced so everyone can eat well. Come and say hello on a Sunday."
+    "text": "I grew up around here and I've worked on local farms for years. I've just started Local Roots to get that food onto Cowley tables: grown nearby, with fewer food miles and no plastic, and priced so everyone can eat well. We're brand new, so come and say hello on a Sunday and tell me what you'd like to see on the stall."
   }
 }

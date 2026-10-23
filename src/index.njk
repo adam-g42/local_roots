@@ -38,6 +38,7 @@ layout: base.njk
 
       <!-- one callout: when and where to find the stall -->
       <div class="hero__stall when">
+        {% if site.badge %}<p class="when__badge">{{ site.badge }}</p>{% endif %}
         <p class="when__time">{{ o.day }}s<br>{{ hoursText }}</p>
         <p class="when__where">{{ loc.venue }}, {{ loc.address }}</p>
         <p class="status" data-status
