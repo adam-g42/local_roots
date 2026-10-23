@@ -36,43 +36,32 @@ layout: base.njk
       <p class="hero__promise">{{ site.tagline }}</p>
       <p class="hero__intro">{{ site.intro }}</p>
 
-      <!-- one card: the chard from the price list with its three prices, beside when and where to find them -->
-      <div class="hero__stall">
-        <div class="produce">
-          <figure class="frame frame--arch produce__photo">
-            <img src="/images/rainbow-chard-from-above-600.jpg"
-                 srcset="/images/rainbow-chard-from-above-600.jpg 600w, /images/rainbow-chard-from-above.jpg 900w"
-                 sizes="11rem"
-                 alt="Rainbow chard seen from above, red stems fanning out through crinkled leaves"
-                 width="600" height="800" fetchpriority="high">
-          </figure>
-          <ul class="stars" role="list" aria-label="Three prices for {{ site.exampleItem | lower }}">
-            {%- for t in site.tiers %}
-            <li class="star star--{{ loop.index }}"><a href="#prices"><span class="star__name">{{ t.name }}</span> <span class="star__price">{{ t.example }}</span></a></li>
-            {%- endfor %}
-          </ul>
-          <p class="produce__caption" aria-hidden="true">{{ site.exampleItem }}</p>
-        </div>
-
-        <div class="when">
-          <p class="when__time">{{ o.day }}s<br>{{ hoursText }}
-            <svg class="when__line" viewBox="0 0 300 14" preserveAspectRatio="none" aria-hidden="true"><path pathLength="1" d="M3 9.5c38-4.2 84-6.4 131-5.6 46 .7 92 3.4 130 1.6 12-.6 22-1.8 33-3.4"/></svg>
-          </p>
-          <p class="when__where">{{ loc.venue }}, {{ loc.address }}</p>
-          <p class="status" data-status
-             data-day="{{ o.day }}" data-opens="{{ o.opens }}" data-closes="{{ o.closes }}"
-             aria-live="polite"></p>
-          <div class="when__actions">
-            <a class="btn" href="{{ directions }}" target="_blank" rel="noopener">Get directions</a>
-            <a class="ulink when__cal" href="/local-roots.ics">Add to calendar</a>
-          </div>
+      <!-- one callout: when and where to find the stall -->
+      <div class="hero__stall when">
+        <p class="when__time">{{ o.day }}s<br>{{ hoursText }}
+          <svg class="when__line" viewBox="0 0 300 14" preserveAspectRatio="none" aria-hidden="true"><path pathLength="1" d="M3 9.5c38-4.2 84-6.4 131-5.6 46 .7 92 3.4 130 1.6 12-.6 22-1.8 33-3.4"/></svg>
+        </p>
+        <p class="when__where">{{ loc.venue }}, {{ loc.address }}</p>
+        <p class="status" data-status
+           data-day="{{ o.day }}" data-opens="{{ o.opens }}" data-closes="{{ o.closes }}"
+           aria-live="polite"></p>
+        <div class="when__actions">
+          <a class="btn" href="{{ directions }}" target="_blank" rel="noopener">Get directions</a>
+          <a class="ulink when__cal" href="/local-roots.ics">Add to calendar</a>
         </div>
       </div>
     </div>
 
-    <!-- hand-drawn Oxford, with the pin on the cafe -->
+    <!-- hand-drawn Oxford, with the pin on the cafe and the chard laid on top -->
     <div class="hero__plate">
       {% include "map.svg" %}
+      <figure class="frame frame--arch hero__photo">
+        <img src="/images/rainbow-chard-from-above-600.jpg"
+             srcset="/images/rainbow-chard-from-above-600.jpg 600w, /images/rainbow-chard-from-above.jpg 900w"
+             sizes="(min-width: 960px) 14rem, 8rem"
+             alt="Rainbow chard seen from above, red stems fanning out through crinkled leaves"
+             width="600" height="800" fetchpriority="high">
+      </figure>
     </div>
   </section>
 
@@ -80,7 +69,7 @@ layout: base.njk
     <div class="wrap fair__grid">
       <div class="fair__prices">
         <h2 id="prices-title">Pick your price</h2>
-        <p class="lede">Every item has three prices. Pick the one that fits your week. No one checks.</p>
+        <p class="lede">Many items come in three prices. Pick the one that fits your week. No one checks.</p>
         <div class="menu">
           <p class="menu__item">{{ site.exampleItem }}</p>
           <ol class="menu__rows" role="list">
