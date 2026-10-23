@@ -89,9 +89,9 @@ layout: base.njk
 
       <div class="fair__farms" id="farms">
         <h2 id="farms-title">Where it comes from</h2>
-        <div class="faces" aria-hidden="true">
+        <div class="farm-photos" aria-hidden="true">
           {%- for s in site.suppliers %}{% if s.photo %}
-          <img src="{{ s.photo }}" alt="" width="600" height="800" loading="lazy">
+          <figure class="frame frame--arch"><img src="{{ s.photo }}" alt="" width="600" height="800" loading="lazy"></figure>
           {%- endif %}{% endfor %}
         </div>
         <ul class="farm-list" role="list">

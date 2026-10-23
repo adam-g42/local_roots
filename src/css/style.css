@@ -347,42 +347,39 @@ p { margin: 0 0 1em; }
 
 /* ---------- fair to you, fair to the farm: prices and suppliers side by side ---------- */
 
-.fair { background: var(--clay-soft); padding-block: clamp(3.5rem, 8vw, 5.5rem); }
-.fair__grid { display: grid; gap: 4rem; }
-.fair .lede { color: var(--ink-soft); margin-bottom: 2.75rem; }
+.fair { background: var(--clay-soft); padding-block: clamp(2.25rem, 5vw, 3.25rem); }
+.fair__grid { display: grid; gap: 3rem; }
+.fair .lede { color: var(--ink-soft); margin-bottom: 1.25rem; }
 @media (min-width: 900px) {
-  .fair__grid { grid-template-columns: 1.15fr .85fr; gap: 0; }
-  .fair__prices { padding-right: clamp(3rem, 5vw, 5rem); }
-  .fair__farms { padding-left: clamp(3rem, 5vw, 5rem); border-left: 1px solid rgb(192 96 61 / .22); }
+  .fair__grid { grid-template-columns: 1fr 1fr; gap: 0; }
+  .fair__prices { padding-right: clamp(2rem, 4vw, 3.5rem); }
+  .fair__farms { padding-left: clamp(2rem, 4vw, 3.5rem); border-left: 1px solid rgb(192 96 61 / .22); }
 }
 
-/* the farms' photos as a little cluster of overlapping circles */
-.faces { display: flex; margin: .25rem 0 1.25rem; }
-.faces img { width: clamp(4.5rem, 12vw, 5.5rem); aspect-ratio: 1; object-fit: cover; border-radius: 50%; border: 4px solid var(--clay-soft); }
-.faces img + img { margin-left: -1.1rem; }
-.faces img:nth-child(2) { translate: 0 .5rem; }
+/* the farms' photos in a neat row of arches, the same frame as the rest of the site */
+.farm-photos { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(.6rem, 2vw, 1rem); margin: .5rem 0 1.25rem; }
 
 .menu {
   position: relative;
   background: var(--paper);
-  padding: clamp(2.25rem, 5vw, 3.5rem) clamp(1.5rem, 5vw, 3.5rem);
+  padding: clamp(1.25rem, 3vw, 1.75rem) clamp(1.25rem, 3vw, 2rem);
   outline: 1px solid var(--line); outline-offset: -10px;
   box-shadow: 0 24px 50px -30px rgb(120 80 20 / .35);
 }
-.menu__item { font: var(--accent-style) var(--accent-weight) calc(var(--fs-m) * var(--accent-scale))/1.2 var(--accent); text-align: center; color: var(--ink-soft); margin-bottom: 2rem; }
+.menu__item { font: var(--accent-style) var(--accent-weight) calc(var(--fs-m) * var(--accent-scale))/1.2 var(--accent); text-align: center; color: var(--ink-soft); margin-bottom: .9rem; }
 .menu__item::before, .menu__item::after { content: "~"; color: var(--clay); margin: 0 .6rem; font-style: normal; }
-.menu__rows { list-style: none; margin: 0; padding: 0; display: grid; gap: 1.6rem; }
+.menu__rows { list-style: none; margin: 0; padding: 0; display: grid; gap: .8rem; }
 .menu__line { display: flex; align-items: baseline; gap: .6rem; }
 .menu__line h3 { font-family: var(--serif); font-style: normal; font-weight: var(--head-weight); font-size: calc(var(--fs-m) * var(--head-scale)); }
 .menu__dots { flex: 1; border-bottom: 2px dotted var(--clay); translate: 0 -.3em; min-width: 1rem; }
 .menu__price { font: var(--accent-style) var(--accent-weight) calc(var(--fs-m) * var(--accent-scale))/1 var(--accent); color: var(--forest); font-variant-numeric: oldstyle-nums; }
-.menu__rows p { margin: .2rem 0 0; color: var(--ink-soft); max-width: 30em; }
+.menu__rows p { margin: .15rem 0 0; color: var(--ink-soft); max-width: 30em; font-size: .92rem; line-height: 1.4; }
 .menu__rows li:nth-child(2) .menu__price { color: var(--ink); }
 .menu__rows li:nth-child(3) .menu__price { color: var(--terra); }
-.farm-list { list-style: none; margin: 1.5rem 0 0; padding: 0; border-top: 1px solid rgb(192 96 61 / .22); }
-.farm-list li { display: grid; gap: 0; padding: .7rem 0; border-bottom: 1px solid rgb(192 96 61 / .22); }
-.farm-list a, .farm-list__name { font: var(--head-weight) calc(var(--fs-m) * var(--head-scale))/1.15 var(--serif); justify-self: start; }
-.farm-list a { text-decoration: underline 1px var(--sage); text-underline-offset: .2em; }
+.farm-list { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(12rem, 1fr)); column-gap: 1.5rem; border-top: 1px solid rgb(192 96 61 / .22); }
+.farm-list li { display: grid; gap: 0; padding: .55rem 0; border-bottom: 1px solid rgb(192 96 61 / .22); }
+.farm-list a, .farm-list__name { font: var(--head-weight) calc(1.2rem * var(--head-scale))/1.15 var(--serif); justify-self: start; }
+.farm-list a { text-decoration: underline 1px var(--sage); text-underline-offset: .2em; margin-bottom: -5px; } /* the wavy underline's room shouldn't make its row taller */
 .farm-list a:hover { text-decoration-color: transparent; }
 
 /* ---------- maryam ---------- */
