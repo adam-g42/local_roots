@@ -11,6 +11,7 @@
     "map": "node scripts/bake-map.mjs",
     "map:details": "node scripts/map-details.mjs",
     "logo": "node scripts/logo.mjs",
+    "characters": "node scripts/characters.mjs",
     "land": "node scripts/bake-land.mjs",
     "oxfordshire": "node scripts/bake-oxfordshire.mjs"
   },

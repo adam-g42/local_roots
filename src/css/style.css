@@ -457,6 +457,50 @@ p { margin: 0 0 1em; }
 }
 .logo--thanks { height: 9rem; margin: 0 auto 1.5rem; display: block; }
 
+/* ---------- the characters: hand-drawn beets and carrots peeping out from behind things; decoration only ---------- */
+/* full-size drawings live in scripts/characters/; `npm run characters` trims them into /images/characters/.
+   Each one sets its own --size, --tilt and left/right inline, so no two sit quite the same. */
+
+/* tucked behind the top edge of whatever it's inside (or .peep-behind's first child): z-index -1 slips it under
+   that card but above the section, which is isolated so it can't fall behind the section's background.
+   --tuck is how much of it stays hidden: a little of a beet, but most of a carrot's long tail */
+.peeper {
+  position: absolute; bottom: calc(100% - var(--size) * var(--tuck, .16)); z-index: -1;
+  width: auto; height: var(--size); max-width: none;
+  rotate: var(--tilt, 0deg); transform-origin: 50% 100%; pointer-events: none;
+}
+.peep-behind { position: relative; }
+.fair, .stall, .miles { isolation: isolate; }
+/* make room above the card for the head that pokes out */
+.menu:has(> .peeper) { margin-top: 5.5rem; }
+.fair__farms .farms { margin-top: 5rem; }
+
+/* over the top edge of a section: a window --window tall that clips off the bottom, so whoever's inside looks
+   tucked behind the edge (and behind the 4px rail, where there is one). It can hold more than one; --drop
+   lowers one inside it, and carrots, with their long tails, are drawn taller than the window */
+.maryam, .footer { position: relative; }
+.peep-over {
+  position: absolute; top: 0; translate: 0 -100%; height: var(--window); overflow: clip;
+  display: flex; align-items: flex-start; padding-inline: .5rem; pointer-events: none;
+}
+.visit > .peep-over, .footer > .peep-over { translate: 0 calc(-100% - 4px); }
+.peep-over .peeper { position: relative; bottom: auto; z-index: auto; flex: none; margin-top: var(--drop, 0); }
+/* the thanks page doesn't scroll, so its carrot peeps up from the bottom of the screen once the page opens */
+.peep-over--screen { position: fixed; top: auto; bottom: 0; translate: none; }
+
+/* each one rises from behind its edge as it scrolls into view */
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .peeper { animation: peep linear both; animation-timeline: view(); animation-range: cover 30% cover 55%; }
+    /* the page ends soon after the footer comes into view, so the sleepy ones have to finish waking sooner */
+    .footer .peeper { animation-range: entry 60% cover 25%; }
+  }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .peep-over--screen .peeper { animation: peep .9s var(--ease) .6s both; }
+}
+@keyframes peep { from { translate: 0 75%; rotate: 0deg; } }
+
 /* ---------- on the stall ---------- */
 
 .stall { padding-block: clamp(3rem, 7vw, 4.5rem) clamp(2rem, 5vw, 3rem); }

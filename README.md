@@ -116,5 +116,7 @@ src/local-roots.ics.njk  "Add to calendar" file (repeats every week)
 src/og-image.njk         template for the share image
 src/images/              photos, one full-size file each; the build makes the smaller sizes into /img/
 src/images/brand/        logo, icons, the paper texture and the share image, used as they are
+src/images/characters/   the beets (and carrots) peeping out around the page, trimmed by `npm run characters`
+scripts/characters/      their full-size drawings: add or replace one here, then run `npm run characters`
 archive/                 retired artwork kept for reference (e.g. the old line-drawing logo), not published
 ```

@@ -122,6 +122,7 @@ layout: base.njk
         <h2 id="prices-title">Pick your price</h2>
         <p class="lede">Many items come in three prices. Pick the one that fits your week. No one checks.</p>
         <div class="menu">
+          <img class="peeper" src="/images/characters/beet-shocked-right.png" alt="" width="201" height="320" style="--size: 6.5rem; --tilt: -9deg; left: 1.75rem;" eleventy:ignore>
           <p class="menu__item">{{ site.exampleItem }}</p>
           <ol class="menu__rows" role="list">
             {% for t in site.tiers %}
@@ -141,6 +142,8 @@ layout: base.njk
       <div class="fair__farms" id="farms">
         <h2 id="farms-title">Where it comes from</h2>
         <!-- one band per farm: its photo behind, the name on top -->
+        <div class="peep-behind">
+        <img class="peeper" src="/images/characters/carrot-shocked-left.png" alt="" width="120" height="320" style="--size: 8rem; --tuck: .3; --tilt: 10deg; right: 2rem;" eleventy:ignore>
         <ul class="farms" role="list">
           {% for s in site.suppliers %}
           <li class="farm{% if not s.photo %} farm--plain{% endif %}">
@@ -152,6 +155,7 @@ layout: base.njk
           </li>
           {% endfor %}
         </ul>
+        </div>
       </div>
     </div>
   </section>
@@ -234,6 +238,7 @@ layout: base.njk
   </section>
 
   <section class="maryam" id="maryam" aria-labelledby="maryam-title">
+    <span class="peep-over" aria-hidden="true" style="--window: 5.5rem; right: 12%;"><img class="peeper" src="/images/characters/carrot-happy.png" alt="" width="90" height="320" style="--size: 8.25rem; --tilt: -6deg;" loading="lazy" eleventy:ignore></span>
     <div class="wrap maryam__grid">
       <figure class="frame frame--arch maryam__photo">
         <img src="{{ site.maryam.photo }}" alt="{{ site.maryam.photoAlt }}" sizes="(min-width: 900px) 360px, 75vw">
@@ -308,6 +313,7 @@ layout: base.njk
   </section>
 
   <section class="visit" id="visit" aria-labelledby="visit-title">
+    <span class="peep-over" aria-hidden="true" style="--window: 4.75rem; left: 8%;"><img class="peeper" src="/images/characters/beet-shocked-left.png" alt="" width="230" height="320" style="--size: 5.5rem; --tilt: 8deg;" loading="lazy" eleventy:ignore></span>
     <div class="wrap visit__grid">
       <div class="visit__text">
         <h2 id="visit-title">Come and visit</h2>
@@ -353,6 +359,7 @@ layout: base.njk
 </main>
 
 <footer class="footer">
+  <span class="peep-over" aria-hidden="true" style="--window: clamp(3.5rem, 6.5vw, 4.75rem); right: 12%;"><img class="peeper" src="/images/characters/beet-sleepy.png" alt="" width="241" height="320" style="--size: clamp(3.75rem, 7vw, 5.25rem); --tilt: 4deg;" loading="lazy" eleventy:ignore><img class="peeper" src="/images/characters/carrot-snoring.png" alt="" width="216" height="320" style="--size: clamp(5rem, 9vw, 6.75rem); --tilt: -3deg;" loading="lazy" eleventy:ignore></span>
   <div class="wrap footer__grid">
     <p class="footer__name">
       <span class="logo" aria-hidden="true"></span>
