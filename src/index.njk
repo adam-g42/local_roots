@@ -335,7 +335,7 @@ layout: base.njk
     {% if ew and ew.places and ew.places.length %}
     <div class="wrap">
     <aside class="elsewhere" aria-labelledby="elsewhere-title">
-      <h3 id="elsewhere-title">{{ ew.heading }}</h3>
+      <h3 id="elsewhere-title">{{ ew.heading or "Other places to buy local" }}</h3>
       <ul role="list">
         {% for pl in ew.places %}
         <li>

@@ -64,9 +64,10 @@ collections:
           - name: elsewhere
             label: Other places to buy local
             widget: object
+            required: false
             hint: "A small card under Come and visit. Leave the list empty to hide it."
             fields:
-              - { name: heading, label: Heading, widget: string }
+              - { name: heading, label: Heading, widget: string, required: false, hint: "Leave empty for 'Other places to buy local'." }
               - name: places
                 label: Places
                 widget: list
@@ -76,7 +77,7 @@ collections:
                   - { name: name, label: Name, widget: string }
                   - { name: when, label: When it's open, widget: string, required: false, hint: "e.g. 'Saturdays 10am–1pm'" }
                   - { name: about, label: One line about it, widget: string, required: false, hint: "e.g. 'Amazing veg boxes'" }
-                  - { name: website, label: Website, widget: string, required: false }
+                  - { name: website, label: Website, widget: string, required: false, hint: "The full address, e.g. https://example.org", pattern: ['^https?://\S+$', "Start with https:// and leave out spaces"] }
 
           # Pick your price
           - { name: exampleItem, label: Example item for the prices, widget: string, hint: "e.g. 'A bunch of rainbow chard'" }
