@@ -51,7 +51,7 @@
 
 *, *::before, *::after { box-sizing: border-box; }
 
-html { scroll-behavior: smooth; scroll-padding-top: 5rem; -webkit-text-size-adjust: 100%; }
+html { background: var(--paper); scroll-behavior: smooth; scroll-padding-top: 5rem; -webkit-text-size-adjust: 100%; }
 
 body {
   margin: 0;
@@ -62,11 +62,14 @@ body {
   -webkit-font-smoothing: antialiased;
   font-variation-settings: "SOFT" 100, "WONK" 0;
 }
-/* paper grain over everything, very faint */
-body::before {
-  content: ""; position: fixed; inset: 0; z-index: 100; pointer-events: none;
+/* paper grain over everything, very faint. It sits just under the header, which carries its own:
+   Safari on iPhone colours the strip behind the clock from the fixed element at the top of the screen,
+   and if the grain were on top it would find that instead of the header, and leave the strip see-through */
+body::before, .nav::after {
+  content: ""; position: fixed; inset: 0; z-index: 19; pointer-events: none;
   background: var(--grain); opacity: .16;
 }
+.nav::after { position: absolute; z-index: auto; }
 
 img { display: block; max-width: 100%; height: auto; }
 figure { margin: 0; }
@@ -134,8 +137,8 @@ p { margin: 0 0 1em; }
   position: fixed; top: 0; left: 0; right: 0; z-index: 20;
   display: flex; align-items: center; gap: 2rem;
   height: var(--nav-tall); padding: 0 var(--gutter);
-  background: rgb(244 237 225 / .88);
-  backdrop-filter: blur(10px);
+  /* solid, with no blur: Safari only matches the strip behind the clock to a header of one plain colour */
+  background: rgb(244 237 225);
   border-bottom: 1px solid transparent;
   transition: height .45s var(--ease), border-color .3s;
 }
