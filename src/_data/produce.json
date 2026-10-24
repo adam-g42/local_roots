@@ -94,6 +94,13 @@
     {
       "photo": "/images/zinnia.jpg",
       "label": "Cut flowers"
+    },
+    {
+      "label": "testveg",
+      "photo": "/images/golden-herb.jpg",
+      "meal": "hahahehe",
+      "keep": "hohotada",
+      "eat": "bobobgaga"
     }
   ]
 }
