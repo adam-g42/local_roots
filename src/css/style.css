@@ -139,12 +139,6 @@ p { margin: 0 0 1em; }
   border-bottom: 1px solid transparent;
   transition: height .45s var(--ease), border-color .3s;
 }
-/* phones that draw the page behind the status bar (Safari on iPhone) show the strip above the header:
-   the header's background carries on up there, so the page doesn't scroll through the gap */
-.nav::before {
-  content: ""; position: absolute; left: 0; right: 0; bottom: 100%; height: 10rem;
-  background: inherit; backdrop-filter: inherit; pointer-events: none;
-}
 .scrolled .nav { height: var(--nav-h); border-bottom-color: rgb(214 200 174 / .6); }
 .nav + main { padding-top: var(--nav-tall); }
 /* the drawing and the name side by side: the slim header and the footer share these, so they always match */
