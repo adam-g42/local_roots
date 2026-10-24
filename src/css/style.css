@@ -236,12 +236,10 @@ p { margin: 0 0 1em; }
 
 /* while the stall is new, a small line over the promise says so */
 .hero__eyebrow {
-  display: flex; align-items: center; gap: .6rem;
   margin: 0 0 .7rem;
   font: 700 .8rem/1 var(--sans); letter-spacing: .14em; text-transform: uppercase;
   color: var(--terra-deep);
 }
-.hero__eyebrow::before { content: ""; width: 1.75rem; height: 1.5px; background: currentColor; }
 
 /* the promise leads the hero; the name lives in the header */
 .hero__promise {
@@ -265,29 +263,20 @@ p { margin: 0 0 1em; }
 .when { min-width: 0; container-type: inline-size; }
 .when p { margin: 0; }
 .when__time {
-  position: relative; width: fit-content;
   font: var(--accent-style) var(--accent-weight) min(calc(2rem * var(--accent-scale)), 14cqi)/.95 var(--accent);
   color: var(--forest); letter-spacing: -.01em; white-space: nowrap;
 }
-/* underlined with the same squiggle as every link, a size up to suit the lettering, wiped in with the map's roads */
-.when__time::after {
-  content: ""; position: absolute; left: 0; right: 0; top: calc(100% + .1em); height: 9px;
-  background: var(--wave) left center / 27px 9px repeat-x;
-  animation: wipe 1.1s var(--ease) both 1.1s;
-}
-.when__where { margin-top: 1.3rem !important; line-height: 1.4; }
+.when__where { margin-top: .9rem !important; line-height: 1.4; }
 .when .status { margin-top: .35rem; }
 .when__actions { display: flex; flex-wrap: wrap; align-items: center; gap: .7rem 1.25rem; margin-top: 1.1rem; }
-/* a standing squiggle here, since it's the only way to tell it's a link; it slips away on hover */
-.when__cal { font-weight: 600; }
-.when__cal::before { clip-path: inset(0); }
-.when__cal:hover::before, .when__cal:focus-visible::before { clip-path: inset(0 0 0 100%); }
+/* a plain underline, since it's the only way to tell it's a link; it darkens on hover */
+.when__cal { font-weight: 600; text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 4px; text-decoration-color: color-mix(in srgb, currentColor 40%, transparent); }
+.when__cal::before { content: none; }
+.when__cal:hover, .when__cal:focus-visible { text-decoration-color: currentColor; }
 
 .status:empty { display: none; }
-.status { display: flex; align-items: center; gap: .5rem; font-size: .92rem; line-height: 1.35; color: var(--ink-soft); }
-.status::before { content: ""; flex: none; width: .5rem; height: .5rem; border-radius: 50%; background: var(--sage); }
+.status { font-size: .92rem; line-height: 1.35; color: var(--ink-soft); }
 .status[data-open] { color: var(--terra-deep); font-weight: 700; }
-.status[data-open]::before { background: var(--terra); animation: breathe 2.4s ease-in-out infinite; }
 
 .btn--clay { background: var(--clay); border-color: var(--clay); color: var(--ink); }
 .btn--clay:hover { background: var(--paper); border-color: var(--paper); }
@@ -444,12 +433,10 @@ p { margin: 0 0 1em; }
 
 @keyframes draw { to { stroke-dashoffset: 0; } }
 @keyframes appear { from { opacity: 0; } }
-@keyframes wipe { from { clip-path: inset(0 100% 0 0); } }
 @keyframes fade { from { opacity: 0; } to { opacity: 1; } }
 @keyframes rise { from { opacity: 0; translate: 0 18px; } }
 @keyframes pin-drop { from { opacity: 0; translate: 0 -40px; } 60% { opacity: 1; } }
 @keyframes pulse { 0% { opacity: .35; scale: .6; } 100% { opacity: 0; scale: 3.2; } }
-@keyframes breathe { 50% { box-shadow: 0 0 0 5px rgb(239 190 158 / .35); } }
 
 /* ---------- the logo: a colour drawing on a transparent background, shown as it is ---------- */
 
