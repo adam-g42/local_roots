@@ -79,6 +79,22 @@
     "photoAlt": "Crates of squash ready for the stall",
     "lat": ""
   },
+  "elsewhere": {
+    "places": [
+      {
+        "name": "East Oxford Farmers' Market",
+        "when": "Saturdays 10am–1pm",
+        "about": "Round the corner, at East Oxford Primary School",
+        "website": "https://www.eastoxfordmarket.com/"
+      },
+      {
+        "name": "Oxford City Farm",
+        "when": "Saturdays 10am–1pm",
+        "about": "Down the road, off Cornwallis Road",
+        "website": "https://www.oxfordcityfarm.org.uk/"
+      }
+    ]
+  },
   "opening": {
     "day": "Sunday",
     "opens": "10:00",
