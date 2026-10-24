@@ -22,8 +22,18 @@ eleventyExcludeFromCollections: true
   .og-left .tag { font: italic 500 40px/1.2 var(--serif); color: var(--terra); margin: 34px 0 30px; }
   .og-left .fact { font: 500 34px/1.25 var(--serif); margin: 0; padding: 10px 0; border-top: 1px solid var(--line); width: 560px; }
   .og-left .fact:last-child { border-bottom: 1px solid var(--line); }
-  .og-right { background: var(--oat); display: grid; place-items: end center; padding-bottom: 50px; }
-  .og-right .frame { width: 300px; outline: 1px solid var(--leaf); outline-offset: 12px; }
+  /* the hand-drawn map from the top of the page, framed on the stall's pin, on the same crumpled paper */
+  .og-right { position: relative; isolation: isolate; overflow: hidden; }
+  .og-right::before { content: ""; position: absolute; inset: 0; z-index: -1; background: url(/images/brand/paper.jpg) center / cover; opacity: .3; }
+  .og-right .map { position: absolute; inset: 0; width: 100%; height: 100%; }
+  /* fades in from the left, so there's no hard line between the words and the map */
+  .og-right .map, .og-right::before {
+    -webkit-mask-image: linear-gradient(to right, transparent, #000 90px);
+            mask-image: linear-gradient(to right, transparent, #000 90px);
+  }
+  /* a still picture: everything drawn in at once, and no scale bar, compass or pulsing ring */
+  .og-right .map * { animation-duration: 0s !important; animation-delay: 0s !important; }
+  .og-right .map__scale, .og-right .map__compass, .og-right .map__pulse { display: none; }
 </style>
 </head>
 <body>
@@ -34,7 +44,9 @@ eleventyExcludeFromCollections: true
     <p class="fact">{{ site.location.venue }}, {{ site.location.address }}</p>
   </div>
   <div class="og-right">
-    <figure class="frame frame--arch"><img src="{{ site.heroPhoto }}" alt="" sizes="440px"></figure>
+    {#- the map is 1200 x 800; this crop matches the panel's shape, with the pin (540, 380) a little left of centre -#}
+    {% set mapSvg %}{% include "map.svg" %}{% endset %}
+    {{ mapSvg | replace('viewBox="0 0 1200 800"', 'viewBox="350 80 440 630"') | safe }}
   </div>
 </body>
 </html>
