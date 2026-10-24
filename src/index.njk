@@ -201,14 +201,15 @@ layout: base.njk
           <div class="miles__row miles__row--ours" data-row="us">
             <dt>Local Roots</dt>
             <dd><span class="miles__num" data-ours>{{ first.near }}</span> <span data-ours-unit>{{ "mile" if first.near == 1 else "miles" }}</span>
-              <span class="miles__how" data-ours-how>from {{ fm.farms[first.farm].name }}, as the crow flies</span>
-              <ol class="miles__farms" role="list" aria-label="All our suppliers">
-                {%- for f in fm.farms %}
-                <li data-farm="{{ loop.index0 }}"{% if loop.index0 == first.farm %} class="is-from"{% endif %}><span class="miles__farm-num" aria-hidden="true">{{ loop.index }}</span>{{ f.name }}<span class="miles__farm-dots" aria-hidden="true"></span><span class="miles__farm-miles">{{ f.miles }} {{ "mile" if f.miles == 1 else "miles" }}</span></li>
-                {%- endfor %}
-              </ol></dd>
+              <span class="miles__how" data-ours-how>from {{ fm.farms[first.farm].name }}, as the crow flies</span></dd>
           </div>
         </dl>
+        <!-- sits outside the tally so phones can put the two distances side by side above it -->
+        <ol class="miles__farms" role="list" aria-label="All our suppliers">
+          {%- for f in fm.farms %}
+          <li data-farm="{{ loop.index0 }}"{% if loop.index0 == first.farm %} class="is-from"{% endif %}><span class="miles__farm-num" aria-hidden="true">{{ loop.index }}</span>{{ f.name }}<span class="miles__farm-dots" aria-hidden="true"></span><span class="miles__farm-miles">{{ f.miles }} {{ "mile" if f.miles == 1 else "miles" }}</span></li>
+          {%- endfor %}
+        </ol>
         <p class="miles__times" data-times>That's about {{ first.times | commas }} times further.</p>
         <p class="miles__note">Origins are typical examples for UK supermarkets out of season. Their miles follow the usual road, sea or air route; ours are as the crow flies. Map data © <a class="ulink" href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> contributors.</p>
       </div>
