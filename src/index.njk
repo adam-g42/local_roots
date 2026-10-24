@@ -135,8 +135,9 @@ layout: base.njk
           <li class="farm{% if not s.photo %} farm--plain{% endif %}">
             {#- the photo sits under a dark wash behind the name, so the small size is plenty -#}
             {% if s.photo %}<img src="{{ s.photo }}" alt="" eleventy:widths="450">{% endif %}
-            <p class="farm__name">{% if s.website %}<a href="{{ s.website }}" target="_blank" rel="noopener">{{ s.name }}</a>{% else %}{{ s.name }}{% endif %}</p>
+            <p class="farm__name">{{ s.name }}</p>
             <p class="farm__grows">{{ s.grows }}</p>
+            {% if s.website %}<a class="btn btn--ghost-light btn--small farm__visit" href="{{ s.website }}" target="_blank" rel="noopener">Visit website<span class="vh"> of {{ s.name }} (opens in a new tab)</span> <span aria-hidden="true">↗</span></a>{% endif %}
           </li>
           {% endfor %}
         </ul>

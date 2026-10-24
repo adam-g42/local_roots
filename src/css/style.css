@@ -482,6 +482,8 @@ p { margin: 0 0 1em; }
   min-height: 4.25rem; padding: .8rem 1.1rem;
   border-radius: 14px; background: var(--forest); color: var(--paper);
 }
+/* the build wraps the photo in a <picture>; keep that out of the grid */
+.farm picture { display: contents; }
 .farm img { position: absolute; inset: 0; z-index: -2; width: 100%; height: 100%; object-fit: cover; transition: scale .6s var(--ease); }
 /* darker on the left where the name sits, so it reads over any photo */
 .farm::before { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(90deg, rgb(28 34 26 / .82), rgb(28 34 26 / .45) 65%, rgb(28 34 26 / .2)); }
@@ -490,13 +492,19 @@ p { margin: 0 0 1em; }
 .farm--plain:nth-child(odd) { background: var(--terra-deep); }
 .farm p { margin: 0; }
 .farm__name { font: var(--head-weight) calc(1.35rem * var(--head-scale))/1.1 var(--serif); }
-.farm__name a { color: inherit; text-decoration: none; background: var(--wave) left bottom / 21px 7px repeat-x; padding-bottom: 5px; }
-/* the whole band is the link */
-.farm__name a::after { content: ""; position: absolute; inset: 0; }
-.farm:has(a:hover) img { scale: 1.05; }
-.farm__name a:focus-visible { outline: none; }
-.farm:has(a:focus-visible) { outline: 2px solid var(--forest); outline-offset: 3px; }
 .farm__grows { font-size: .88rem; opacity: .85; }
+/* the way out to the farm's own site: a pill on the right, so it reads as leaving us */
+.farm:has(.farm__visit) { grid-template-columns: minmax(0, 1fr) auto; column-gap: .75rem; }
+.farm:has(.farm__visit) .farm__name { grid-area: 1 / 1; }
+.farm:has(.farm__visit) .farm__grows { grid-area: 2 / 1; }
+.farm__visit { grid-column: 2; grid-row: 1 / span 2; align-self: center; gap: .4em; background: rgb(28 34 26 / .35); }
+/* the whole band still taps through to it */
+@media (max-width: 420px) { .farm__visit { padding-inline: .9rem; } }
+.farm__visit::after { content: ""; position: absolute; inset: 0; }
+.farm:has(.farm__visit:hover) img { scale: 1.05; }
+.farm:has(.farm__visit:hover) .farm__visit { background: var(--paper); color: var(--ink); border-color: var(--paper); }
+.farm__visit:focus-visible { outline: none; }
+.farm:has(.farm__visit:focus-visible) { outline: 2px solid var(--forest); outline-offset: 3px; }
 
 .menu {
   position: relative;
