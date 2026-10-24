@@ -11,7 +11,7 @@ eleventyExcludeFromCollections: true
 <link rel="stylesheet" href="/css/style.css">
 {% include "fonts-head.njk" %}
 <style>
-  body { width: 1200px; height: 630px; margin: 0; display: grid; grid-template-columns: 1fr 440px; overflow: hidden; }
+  body { width: 1200px; height: 630px; margin: 0; display: grid; grid-template-columns: 1fr 600px; overflow: hidden; }
   body::before { display: none; }
   .og-left { padding: 70px 0 0 80px; }
   .og-left h1 { font-size: calc(112px * var(--head-scale)); line-height: 1; white-space: nowrap; margin-top: 40px; }
@@ -28,8 +28,8 @@ eleventyExcludeFromCollections: true
   .og-right .map { position: absolute; inset: 0; width: 100%; height: 100%; }
   /* fades in from the left, so there's no hard line between the words and the map */
   .og-right .map, .og-right::before {
-    -webkit-mask-image: linear-gradient(to right, transparent, #000 90px);
-            mask-image: linear-gradient(to right, transparent, #000 90px);
+    -webkit-mask-image: linear-gradient(to right, transparent, #000 140px);
+            mask-image: linear-gradient(to right, transparent, #000 140px);
   }
   /* a still picture: everything drawn in at once, and no scale bar, compass or pulsing ring */
   .og-right .map * { animation-duration: 0s !important; animation-delay: 0s !important; }
@@ -44,9 +44,9 @@ eleventyExcludeFromCollections: true
     <p class="fact">{{ site.location.venue }}, {{ site.location.address }}</p>
   </div>
   <div class="og-right">
-    {#- the map is 1200 x 800; this crop matches the panel's shape, with the pin (540, 380) a little left of centre -#}
+    {#- the map is 1200 x 800; this crop matches the panel's shape, with the pin (540, 380) placed so its name fits -#}
     {% set mapSvg %}{% include "map.svg" %}{% endset %}
-    {{ mapSvg | replace('viewBox="0 0 1200 800"', 'viewBox="350 80 440 630"') | safe }}
+    {{ mapSvg | replace('viewBox="0 0 1200 800"', 'viewBox="280 80 600 630"') | safe }}
   </div>
 </body>
 </html>
