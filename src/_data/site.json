@@ -41,17 +41,16 @@
   ],
   "maryam": {
     "heading": "Hi, I'm Maryam",
-    "text": "I've been lucky enough to volunteer at local farms and allotments, getting local fresh veg for free in exchange. \nI grew up around here and I've worked on local farms for years. I've just started Local Roots to get that food onto Cowley tables: grown nearby, with fewer food miles and no plastic, and priced so everyone can eat well. We're brand new, so come and say hello on a Sunday and tell me what you'd like to see on the stall.",
+    "text": "We have some amazing farms in Oxfordshire. As well as growing tasty veg, they are restoring our soils, creating climate resilience, and working with nature. \n\nThe farmers I've spoken to have so much passion, but also struggle with the overtime and little pay, fighting to keep their farm business afloat. At the same time, the people I talked to in Oxford didn't know where to buy local veg and were keen to support local farms rather than supermarkets which exploit farms and consumers for profit.\n\nWe have some wonderful farmers markets in Oxford open on Saturdays 10-1pm which I also encourage you to visit (e.g. East Oxford Farmers Market round the corner, and Oxford City Farm down the road), and great veg boxes.\n\nOpen on Sundays, I'm hoping to help bridge the gap between supermarkets and farmers markets, with easy packaging and pricing, and lots of advice and recipes if you're not used to seasonal veg. So if you're not sure about muddy carrots or want to find out how to cook a celeriac please do come down! And if you're passionate about local veg and want to chat all things agroecology, I'm more than happy to natter away at the counter.\n\nOnce you've actually 'tasted the difference' (to steal Sainsbury's brand line), it will be hard to beat local eggs, bread, and veg all harvested/baked the day before eating it.",
     "photo": "/images/headshot.jpg",
     "photoAlt": "Maryam smiling, holding sunflowers on a farm"
   },
   "name": "Local Roots",
   "intro": "We are a new Sunday grocery shop hosted by The Workshop Cafe. Selling seasonal veg, eggs and sourdough from local farms.",
-  "heroPhoto": "/images/rainbow-chard-from-above.jpg",
-  "heroPhotoAlt": "Rainbow chard seen from above, red stems fanning out through crinkled leaves",
   "tagline": "Fresh food, grown locally.",
   "font": 4,
   "url": "https://localrootsoxford.co.uk",
+  "heroPhotoAlt": "Rainbow chard seen from above, red stems fanning out through crinkled leaves",
   "tiers": [
     {
       "name": "Supported",
@@ -70,15 +69,15 @@
     }
   ],
   "location": {
-    "venue": "The Workshop Cafe",
-    "address": "Cowley Road, Oxford",
-    "postcode": "",
-    "mapsQuery": "Workshop Cafe, Cowley Road, Oxford",
-    "lat": "",
-    "lng": "",
     "notes": "Cash and card welcome. Bring a bag if you can.",
+    "lng": "",
+    "postcode": "",
+    "venue": "The Workshop Cafe",
+    "mapsQuery": "Workshop Cafe, Cowley Road, Oxford",
     "photo": "/images/squash.jpg",
-    "photoAlt": "Crates of squash ready for the stall"
+    "address": "Cowley Road, Oxford",
+    "photoAlt": "Crates of squash ready for the stall",
+    "lat": ""
   },
   "opening": {
     "day": "Sunday",
@@ -87,5 +86,6 @@
     "notice": "",
     "noticeUntil": ""
   },
+  "heroPhoto": "/images/rainbow-chard-from-above.jpg",
   "exampleItem": "A box of eggs"
 }
