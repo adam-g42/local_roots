@@ -40,7 +40,8 @@
   --fs-body: 1.0625rem;
   --fs-s: .875rem;                        /* labels and fine print */
 
-  --gutter: clamp(1rem, 4.5vw, 3rem);
+  /* never less than the notch, for phones held sideways */
+  --gutter: max(clamp(1rem, 4.5vw, 3rem), env(safe-area-inset-left, 0px), env(safe-area-inset-right, 0px));
   --max: 76rem;
   --ease: cubic-bezier(.22, .8, .24, 1);
 
@@ -51,7 +52,7 @@
 
 *, *::before, *::after { box-sizing: border-box; }
 
-html { scroll-behavior: smooth; scroll-padding-top: 5rem; -webkit-text-size-adjust: 100%; }
+html { scroll-behavior: smooth; scroll-padding-top: calc(5rem + var(--safe-top)); -webkit-text-size-adjust: 100%; }
 
 body {
   margin: 0;
@@ -127,13 +128,15 @@ p { margin: 0 0 1em; }
 
 /* the header holds the name. It starts tall with the name large, and settles to a slim bar once you scroll.
    It's fixed, so the page never shifts as it shrinks; the bar's height and the name's scale are the only things that move. */
-:root { --nav-h: 4.05rem; --nav-tall: 11.5rem; --mark-big: 2.69; --logo-big: 1.08; }
-@media (max-width: 1079px) { :root { --nav-tall: 7rem; --mark-big: 1.625; --logo-big: 1; } }
+/* --safe-top is the strip behind a phone's clock and notch: the page reaches up under it (viewport-fit=cover),
+   so the header grows by that much and its bar fills the strip, with no gap above it */
+:root { --safe-top: env(safe-area-inset-top, 0px); --nav-h: calc(4.05rem + var(--safe-top)); --nav-tall: calc(11.5rem + var(--safe-top)); --mark-big: 2.69; --logo-big: 1.08; }
+@media (max-width: 1079px) { :root { --nav-tall: calc(7rem + var(--safe-top)); --mark-big: 1.625; --logo-big: 1; } }
 
 .nav {
   position: fixed; top: 0; left: 0; right: 0; z-index: 20;
   display: flex; align-items: center; gap: 2rem;
-  height: var(--nav-tall); padding: 0 var(--gutter);
+  height: var(--nav-tall); padding: var(--safe-top) var(--gutter) 0;
   background: rgb(244 237 225 / .88);
   backdrop-filter: blur(10px);
   border-bottom: 1px solid transparent;
