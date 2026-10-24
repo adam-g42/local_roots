@@ -536,8 +536,7 @@ p { margin: 0 0 1em; }
   .miles .miles__caption { margin-bottom: .25rem; font-size: calc(1.35rem * var(--accent-scale)); }
   .miles__tally { order: 2; }
   .miles__times { order: 3; }
-  .miles__farms { order: 4; }
-  .miles__note { order: 5; }
+  .miles__note { order: 4; }
   /* one row of pebbles that scrolls sideways, running to the screen's edges */
   .miles .miles__pick { min-width: 0; flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; margin: 1rem calc(var(--gutter) * -1) .75rem; padding: .4rem var(--gutter); }
   .miles__pick label { flex: none; }
@@ -547,11 +546,6 @@ p { margin: 0 0 1em; }
   .miles .miles__num { font-size: 1.6em; }
   .miles .miles__how { font-size: .82rem; }
   .miles .miles__times { margin: .75rem 0 .5rem; }
-  /* the farms wrap as small numbered tags, a key to the close-up's pins */
-  .miles .miles__farms { display: flex; flex-wrap: wrap; gap: .3rem .9rem; margin: 0 0 1rem; padding: 0; border: 0; font-size: .82rem; }
-  .miles .miles__farm-dots { display: none; }
-  .miles .miles__farm-num { width: 1.15rem; height: 1.15rem; font-size: .66rem; }
-  .miles__farms li { gap: .35rem; }
 }
 
 /* the chooser: a row of pills, the picked one filled in */
@@ -576,17 +570,6 @@ p { margin: 0 0 1em; }
 .miles__row--theirs .miles__num { color: var(--terra-deep); }
 .miles__row--ours .miles__num { color: var(--forest); }
 .miles__how { display: block; margin-top: .25rem; font: 400 .92rem/1.4 var(--sans); color: var(--ink-soft); }
-/* our farms, numbered to match their pins on the close-up, priced up like the menu.
-   Lined up under our distance, with the dotted rule our row would have had */
-.miles__row--ours { padding-bottom: 0; border-bottom: 0; }
-.miles__farms { list-style: none; margin: .9rem 0 0; padding: 0 0 1rem 8.5rem; border-bottom: 2px dotted var(--clay); display: grid; gap: .3rem; font: 400 .95rem/1.3 var(--sans); }
-.miles__farms li { display: flex; align-items: baseline; gap: .55rem; }
-.miles__farm-num {
-  flex: none; display: inline-grid; place-items: center; width: 1.35rem; height: 1.35rem; translate: 0 -.05rem;
-  border-radius: 50%; background: var(--forest); color: var(--paper); font-size: .72rem; font-weight: 800;
-}
-.miles__farm-dots { flex: 1; min-width: 1rem; border-bottom: 2px dotted var(--sage); translate: 0 -.3em; }
-.miles__farm-miles { color: var(--forest); font-weight: 700; white-space: nowrap; }
 .miles__times { min-height: 1.3em; margin: 1.1rem 0 .5rem; font: var(--accent-style) var(--accent-weight) calc(var(--fs-m) * var(--accent-scale))/1.2 var(--accent); color: var(--ink); }
 .miles__note { max-width: 34em; margin: 0; font-size: var(--fs-s); color: var(--ink-soft); }
 
@@ -602,13 +585,8 @@ p { margin: 0 0 1em; }
 [data-caption-them] { color: var(--terra-deep); }
 [data-caption-us] { color: var(--forest); }
 .miles[data-side="them"] [data-caption-them], .miles[data-side="us"] [data-caption-us] { opacity: 1; translate: 0 0; }
-.miles__row, .miles__farms { transition: opacity .5s ease; }
-.miles[data-side="them"] .miles__row--ours, .miles[data-side="them"] .miles__farms, .miles[data-side="us"] .miles__row--theirs { opacity: .4; }
-
-/* the farm this item comes from stands out in the list of suppliers */
-.miles__farms li { transition: opacity .4s ease; }
-.miles__farms li:not(.is-from) { opacity: .5; }
-.miles__farms li.is-from { font-weight: 700; }
+.miles__row { transition: opacity .5s ease; }
+.miles[data-side="them"] .miles__row--ours, .miles[data-side="us"] .miles__row--theirs { opacity: .4; }
 
 /* the globe, drawn in the hero map's ink: blue-washed sea, paper land, pencilled lines of latitude */
 .globe { --k: 1; --map-ink: #4E3D2C; display: block; width: 100%; height: auto; overflow: visible; }
@@ -636,26 +614,25 @@ p { margin: 0 0 1em; }
 .is-close .close-names, .is-still .still-names { opacity: 1; }
 
 /* the close-up round Oxford, in the hero map's inks */
-.shire { --map-ink-soft: #6F5B46; }
 .shire__river { fill: none; stroke: var(--river); stroke-width: 1.3; stroke-linecap: round; stroke-linejoin: round; opacity: .85; }
 .shire__river--main { stroke-width: 2.8; }
 .shire__road { fill: none; stroke: var(--map-ink); stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; opacity: .4; }
+/* the towns are only for bearings, so they're small and faded, behind our farm and Oxford */
 .shire__label {
-  font: var(--accent-style) var(--accent-weight) calc(14px * var(--accent-scale) * var(--k)) var(--accent);
-  fill: var(--map-ink-soft); paint-order: stroke; stroke: #FBF7EF; stroke-width: 4px; stroke-linejoin: round;
+  font: var(--accent-style) var(--accent-weight) calc(13px * var(--accent-scale) * var(--k)) var(--accent);
+  fill: #6F5B46; opacity: .7; paint-order: stroke; stroke: #FBF7EF; stroke-width: 3px; stroke-linejoin: round;
 }
-.shire__label--town { font-size: calc(17px * var(--accent-scale) * var(--k)); }
-.shire__label--city { font-size: calc(21px * var(--accent-scale) * var(--k)); fill: var(--ink); }
+.shire__label--town { font-size: calc(14px * var(--accent-scale) * var(--k)); }
+.shire__label--city { font-size: calc(16px * var(--accent-scale) * var(--k)); }
 
-/* zoomed in: our farms, each with its straight line in to Cowley */
+/* zoomed in: our farms, each with its straight line in to the stall */
 .farms-near__route { fill: none; stroke: var(--forest); stroke-width: 2.6; stroke-linecap: round; }
 .farms-near__pin circle { fill: var(--forest); stroke: var(--paper); stroke-width: 2; }
 .farms-near__pin { opacity: .45; transition: opacity .4s ease; }
 .farms-near__pin.is-from { opacity: 1; }
-.farms-near__pin text { font: 800 12px/1 var(--sans); fill: var(--paper); }
 .farms-near__home { font-size: calc(20px * var(--accent-scale) * var(--k)); fill: var(--terra-deep); }
 .farms-near__theirs { font-size: calc(17px * var(--accent-scale) * var(--k)); fill: var(--terra-deep); }
-.farms-near__ours { font-size: calc(19px * var(--accent-scale) * var(--k)); fill: var(--forest); }
+.farms-near__ours { font-size: calc(26px * var(--accent-scale) * var(--k)); fill: var(--forest); stroke-width: 6px; }
 
 
 .vh { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }

@@ -114,11 +114,10 @@
   // our journey: the line in from whichever farm this item comes from, drawn as the van makes it
   const ourRoute = el("path", { class: "farms-near__route" }, farms);
   const van = el("path", { class: "globe__vehicle", d: glyphs.road.getAttribute("d") }, farms);
-  // each farm is a numbered pin, matching the list of suppliers beside the globe; the one in use stands out
-  const farmMarks = data.farms.map((f, i) => {
+  // each farm is a pin; the one in use stands out, and is named
+  const farmMarks = data.farms.map((f) => {
     const pin = el("g", { class: "farms-near__pin" }, farms);
-    el("circle", { r: 10 }, pin);
-    el("text", { "text-anchor": "middle", dy: ".35em" }, pin).textContent = i + 1;
+    el("circle", { r: 6 }, pin);
     return { f, pin };
   });
   const home = el("circle", { class: "globe__home", r: 5 }, farms);
@@ -141,8 +140,10 @@
       rivers: multi(o.rivers.filter((r) => !r.main)),
       thames: multi(o.rivers.filter((r) => r.main)),
       roads: multi(o.roads),
-      // the city first, then the towns nearest Cowley, so the names that matter most get room
+      // the city first, then the towns nearest Cowley, so the names that matter most get room. Oxford itself is
+      // left out: the stall's own label already says it
       places: o.places
+        .filter((p) => p.name !== data.home.name)
         .map((p) => ({ ...p, rank: (p.kind === "city" ? 0 : 1000) + angle(p.at, HOME) * 3958.8 }))
         .sort((a, b) => a.rank - b.rank)
         .map((p) => ({ ...p, label: el("text", { class: `shire__label shire__label--${p.kind}`, "text-anchor": "middle" }, shireLabels) })),
@@ -264,14 +265,16 @@
     shireRoads.setAttribute("d", path(oxon.roads) || "");
   }
 
-  // Places every name on the settled close-up: Cowley first, clear of the pins and lines, then the supermarket's
-  // label, then whichever towns still fit
+  // Places every name on the settled close-up: Oxford first, centred just over its dot, then our farm clear of the
+  // pins and lines, then the supermarket's label, then whichever towns still fit
   function placeNames() {
     const h = projection(HOME);
     closeUpLines(h);
-    const r = 11 * k;
+    const r = 7 * k;
     const taken = farmMarks.map(({ xy: [x, y] }) => ({ x0: x - r, x1: x + r, y0: y - r, y1: y + r }));
-    homeLabel.setAttribute("transform", `translate(${xy(placeBeside(homeLabel, h, taken))})`);
+    const above = measured(homeLabel), at = [h[0], h[1] - 9 * k - above.y1];
+    taken.push(measured(homeLabel, at));
+    homeLabel.setAttribute("transform", `translate(${xy(at)})`);
     const farm = data.farms[trip.farm];
     oursLabel.textContent = farm.name;
     oursLabel.setAttribute("transform", `translate(${xy(placeBeside(oursLabel, farmMarks[trip.farm].xy, taken))})`);
@@ -380,7 +383,6 @@
   const oursUnit = document.querySelector("[data-ours-unit]");
   const captionThem = document.querySelector("[data-caption-them]");
   const captionUs = document.querySelector("[data-caption-us]");
-  const farmItems = document.querySelectorAll("[data-farm]");
 
   // Plays one trip: out from the last close-up (or round the globe), the supermarket's trip, a pause on the whole
   // route, then down to our farms and our own journey in. Resolves with its run id once that's done.
@@ -402,7 +404,6 @@
     oursUnit.textContent = trip.near === 1 ? "mile" : "miles";
     captionThem.textContent = trip.them;
     captionUs.textContent = trip.us;
-    farmItems.forEach((li) => li.classList.toggle("is-from", +li.dataset.farm === trip.farm));
     farmMarks.forEach(({ pin }, i) => pin.classList.toggle("is-from", i === trip.farm));
     times.textContent = "";
     desc.textContent = `A globe showing the route a supermarket's ${trip.produce.toLowerCase()} takes from ${trip.from} to Oxford, ${fmt(trip.miles)} miles, then zooming in on Oxford to show ours coming ${plural(trip.near)} from ${farm.name}.`;

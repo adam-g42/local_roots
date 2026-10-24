@@ -4,7 +4,8 @@
 
 import { readFileSync } from "node:fs";
 
-const HOME = { name: "Cowley", at: [-1.2335, 51.747] };
+// the stall, in Cowley; the map names it Oxford, and every distance is measured from here
+const HOME = { name: "Oxford", at: [-1.2335, 51.747] };
 
 // Where each supplier in site.json is, from its postcode (postcodes.io) unless noted. Check the uncertain ones
 // with Maryam; a supplier with no pin here is left off the map and a warning is printed at build time.
@@ -116,7 +117,7 @@ function miles([lng1, lat1], [lng2, lat2]) {
 }
 const pathMiles = (path) => path.slice(1).reduce((sum, p, i) => sum + miles(path[i], p), 0);
 
-// nearest first: they're numbered in this order on the map and in the list beside it
+// nearest first
 const farms = FARMS.map((f) => ({ ...f, miles: Math.round(miles(f.at, HOME.at)) })).sort((a, b) => a.miles - b.miles);
 const ours = Math.max(...farms.map((f) => f.miles));
 
