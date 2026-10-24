@@ -60,7 +60,7 @@ The form at **https://localrootsoxford.co.uk/admin** edits everything in `site.j
    Click *Register*, then *Generate a new client secret*. Keep this page open.
 2. **Connect it to Netlify.** In Netlify, go to **Site configuration → Access & security → OAuth → Install provider → GitHub**. Paste the Client ID and Client secret.
 3. **Give Maryam access.** She makes a free GitHub account. In the repo, go to **Settings → Collaborators → Add people** and invite her. She accepts the email invite.
-4. Make sure `repo:` in `src/admin/config.yml` matches the repo, e.g. `yourname/local-roots`. The repo is private, so the config also asks GitHub for private-repo access (`auth_scope: repo`).
+4. Make sure `repo:` in `src/admin/config.yml` matches the repo, e.g. `yourname/local-roots`.
 
 ### Day to day
 

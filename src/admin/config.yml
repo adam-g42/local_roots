@@ -4,8 +4,6 @@ backend:
   name: github
   repo: adam-g42/local_roots
   branch: main
-  # the repo is private, so the GitHub login has to ask for private-repo access
-  auth_scope: repo
   commit_messages:
     update: "Update {{slug}} via the site editor"
 
