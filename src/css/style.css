@@ -778,6 +778,8 @@ p { margin: 0 0 1em; }
   rotate: -1deg;
 }
 .recipe[open] { animation: rise .45s var(--ease); }
+/* the card takes focus when it opens, rather than ringing the Save button */
+.recipe:focus-visible { outline: none; }
 .recipe::backdrop { background: rgb(47 42 34 / .45); backdrop-filter: blur(3px); }
 .recipe form { padding: 1.25rem 1.5rem 1.75rem; position: relative; }
 /* a red rule under the kicker, then faint blue lines under every row of text, like a ruled card */
