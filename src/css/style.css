@@ -352,7 +352,7 @@ p { margin: 0 0 1em; }
     --fade: rgb(0 0 0 / 0) 0%, rgb(0 0 0 / 0.216) 6%, rgb(0 0 0 / 0.648) 12%, rgb(0 0 0 / 0.972) 18%, rgb(0 0 0 / 1) 22%;
   }
   /* the intro is the card's last section, under a dotted rule: the two boxes are drawn as one */
-  .hero__stall { order: 2; margin-top: -3.25rem; border-bottom: 0; border-radius: 18px 18px 0 0; box-shadow: none; }
+  .hero__stall { order: 2; z-index: 1; margin-top: -3.25rem; border-bottom: 0; border-radius: 18px 18px 0 0; box-shadow: none; }
   .hero__intro {
     order: 3; margin-top: 0; margin-bottom: .5rem; max-width: none;
     padding: .2rem 1rem .9rem; font-size: .95rem; animation-delay: .45s;
