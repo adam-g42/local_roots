@@ -10,9 +10,9 @@
   "suppliers": [
     {
       "name": "Oxford City Farm",
-      "grows": "Veg grown by volunteers in the middle of the city",
+      "grows": "Veg grown by volunteers near Florence Park",
       "website": "https://www.oxfordcityfarm.org.uk",
-      "photo": "/images/ocf-logo.png"
+      "photo": "/images/escarole.jpg"
     },
     {
       "name": "Blacklands Organic",
