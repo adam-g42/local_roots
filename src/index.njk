@@ -255,8 +255,7 @@ layout: base.njk
             <span class="pitch__text">Even one Sunday a month is a big help.</span>
             <span class="btn">Offer to volunteer</span>
           </summary>
-          <form class="form" name="volunteer" method="POST" action="/thanks/"
-                data-netlify="true" netlify-honeypot="bot-field">
+          <form class="form" name="volunteer" method="POST" action="/api/form">
             <input type="hidden" name="form-name" value="volunteer">
             <p class="hp"><label>Leave this empty <input name="bot-field" tabindex="-1" autocomplete="off"></label></p>
             <label>Your name <input name="name" required autocomplete="name"></label>
@@ -279,8 +278,7 @@ layout: base.njk
             <span class="pitch__text">An idea for the stall, a question, or something you grow?</span>
             <span class="btn">Send a message</span>
           </summary>
-          <form class="form" name="contact" method="POST" action="/thanks/"
-                data-netlify="true" netlify-honeypot="bot-field">
+          <form class="form" name="contact" method="POST" action="/api/form">
             <input type="hidden" name="form-name" value="contact">
             <p class="hp"><label>Leave this empty <input name="bot-field" tabindex="-1" autocomplete="off"></label></p>
             <label>Your name <input name="name" required autocomplete="name"></label>

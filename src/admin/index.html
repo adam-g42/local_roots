@@ -8,6 +8,9 @@
   <link rel="icon" type="image/png" href="/images/brand/icon-192.png">
 </head>
 <body>
+  <!-- "Login with GitHub" goes through this site's own /api/auth (functions/api/), wherever the site is served from -->
+  <script>window.CMS_MANUAL_INIT = true;</script>
   <script src="https://unpkg.com/decap-cms@3.16.3/dist/decap-cms.js"></script>
+  <script>CMS.init({ config: { backend: { base_url: location.origin, auth_endpoint: "api/auth" } } });</script>
 </body>
 </html>

@@ -2,7 +2,7 @@
 
 Website for Local Roots, a Sunday veg stall at Workshop Cafe in Cowley, Oxford.
 
-It's a single page built with [Eleventy](https://www.11ty.dev/) and hosted free on Netlify. Every detail that changes (hours, address, socials, email, PayPal donation link, price tiers, suppliers, and the "Meet Maryam" words) lives in **one file: `src/_data/site.json`**. Maryam can also edit it from a form at `/admin`.
+It's a single page built with [Eleventy](https://www.11ty.dev/) and hosted free on Cloudflare Pages. Every detail that changes (hours, address, socials, email, PayPal donation link, price tiers, suppliers, and the "Meet Maryam" words) lives in **one file: `src/_data/site.json`**. Maryam can also edit it from a form at `/admin`.
 
 ## Before going live: fill in the placeholders
 
@@ -27,24 +27,32 @@ npm install
 npm start          # http://localhost:8080
 ```
 
-## Deploying (GitHub → Netlify)
+## Deploying (GitHub → Cloudflare Pages)
 
-1. Push this folder to a GitHub repo.
-2. In [Netlify](https://app.netlify.com): **Add new site → Import an existing project → GitHub**, then pick the repo. `netlify.toml` already sets the build command (`npm run build`) and the publish folder (`_site`).
-3. **Site configuration → Change site name** → `localrootsoxford`. This only sets the backup address, **https://localrootsoxford.netlify.app**; the real one is the domain below.
-4. **Forms:** in **Forms**, click *Enable form detection* and redeploy. The *volunteer* and *contact* forms will show up there. Under **Forms → Form notifications**, add an email notification so submissions go to Maryam. Send a test message from the live site to check it works.
+Cloudflare Pages builds the site from the `main` branch (`npm run build`, output `_site`) and serves it at **https://localrootsoxford.co.uk**, with **https://localrootsoxford.pages.dev** as the backup address. Every push to `main` redeploys automatically, in about a minute.
 
-Every push to `main` redeploys automatically, in about a minute.
+Alongside the pages, Cloudflare runs three small handlers in `functions/api/`:
 
-### Free hosting options
+- `form.js`: the volunteer and contact forms post here, and each one is emailed through [Resend](https://resend.com).
+- `auth.js` and `callback.js`: the editor's "Login with GitHub".
 
-| Host | Free address | Notes |
-|---|---|---|
-| **Netlify** (used here) | `*.netlify.app` | Built-in forms (100 submissions/month free), works with Decap CMS login |
-| Cloudflare Pages | `*.pages.dev` | Very fast, but forms would need a service like Formspree |
-| GitHub Pages | `*.github.io` | Simplest, but no forms and no build-time login for the editor |
+They use these settings, under **Workers & Pages → localrootsoxford → Settings → Variables and secrets**:
 
-There's no reliable *free* custom domain. A `.co.uk` like `localroots.co.uk` costs about £5–10 a year from Cloudflare Registrar, Porkbun or Namecheap. To connect one in Netlify, go to **Domain management → Add a domain** and follow the DNS steps. HTTPS is set up automatically. Then update `url` in `site.json`.
+| Name | What it is |
+|---|---|
+| `RESEND_API_KEY` | from Resend → API Keys |
+| `FORM_TO` | where form messages go (commas for more than one) |
+| `FORM_FROM` | the sender, e.g. `Local Roots <forms@localrootsoxford.co.uk>`; the domain must be verified in Resend |
+| `GITHUB_CLIENT_ID`, `GITHUB_CLIENT_SECRET` | from the GitHub OAuth app (below) |
+
+Response headers (caching, the calendar file's type) are in `src/_headers`.
+
+To try the forms and the login on your own computer, put the settings above in a `.dev.vars` file (one `NAME=value` per line; it's ignored by git), then:
+
+```sh
+npm run build
+npx wrangler pages dev _site     # http://localhost:8788
+```
 
 ## Editing the site (for Maryam)
 
@@ -55,10 +63,10 @@ The form at **https://localrootsoxford.co.uk/admin** edits everything in `site.j
 1. **Create a GitHub OAuth app.** On GitHub, go to **Settings → Developer settings → OAuth Apps → New OAuth App**.
    - Application name: `Local Roots editor`
    - Homepage URL: `https://localrootsoxford.co.uk`
-   - Authorization callback URL: `https://api.netlify.com/auth/done`
+   - Authorization callback URL: `https://localrootsoxford.co.uk/api/callback`
 
    Click *Register*, then *Generate a new client secret*. Keep this page open.
-2. **Connect it to Netlify.** In Netlify, go to **Site configuration → Access & security → OAuth → Install provider → GitHub**. Paste the Client ID and Client secret.
+2. **Connect it to Cloudflare.** Add the Client ID and Client secret as `GITHUB_CLIENT_ID` and `GITHUB_CLIENT_SECRET` (see *Deploying* above), then redeploy.
 3. **Give Maryam access.** She makes a free GitHub account. In the repo, go to **Settings → Collaborators → Add people** and invite her. She accepts the email invite.
 4. Make sure `repo:` in `src/admin/config.yml` matches the repo, e.g. `yourname/local-roots`.
 
@@ -101,7 +109,8 @@ src/_includes/map.svg    the hand-drawn Oxford map in the hero (generated, don't
 scripts/map-source.svg   the map to edit; then run `npm run map` to bake in the pen wobble
 scripts/map-details.mjs  draws the terraces, trees, ripples and hill shading into the source: `npm run map:details`
 src/css/style.css        styles (colours and fonts at the top)
-src/js/main.js           "open now" line and the share button
+src/js/main.js           "open now" line, the share button and the recipe cards
+functions/api/           form emails and the editor login, run by Cloudflare
 src/admin/               Decap CMS editor
 src/local-roots.ics.njk  "Add to calendar" file (repeats every week)
 src/og-image.njk         template for the share image

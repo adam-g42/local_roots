@@ -22,6 +22,7 @@ export default function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy({ "src/images": "images" });
   eleventyConfig.addPassthroughCopy({ "src/css": "css", "src/js": "js" });
   eleventyConfig.addPassthroughCopy("src/admin/config.yml");
+  eleventyConfig.addPassthroughCopy("src/_headers");
   // d3-geo draws the food-miles globe
   eleventyConfig.addPassthroughCopy({
     "node_modules/d3-array/dist/d3-array.min.js": "js/vendor/d3-array.min.js",

@@ -2,3 +2,7 @@ node_modules/
 _site/
 .DS_Store
 .cache/
+
+# Cloudflare local testing
+.dev.vars
+.wrangler/
