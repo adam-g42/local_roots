@@ -337,6 +337,29 @@ p { margin: 0 0 1em; }
 @media (max-width: 759px) {
   .hero__photo { display: none; }
   .map__pin-label { font-size: 30px; }
+
+  /* the map comes straight after the promise, so it's seen at once: the card is laid over its foot,
+     as it's laid over the chard on bigger screens, and the intro follows the card.
+     The words' box steps aside so its pieces can sit either side of the map */
+  .hero { display: flex; flex-direction: column; min-height: 0; padding-top: clamp(.9rem, 2.5svh, 1.5rem); }
+  .hero__text { display: contents; }
+  .notice, .hero__eyebrow, .hero__promise, .hero__stall, .hero__intro { margin-inline: var(--gutter); }
+  .hero__plate {
+    order: 1; flex: none; height: clamp(15rem, 46svh, 24rem); margin-top: .5rem;
+    /* how far the card reaches over the map's foot; the map's script keeps the pin, scale and compass above it */
+    padding-bottom: 3.25rem;
+    /* a short fade at the top only, under the promise */
+    --fade: rgb(0 0 0 / 0) 0%, rgb(0 0 0 / 0.216) 6%, rgb(0 0 0 / 0.648) 12%, rgb(0 0 0 / 0.972) 18%, rgb(0 0 0 / 1) 22%;
+  }
+  /* the intro is the card's last section, under a dotted rule: the two boxes are drawn as one */
+  .hero__stall { order: 2; margin-top: -3.25rem; border-bottom: 0; border-radius: 18px 18px 0 0; box-shadow: none; }
+  .hero__intro {
+    order: 3; margin-top: 0; margin-bottom: .5rem; max-width: none;
+    padding: .2rem 1rem .9rem; font-size: .95rem; animation-delay: .45s;
+    background: #FBF8F2; border: 1px solid var(--line); border-top: 0; border-radius: 0 0 18px 18px;
+    box-shadow: 0 22px 40px -28px rgb(42 38 33 / .45);
+  }
+  .hero__intro::before { content: ""; display: block; margin-bottom: .75rem; border-top: 2px dotted var(--clay); }
 }
 
 @media (min-width: 960px) {

@@ -72,7 +72,7 @@ layout: base.njk
       // Frame the map to its box: on phones zoom in around the pin; everywhere, set the scale bar in the
       // bottom-right corner of what's showing, with the north arrow above it. Inline so the map never jumps.
       (() => {
-        const map = document.querySelector(".hero__plate .map");
+        const plate = document.querySelector(".hero__plate"), map = plate.querySelector(".map");
         const W = 1200, H = 800, PIN = [540, 380], ZOOM = 1.5;
         const scaleBar = map.querySelector(".map__scale"), compass = map.querySelector(".map__compass");
         const clamp = (v, lo, hi) => Math.min(Math.max(v, lo), hi);
@@ -95,19 +95,21 @@ layout: base.njk
           const r = map.getBoundingClientRect();
           if (!r.width || !r.height) return;
           const aspect = r.width / r.height;
+          // on phones the card is laid over the map's foot, by the plate's bottom padding
+          const under = parseFloat(getComputedStyle(plate).paddingBottom) / r.height;
           let w = Math.min(W, H * aspect), h = w / aspect, x, y;
           if (matchMedia("(max-width: 759px)").matches) {
             w /= ZOOM; h /= ZOOM;
-            // the pin sits a little left of centre so its name fits beside it, and a touch below the middle,
-            // since the top of the map fades under the words
-            x = clamp(PIN[0] - w * .47, 0, W - w); y = clamp(PIN[1] - h * .45, 0, H - h);
+            // the pin sits a little left of centre so its name fits beside it, and halfway down what's clear
+            // of the fade at the top and the card at the foot
+            x = clamp(PIN[0] - w * .47, 0, W - w); y = clamp(PIN[1] - h * (.2 + 1 - under) / 2, 0, H - h);
           } else {
             // nudged left of centre so more of the river shows
             x = clamp((W - w) / 2 - 30, 0, W - w); y = (H - h) / 2;
           }
           map.setAttribute("viewBox", `${x} ${y} ${w} ${h}`);
           const m = 20 * w / r.width;   // 20px in map units
-          const top = place(scaleBar, x + w - m, y + h - m);
+          const top = place(scaleBar, x + w - m, y + h * (1 - under) - m);
           place(compass, x + w - m - 8 * w / r.width, top - m * .6);
         };
         fit();
