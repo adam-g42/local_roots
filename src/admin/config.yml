@@ -10,8 +10,8 @@ backend:
 # For testing on your own computer: run `npm run cms` alongside `npm start`
 local_backend: true
 
-site_url: https://local-roots.netlify.app
-display_url: https://local-roots.netlify.app
+site_url: https://localrootsoxford.co.uk
+display_url: https://localrootsoxford.co.uk
 logo_url: /images/brand/icon-192.png
 
 media_folder: images/uploads
@@ -35,7 +35,8 @@ collections:
               - { name: day, label: Day, widget: select, options: [Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday] }
               - { name: opens, label: Opens, hint: "24-hour time, e.g. 10:00", widget: string, pattern: ['^([01]\d|2[0-3]):[0-5]\d$', "Use 24-hour time like 10:00"] }
               - { name: closes, label: Closes, hint: "24-hour time, e.g. 15:00", widget: string, pattern: ['^([01]\d|2[0-3]):[0-5]\d$', "Use 24-hour time like 15:00"] }
-              - { name: notice, label: Notice banner, widget: string, required: false, hint: "e.g. 'No stall on 28 December, back in the new year!' Leave empty to hide." }
+              - { name: notice, label: Notice banner, widget: string, required: false, hint: "e.g. 'No stall on 27 December, back in the new year!' Leave empty to hide." }
+              - { name: noticeUntil, label: Show the notice until, widget: datetime, time_format: false, date_format: "D MMMM YYYY", format: "YYYY-MM-DD", required: false, hint: "Optional. The notice comes down by itself after this day." }
 
           - name: font
             label: Font pairing
@@ -79,7 +80,7 @@ collections:
               - { name: instagram, label: Instagram handle, widget: string, hint: "Just the handle, without the @" }
               - { name: facebook, label: Facebook page link, widget: string, required: false }
               - { name: whatsapp, label: WhatsApp group or community link, widget: string, required: false }
-              - { name: kofi, label: Ko-fi link, widget: string }
+              - { name: donate, label: PayPal donation link, widget: string, hint: "The link from your PayPal Donate button, e.g. https://www.paypal.com/donate/?hosted_button_id=…" }
 
           - name: tiers
             label: Price tiers

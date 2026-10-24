@@ -157,11 +157,17 @@ p { margin: 0 0 1em; }
   .nav .btn { margin-left: 0; }
 }
 
+/* one-off stall news, e.g. a missed week: a small flagged line at the top of the hero */
 .notice {
-  margin: 0; padding: .75rem var(--gutter);
-  background: var(--terra); color: var(--paper);
-  text-align: center; font-weight: 500;
+  display: inline-flex; align-items: center; gap: .55rem;
+  margin: 0 0 1rem; padding: .4rem 1rem .4rem .5rem;
+  background: var(--clay-soft); color: var(--terra-deep);
+  border-radius: 999px;
+  font-size: var(--fs-s); font-weight: 700; line-height: 1.3;
 }
+.notice__icon { flex: none; width: 1.15rem; height: 1.15rem; fill: var(--terra); }
+.notice__icon path { stroke: var(--paper); }
+.notice__icon circle + path + circle { fill: var(--paper); }
 
 /* ---------- hero: the name, the promise and a card for the stall on the left; hand-drawn Oxford on the right ---------- */
 
@@ -260,9 +266,10 @@ p { margin: 0 0 1em; }
   .hero__text {
     --chard-w: clamp(6.5rem, 11vw, 12.5rem);
     display: grid; grid-template-columns: minmax(0, 26rem) var(--chard-w); justify-content: start;
-    /* the eyebrow's row is simply empty when there's no "new" line */
-    grid-template-areas: "eyebrow eyebrow" "promise promise" "intro photo" "stall photo";
+    /* the notice's and eyebrow's rows are simply empty when there's nothing to say */
+    grid-template-areas: "notice notice" "eyebrow eyebrow" "promise promise" "intro photo" "stall photo";
   }
+  .notice { grid-area: notice; justify-self: start; }
   .hero__eyebrow { grid-area: eyebrow; }
   .hero__promise { grid-area: promise; }
   .hero__intro { grid-area: intro; max-width: min(40ch, 100% - 3rem); }

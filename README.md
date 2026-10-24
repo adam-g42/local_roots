@@ -2,7 +2,7 @@
 
 Website for Local Roots, a Sunday veg stall at Workshop Cafe in Cowley, Oxford.
 
-It's a single page built with [Eleventy](https://www.11ty.dev/) and hosted free on Netlify. Every detail that changes (hours, address, socials, email, Ko-fi, price tiers, suppliers, and the "Meet Maryam" words) lives in **one file: `src/_data/site.json`**. Maryam can also edit it from a form at `/admin`.
+It's a single page built with [Eleventy](https://www.11ty.dev/) and hosted free on Netlify. Every detail that changes (hours, address, socials, email, PayPal donation link, price tiers, suppliers, and the "Meet Maryam" words) lives in **one file: `src/_data/site.json`**. Maryam can also edit it from a form at `/admin`.
 
 ## Before going live: fill in the placeholders
 
@@ -12,7 +12,7 @@ In `src/_data/site.json`, or through `/admin` once that's set up:
 |---|---|---|
 | `contact.email` | `hello@example.com` | the real address |
 | `contact.instagram` | `TODO-instagram-handle` | the handle, without the @ |
-| `contact.kofi` | `https://ko-fi.com/TODO` | the Ko-fi page link |
+| `contact.donate` | `https://www.paypal.com/donate/?hosted_button_id=TODO` | the PayPal Donate button link |
 | `location.postcode`, `lat`, `lng` | empty | add these to show a map pin (otherwise a photo is shown) |
 | `suppliers[].website` | mostly empty | farm websites, if they have one |
 | `tiers[].example` | £1.00 / £1.80 / £2.50 | real prices for the example item |
@@ -31,7 +31,7 @@ npm start          # http://localhost:8080
 
 1. Push this folder to a GitHub repo.
 2. In [Netlify](https://app.netlify.com): **Add new site → Import an existing project → GitHub**, then pick the repo. `netlify.toml` already sets the build command (`npm run build`) and the publish folder (`_site`).
-3. **Site configuration → Change site name** → `local-roots`, which gives you **https://local-roots.netlify.app**. If you choose a different name, update `url` in `site.json` and `site_url` in `src/admin/config.yml`.
+3. **Site configuration → Change site name** → `localrootsoxford`. This only sets the backup address, **https://localrootsoxford.netlify.app**; the real one is the domain below.
 4. **Forms:** in **Forms**, click *Enable form detection* and redeploy. The *volunteer* and *contact* forms will show up there. Under **Forms → Form notifications**, add an email notification so submissions go to Maryam. Send a test message from the live site to check it works.
 
 Every push to `main` redeploys automatically, in about a minute.
@@ -48,13 +48,13 @@ There's no reliable *free* custom domain. A `.co.uk` like `localroots.co.uk` cos
 
 ## Editing the site (for Maryam)
 
-The form at **https://local-roots.netlify.app/admin** edits everything in `site.json`. You log in with GitHub, and each time you press **Publish** the site updates about a minute later.
+The form at **https://localrootsoxford.co.uk/admin** edits everything in `site.json`. You log in with GitHub, and each time you press **Publish** the site updates about a minute later.
 
 ### One-time setup (whoever owns the repo does this)
 
 1. **Create a GitHub OAuth app.** On GitHub, go to **Settings → Developer settings → OAuth Apps → New OAuth App**.
    - Application name: `Local Roots editor`
-   - Homepage URL: `https://local-roots.netlify.app`
+   - Homepage URL: `https://localrootsoxford.co.uk`
    - Authorization callback URL: `https://api.netlify.com/auth/done`
 
    Click *Register*, then *Generate a new client secret*. Keep this page open.

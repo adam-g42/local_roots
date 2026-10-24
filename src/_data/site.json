@@ -1,50 +1,12 @@
 {
-  "font": 4,
-  "name": "Local Roots",
-  "url": "https://local-roots.netlify.app",
-  "badge": "New Sunday veg stall in Cowley",
-  "tagline": "Fresh food, grown nearby.",
-  "intro": "A Sunday veg stall at Workshop Cafe, run by a local for locals. Seasonal veg, eggs and sourdough from farms a short ride away, at a price you pick. No plastic.",
-  "opening": {
-    "day": "Sunday",
-    "opens": "10:00",
-    "closes": "15:00",
-    "notice": ""
-  },
-  "location": {
-    "venue": "Workshop Cafe",
-    "address": "Cowley Road, Oxford",
-    "postcode": "",
-    "mapsQuery": "Workshop Cafe, Cowley Road, Oxford",
-    "lat": "",
-    "lng": "",
-    "notes": "Cash and card welcome. Bring a bag if you can."
-  },
   "contact": {
-    "email": "hello@example.com",
-    "instagram": "TODO-instagram-handle",
+    "email": "localrootsoxford@gmail.com",
+    "instagram": "localrootsoxford",
     "facebook": "",
     "whatsapp": "",
-    "kofi": "https://ko-fi.com/TODO"
+    "donate": "https://www.paypal.com/donate/?hosted_button_id=TODO"
   },
-  "tiers": [
-    {
-      "name": "Supported",
-      "description": "For when money's tight. No questions, ever.",
-      "example": "£1.00"
-    },
-    {
-      "name": "Standard",
-      "description": "Covers a fair price to the farmer and the running of the stall.",
-      "example": "£1.80"
-    },
-    {
-      "name": "Solidarity",
-      "description": "If you can pay a little more, it keeps the Supported price possible for a neighbour.",
-      "example": "£2.50"
-    }
-  ],
-  "exampleItem": "A bunch of rainbow chard",
+  "badge": "New Sunday veg stall in Cowley",
   "suppliers": [
     {
       "name": "Oxford City Farm",
@@ -80,5 +42,44 @@
   "maryam": {
     "heading": "Hi, I'm Maryam",
     "text": "I grew up around here and I've worked on local farms for years. I've just started Local Roots to get that food onto Cowley tables: grown nearby, with fewer food miles and no plastic, and priced so everyone can eat well. We're brand new, so come and say hello on a Sunday and tell me what you'd like to see on the stall."
-  }
+  },
+  "name": "Local Roots",
+  "intro": "We are a new Sunday grocery stall at Workshop Cafe. Seasonal veg, eggs and sourdough from farms a short ride away, at a price you pick. No plastic.",
+  "tagline": "Fresh food, grown locally.",
+  "font": 4,
+  "url": "https://localrootsoxford.co.uk",
+  "tiers": [
+    {
+      "name": "Supported",
+      "description": "For when money's tight. No questions, ever.",
+      "example": "£1.00"
+    },
+    {
+      "name": "Standard",
+      "description": "Covers a fair price to the farmer and the running of the stall.",
+      "example": "£1.80"
+    },
+    {
+      "name": "Solidarity",
+      "description": "If you can pay a little more, it keeps the Supported price possible for a neighbour.",
+      "example": "£2.50"
+    }
+  ],
+  "location": {
+    "venue": "Workshop Cafe",
+    "address": "Cowley Road, Oxford",
+    "postcode": "",
+    "mapsQuery": "Workshop Cafe, Cowley Road, Oxford",
+    "lat": "",
+    "lng": "",
+    "notes": "Cash and card welcome. Bring a bag if you can."
+  },
+  "opening": {
+    "day": "Sunday",
+    "opens": "10:00",
+    "closes": "15:00",
+    "notice": "",
+    "noticeUntil": ""
+  },
+  "exampleItem": "A bunch of rainbow chard"
 }

@@ -46,6 +46,10 @@ function renderStatus(el) {
 
 document.querySelectorAll("[data-status]").forEach(renderStatus);
 
+// The site only rebuilds when something's published, so a notice past its "until" day also takes itself down here
+const notice = document.querySelector(".notice[data-until]");
+if (notice && notice.dataset.until < new Date().toLocaleDateString("en-CA", { timeZone: "Europe/London" })) notice.remove();
+
 // The header starts tall and settles to a slim bar once the page is scrolled
 const setScrolled = () => document.body.classList.toggle("scrolled", scrollY > 16);
 addEventListener("scroll", setScrolled, { passive: true });

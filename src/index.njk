@@ -23,12 +23,12 @@ layout: base.njk
 
 <main id="main">
 
-  {% if o.notice %}
-  <p class="notice" role="status">{{ o.notice }}</p>
-  {% endif %}
-
   <section class="hero" id="top" aria-labelledby="hero-title">
     <div class="hero__text">
+      {#- one-off stall news, e.g. a missed week; it takes itself down after its "until" day -#}
+      {% if o.notice and not (o.noticeUntil | isPast) %}
+      <p class="notice" role="note"{% if o.noticeUntil %} data-until="{{ o.noticeUntil }}"{% endif %}><svg class="notice__icon" viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="8"/><path d="M8 4v5" stroke-width="1.8" stroke-linecap="round"/><circle cx="8" cy="11.8" r="1.05"/></svg>{{ o.notice }}</p>
+      {% endif %}
       {% if site.badge %}<p class="hero__eyebrow">{{ site.badge }}</p>{% endif %}
       <h1 class="hero__promise" id="hero-title">{{ site.tagline }}</h1>
       <p class="hero__intro">{{ site.intro }}</p>
@@ -250,7 +250,7 @@ layout: base.njk
         <div class="pitch pitch--clay">
           <h3>Chip in</h3>
           <p>A donation tops up the Supported price, so a neighbour can take home a full bag for less.</p>
-          <a class="btn btn--terra" href="{{ c.kofi }}" target="_blank" rel="noopener">Donate on Ko-fi</a>
+          <a class="btn btn--terra" href="{{ c.donate }}" target="_blank" rel="noopener">Donate with PayPal</a>
         </div>
 
         <details class="pitch pitch--sage" name="involve">
@@ -343,7 +343,7 @@ layout: base.njk
       {% if c.facebook %}<li><a class="ulink" href="{{ c.facebook }}" target="_blank" rel="noopener">Facebook</a></li>{% endif %}
       {% if c.whatsapp %}<li><a class="ulink" href="{{ c.whatsapp }}" target="_blank" rel="noopener">WhatsApp group</a></li>{% endif %}
       <li><a class="ulink" href="mailto:{{ c.email }}">{{ c.email }}</a></li>
-      <li><a class="ulink" href="{{ c.kofi }}" target="_blank" rel="noopener">Ko-fi</a></li>
+      <li><a class="ulink" href="{{ c.donate }}" target="_blank" rel="noopener">Donate</a></li>
       <li><button type="button" class="ulink linkish" data-share>Share this page</button></li>
     </ul>
     <p class="footer__small">Grown nearby, sold in Cowley. © {{ "" | year }} Local Roots</p>

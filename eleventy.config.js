@@ -32,6 +32,8 @@ export default function (eleventyConfig) {
   eleventyConfig.addFilter("byDay", (dayName) => dayName.slice(0, 2).toUpperCase());
   eleventyConfig.addFilter("unique", (list) => [...new Set(list)]);
   eleventyConfig.addFilter("year", () => new Date().getFullYear());
+  // true once a "YYYY-MM-DD" day is over, in UK time
+  eleventyConfig.addFilter("isPast", (ymd) => !!ymd && String(ymd).slice(0, 10) < new Date().toLocaleDateString("en-CA", { timeZone: "Europe/London" }));
   eleventyConfig.addFilter("commas", (n) => Number(n).toLocaleString("en-GB"));
 
   return {

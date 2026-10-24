@@ -41,7 +41,7 @@ const CHANNEL = [[-10, 44], [-5.8, 48.2], [-2.5, 50.2], SOUTHAMPTON];
 const TRIPS = [
   {
     produce: "Potatoes", farm: "Blacklands Organic",
-    them: "A supermarket's new potatoes", us: "Our potatoes",
+    them: "A supermarket's new potatoes", us: "Local potatoes",
     place: "Nile Delta", from: "the Nile Delta, Egypt", by: "ship",
     legs: [
       { by: "sea", path: [[29.9, 31.2], [20, 34], [11, 37.5], [0, 37], [-5.6, 35.95], [-9.6, 37], ...CHANNEL] },
@@ -50,7 +50,7 @@ const TRIPS = [
   },
   {
     produce: "Squash", farm: "Oxford City Farm",
-    them: "A supermarket's squash", us: "Our squash",
+    them: "A supermarket's squash", us: "Local squash",
     place: "Western Cape", from: "the Western Cape, South Africa", by: "ship",
     legs: [
       { by: "sea", path: [[18.42, -33.91], [14, -30], [4, -15], [-8, 0], [-18, 12], [-19, 22], [-14, 30], [-11, 37], ...CHANNEL] },
@@ -59,7 +59,7 @@ const TRIPS = [
   },
   {
     produce: "Onions", farm: "Oxford City Farm",
-    them: "A supermarket's onions", us: "Our onions",
+    them: "A supermarket's onions", us: "Local onions",
     place: "New Zealand", from: "the Bay of Plenty, New Zealand", by: "ship",
     legs: [
       // across the Pacific and through the Panama Canal
@@ -69,7 +69,7 @@ const TRIPS = [
   },
   {
     produce: "Cut flowers", farm: "Oxford City Farm",
-    them: "A supermarket's flowers", us: "Our flowers",
+    them: "A supermarket's flowers", us: "Local flowers",
     place: "Naivasha", from: "Lake Naivasha, Kenya", by: "air",
     legs: [
       { by: "road", path: [[36.43, -0.72], [36.93, -1.32]] },
@@ -79,7 +79,7 @@ const TRIPS = [
   },
   {
     produce: "Tomatoes", farm: "Oxford City Farm",
-    them: "A supermarket's tomatoes", us: "Our tomatoes",
+    them: "A supermarket's tomatoes", us: "Local tomatoes",
     place: "Almería", from: "Almería, Spain", by: "lorry",
     legs: [
       { by: "road", path: [[-2.46, 36.84], [-3.7, 40.42], [-3.7, 42.34], [-1.79, 43.34], [-0.58, 44.84], [0.34, 46.58], [1.9, 47.9], [2.35, 48.86], [2.3, 49.89], CALAIS] },
@@ -89,7 +89,7 @@ const TRIPS = [
   },
   {
     produce: "Spring onions", farm: "Oxford City Farm",
-    them: "A supermarket's spring onions", us: "Our spring onions",
+    them: "A supermarket's spring onions", us: "Local spring onions",
     place: "Mexico", from: "Mexico", by: "air",
     legs: [
       { by: "air", path: [[-99.07, 19.44], HEATHROW] },
@@ -98,7 +98,7 @@ const TRIPS = [
   },
   {
     produce: "Radicchio", farm: "Blacklands Organic",
-    them: "A supermarket's radicchio", us: "Our radicchio",
+    them: "A supermarket's radicchio", us: "Local radicchio",
     place: "Treviso", from: "Treviso, Italy", by: "lorry",
     legs: [
       { by: "road", path: [[12.24, 45.67], [10.99, 45.44], [9.19, 45.46], [7.32, 45.74], [6.14, 46.2], [5.04, 47.32], [4.03, 49.26], [2.78, 50.29], CALAIS] },
