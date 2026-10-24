@@ -99,6 +99,7 @@
     "day": "Sunday",
     "opens": "10:00",
     "closes": "14:30",
+    "nextOpen": "",
     "notice": "",
     "noticeUntil": ""
   },

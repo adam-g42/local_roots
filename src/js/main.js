@@ -23,11 +23,22 @@ function londonNow() {
   return { day: DAYS.indexOf(parts.weekday), minutes: Number(parts.hour) * 60 + Number(parts.minute) };
 }
 
+// today in London as YYYY-MM-DD
+const londonToday = () => new Date().toLocaleDateString("en-CA", { timeZone: "Europe/London" });
+
 function renderStatus(el) {
-  const { day, opens, closes } = el.dataset;
+  const { day, opens, closes, nextOpen } = el.dataset;
   const target = DAYS.indexOf(day);
   const now = londonNow();
   const open = toMinutes(opens), close = toMinutes(closes);
+
+  // not open yet, or on a break: the next open day is the one set in the editor, not the coming week's
+  if (nextOpen && nextOpen > londonToday()) {
+    const daysAway = Math.round((Date.parse(nextOpen) - Date.parse(londonToday())) / 86400000);
+    const date = new Date(nextOpen).toLocaleDateString("en-GB", { weekday: "long", day: "numeric", month: "long", timeZone: "UTC" });
+    el.textContent = daysAway === 1 ? `Next open tomorrow, ${time12(opens)}` : `Next open ${date}`;
+    return;
+  }
 
   if (now.day === target && now.minutes >= open && now.minutes < close) {
     el.textContent = `Open now until ${time12(closes)}`;
@@ -48,7 +59,7 @@ document.querySelectorAll("[data-status]").forEach(renderStatus);
 
 // The site only rebuilds when something's published, so a notice past its "until" day also takes itself down here
 const notice = document.querySelector(".notice[data-until]");
-if (notice && notice.dataset.until < new Date().toLocaleDateString("en-CA", { timeZone: "Europe/London" })) notice.remove();
+if (notice && notice.dataset.until < londonToday()) notice.remove();
 
 // The header starts tall and settles to a slim bar once the page is scrolled
 const setScrolled = () => document.body.classList.toggle("scrolled", scrollY > 16);

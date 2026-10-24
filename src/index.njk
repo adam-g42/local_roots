@@ -49,7 +49,7 @@ layout: base.njk
         <p class="when__time">{{ o.day }}s<br> {{ hoursText }}</p>
         <p class="when__where">{{ loc.venue }}, {{ loc.address }}</p>
         <p class="status" data-status
-           data-day="{{ o.day }}" data-opens="{{ o.opens }}" data-closes="{{ o.closes }}"
+           data-day="{{ o.day }}" data-opens="{{ o.opens }}" data-closes="{{ o.closes }}"{% if o.nextOpen and not (o.nextOpen | isPast) %} data-next-open="{{ o.nextOpen }}"{% endif %}
            aria-live="polite"></p>
         <div class="when__actions">
           <a class="btn" href="{{ directions }}" target="_blank" rel="noopener">Get directions</a>

@@ -38,6 +38,7 @@ collections:
               - { name: day, label: Day, widget: select, options: [Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday] }
               - { name: opens, label: Opens, hint: "24-hour time, e.g. 10:00", widget: string, pattern: ['^([01]\d|2[0-3]):[0-5]\d$', "Use 24-hour time like 10:00"] }
               - { name: closes, label: Closes, hint: "24-hour time, e.g. 15:00", widget: string, pattern: ['^([01]\d|2[0-3]):[0-5]\d$', "Use 24-hour time like 15:00"] }
+              - { name: nextOpen, label: Next open on, widget: datetime, time_format: false, date_format: "D MMMM YYYY", format: "YYYY-MM-DD", required: false, hint: "Optional. Before the stall opens, or during a break: the day it opens again. Until then the site says 'Next open' this day, not the coming week's. Leave empty when it's running every week." }
               - { name: notice, label: Notice banner, widget: string, required: false, hint: "e.g. 'No stall on 27 December, back in the new year!' Leave empty to hide." }
               - { name: noticeUntil, label: Show the notice until, widget: datetime, time_format: false, date_format: "D MMMM YYYY", format: "YYYY-MM-DD", required: false, hint: "Optional. The notice comes down by itself after this day." }
 

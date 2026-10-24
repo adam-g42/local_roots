@@ -3,7 +3,8 @@ permalink: /local-roots.ics
 eleventyExcludeFromCollections: true
 ---
 {%- set o = site.opening -%}
-{%- set start = o.day | nextDate -%}
+{#- the first stall in the calendar: the "next open" day while that's still to come, otherwise the coming one -#}
+{%- set start = o.nextOpen | replace("-", "") if (o.nextOpen and not (o.nextOpen | isPast)) else (o.day | nextDate) -%}
 BEGIN:VCALENDAR
 VERSION:2.0
 PRODID:-//Local Roots//Sunday stall//EN
