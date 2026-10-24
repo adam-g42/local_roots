@@ -1,7 +1,7 @@
 // The editor's "Login with GitHub", step 2: GitHub sends the popup back here with a code, we swap it for a login token,
 // and hand the token to the editor window the way Decap expects ("authorizing:github", then "authorization:github:…").
 
-export async function onRequestGet({ request, env }) {
+export async function callback(request, env) {
   const url = new URL(request.url);
   const state = /(?:^|;\s*)oauth_state=([^;]+)/.exec(request.headers.get("Cookie") || "")?.[1];
   if (!state || state !== url.searchParams.get("state")) return reply("error", { message: "The login took too long. Close this window and try again." });

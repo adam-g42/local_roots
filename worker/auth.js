@@ -1,7 +1,7 @@
 // The editor's "Login with GitHub", step 1: Decap opens a popup here, and we send it on to GitHub.
 // Step 2 is callback.js. Set in Cloudflare: GITHUB_CLIENT_ID and GITHUB_CLIENT_SECRET, from the GitHub OAuth app.
 
-export function onRequestGet({ request, env }) {
+export function auth(request, env) {
   const url = new URL(request.url);
   const scope = url.searchParams.get("scope") === "repo" ? "repo" : "public_repo";
   // a one-off code GitHub hands back, so the callback only accepts logins that started here

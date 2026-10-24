@@ -2,7 +2,7 @@
 
 Website for Local Roots, a Sunday veg stall at Workshop Cafe in Cowley, Oxford.
 
-It's a single page built with [Eleventy](https://www.11ty.dev/) and hosted free on Cloudflare Pages. Every detail that changes (hours, address, socials, email, PayPal donation link, price tiers, suppliers, and the "Meet Maryam" words) lives in **one file: `src/_data/site.json`**. Maryam can also edit it from a form at `/admin`.
+It's a single page built with [Eleventy](https://www.11ty.dev/) and hosted free on Cloudflare Workers. Every detail that changes (hours, address, socials, email, PayPal donation link, price tiers, suppliers, and the "Meet Maryam" words) lives in **one file: `src/_data/site.json`**. Maryam can also edit it from a form at `/admin`.
 
 ## Before going live: fill in the placeholders
 
@@ -27,16 +27,16 @@ npm install
 npm start          # http://localhost:8080
 ```
 
-## Deploying (GitHub → Cloudflare Pages)
+## Deploying (GitHub → Cloudflare Workers)
 
-Cloudflare Pages builds the site from the `main` branch (`npm run build`, output `_site`) and serves it at **https://localrootsoxford.co.uk**, with **https://localrootsoxford.pages.dev** as the backup address. Every push to `main` redeploys automatically, in about a minute.
+Cloudflare builds the site from the `main` branch (`npm run build`, then `npx wrangler deploy`, set up by `wrangler.jsonc`) and serves it at **https://localrootsoxford.co.uk**, from the Worker called `localrootsoxford`. Every push to `main` redeploys automatically, in about a minute.
 
-Alongside the pages, Cloudflare runs three small handlers in `functions/api/`:
+Alongside the pages, Cloudflare runs a small script, `worker/`, for anything under `/api/`:
 
 - `form.js`: the volunteer and contact forms post here, and each one is emailed through [Resend](https://resend.com).
 - `auth.js` and `callback.js`: the editor's "Login with GitHub".
 
-They use these settings, under **Workers & Pages → localrootsoxford → Settings → Variables and secrets**:
+They use these settings, under **Workers & Pages → localrootsoxford → Settings → Variables and Secrets**:
 
 | Name | What it is |
 |---|---|
@@ -51,7 +51,7 @@ To try the forms and the login on your own computer, put the settings above in a
 
 ```sh
 npm run build
-npx wrangler pages dev _site     # http://localhost:8788
+npx wrangler dev                 # http://localhost:8787
 ```
 
 ## Editing the site (for Maryam)
@@ -110,7 +110,7 @@ scripts/map-source.svg   the map to edit; then run `npm run map` to bake in the 
 scripts/map-details.mjs  draws the terraces, trees, ripples and hill shading into the source: `npm run map:details`
 src/css/style.css        styles (colours and fonts at the top)
 src/js/main.js           "open now" line, the share button and the recipe cards
-functions/api/           form emails and the editor login, run by Cloudflare
+worker/                  form emails and the editor login, run by Cloudflare
 src/admin/               Decap CMS editor
 src/local-roots.ics.njk  "Add to calendar" file (repeats every week)
 src/og-image.njk         template for the share image

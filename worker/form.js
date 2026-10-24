@@ -4,7 +4,7 @@
 
 const FIELDS = { name: "Name", email: "Email", topic: "About", help: "Can help with", message: "Message" };
 
-export async function onRequestPost({ request, env }) {
+export async function form(request, env) {
   const form = await request.formData();
   const thanks = Response.redirect(new URL("/thanks/", request.url), 303);
 
