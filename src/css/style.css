@@ -416,11 +416,17 @@ p { margin: 0 0 1em; }
 @media (min-width: 760px) { .stall__head { grid-template-columns: auto 1fr; } .stall__head p { justify-self: end; text-align: right; } }
 
 /* the photos drift past in a loop; the list is printed twice so the seam never shows */
-.strip { overflow: hidden; margin-top: 1.75rem; padding-block: .5rem 1.5rem; }
+/* it's a real scroller, so a finger, trackpad or mouse drag can move it; main.js does the drifting */
+.strip {
+  overflow-x: auto; overscroll-behavior-x: contain; scrollbar-width: none;
+  margin-top: 1.75rem; padding-block: .5rem 1.5rem;
+}
+.strip::-webkit-scrollbar { display: none; }
+@media (hover: hover) and (pointer: fine) { .strip { cursor: grab; } .strip.is-dragging { cursor: grabbing; user-select: none; } }
+.strip img { -webkit-user-drag: none; }
 .strip__track {
   list-style: none; margin: 0; padding: 0;
   display: flex; align-items: flex-start; width: max-content;
-  animation: drift 70s linear infinite;
 }
 .strip button { display: block; width: 100%; padding: 0; border: 0; background: none; color: inherit; font: inherit; cursor: pointer; border-radius: 1rem; }
 .strip li { flex: none; width: clamp(8.5rem, 30vw, 11rem); margin-right: clamp(1rem, 2.4vw, 1.75rem); text-align: center; }
@@ -461,7 +467,6 @@ p { margin: 0 0 1em; }
   opacity: 0; transition: opacity .4s var(--ease);
 }
 .strip button:hover .strip__name::before, .strip button:focus-visible .strip__name::before { opacity: 1; }
-@keyframes drift { to { translate: -50% 0; } }
 
 /* ---------- fair to you, fair to the farm: prices and suppliers side by side ---------- */
 
@@ -814,7 +819,6 @@ p { margin: 0 0 1em; }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   *, *::before, *::after { animation: none !important; transition: none !important; }
-  .strip { overflow-x: auto; }
   .strip__track { padding-inline: var(--gutter); }
   .strip li[aria-hidden] { display: none; }
   .map__road path[pathLength], .map__water path[pathLength] { stroke-dashoffset: 0; }

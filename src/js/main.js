@@ -82,6 +82,78 @@ dialog?.querySelector("[data-copy]")?.addEventListener("click", async (e) => {
 dialog?.addEventListener("close", () => { dialog.querySelector("[data-copied]").hidden = true; });
 dialog?.addEventListener("click", (e) => { if (e.target === dialog) dialog.close(); });
 
+// The veg strip drifts on its own but is a real scroller underneath: swipe it, trackpad it or drag it with the mouse.
+// It eases to a stop while someone's using it and picks up again a moment after they let go.
+const strip = document.querySelector(".strip");
+if (strip && !matchMedia("(prefers-reduced-motion: reduce)").matches) {
+  const SECONDS_PER_LOOP = 70;
+  const IDLE_MS = 2500;
+  let loop = 0, pos = 0, lastSet = -1, speed = 0, lastFrame = 0;
+  let hovering = false, focused = false, touching = false, dragging = null, lastTouched = -Infinity, visible = true;
+
+  // the list is printed twice, so a position and the same position one copy along look identical;
+  // keep it in a window with spare room either side, so there's always somewhere to scroll back to
+  const measure = () => { loop = strip.querySelector(".strip__track").scrollWidth / 2; };
+  const normalise = () => {
+    const from = Math.max(0, (loop - strip.clientWidth) / 2);
+    while (pos < from) pos += loop;
+    while (pos >= from + loop) pos -= loop;
+  };
+  const touched = () => { lastTouched = performance.now(); };
+
+  function frame(now) {
+    const dt = Math.min(now - lastFrame, 100) / 1000;
+    lastFrame = now;
+    // anything that moved it since our last frame was the visitor (a swipe still gliding, a trackpad, a scrollbar)
+    if (lastSet >= 0 && Math.abs(strip.scrollLeft - lastSet) > 2) { pos = strip.scrollLeft; touched(); }
+    const busy = hovering || focused || touching || dragging || now - lastTouched < IDLE_MS;
+    speed += ((busy ? 0 : loop / SECONDS_PER_LOOP) - speed) * Math.min(1, dt * 3);
+    if (!busy) normalise();
+    pos += speed * dt;
+    strip.scrollLeft = pos;
+    lastSet = strip.scrollLeft;
+    if (visible) requestAnimationFrame(frame);
+  }
+  const start = () => { lastFrame = performance.now(); requestAnimationFrame(frame); };
+
+  measure();
+  normalise();
+  addEventListener("resize", measure);
+  new IntersectionObserver(([e]) => { const was = visible; visible = e.isIntersecting; if (visible && !was) start(); }).observe(strip);
+  start();
+
+  strip.addEventListener("pointerenter", (e) => { if (e.pointerType === "mouse") hovering = true; });
+  strip.addEventListener("pointerleave", (e) => { if (e.pointerType === "mouse") hovering = false; });
+  // hold still for someone tabbing through, but not for the focus a closed recipe card hands back
+  strip.addEventListener("keyup", (e) => { if (e.key === "Tab") focused = true; });
+  strip.addEventListener("focusout", () => { focused = false; touched(); });
+  strip.addEventListener("touchstart", () => { touching = true; }, { passive: true });
+  strip.addEventListener("touchend", () => { touching = false; touched(); });
+  strip.addEventListener("touchcancel", () => { touching = false; touched(); });
+
+  // mouse drag; a drag that ends over a vegetable mustn't also open its card
+  let dragged = false;
+  strip.addEventListener("pointerdown", (e) => {
+    if (e.pointerType !== "mouse" || e.button !== 0) return;
+    dragging = { x: e.clientX, from: strip.scrollLeft };
+    dragged = false;
+  });
+  strip.addEventListener("pointermove", (e) => {
+    if (!dragging) return;
+    const dx = e.clientX - dragging.x;
+    if (!dragged && Math.abs(dx) > 5) {
+      dragged = true;
+      strip.classList.add("is-dragging");
+      strip.setPointerCapture(e.pointerId);
+    }
+    if (dragged) { pos = dragging.from - dx; strip.scrollLeft = pos; lastSet = strip.scrollLeft; }
+  });
+  const endDrag = () => { dragging = null; strip.classList.remove("is-dragging"); touched(); };
+  strip.addEventListener("pointerup", endDrag);
+  strip.addEventListener("pointercancel", endDrag);
+  strip.addEventListener("click", (e) => { if (dragged) { e.preventDefault(); e.stopPropagation(); dragged = false; } }, true);
+}
+
 // "What do I do with this?": tap a vegetable in the strip to open its card
 const recipeDialog = document.getElementById("recipe-dialog");
 const recipes = JSON.parse(document.getElementById("recipes")?.textContent || "[]");
