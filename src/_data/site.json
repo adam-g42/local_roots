@@ -6,67 +6,67 @@
     "whatsapp": "",
     "donate": "https://www.paypal.com/donate/?hosted_button_id=TODO"
   },
-  "badge": "New Sunday veg stall in Cowley",
+  "badge": "New Sunday veg shop in Cowley",
   "suppliers": [
     {
       "name": "Oxford City Farm",
       "grows": "Veg grown by volunteers in the middle of the city",
       "website": "https://www.oxfordcityfarm.org.uk",
-      "photo": "/images/farm-oxford-city-farm-soil-600.jpg"
+      "photo": "/images/uploads/ocf-logo.png"
     },
     {
       "name": "Blacklands Organic",
       "grows": "Certified organic salad and veg",
-      "website": "",
+      "website": "https://www.blacklandsorganics.co.uk",
       "photo": "/images/farm-blacklands-lettuce-600.jpg"
     },
     {
       "name": "Brighthampton",
       "grows": "Leafy greens and seasonal veg",
-      "website": "",
+      "website": "https://www.eastoxfordmarket.com/post/brighthampton-veg",
       "photo": "/images/farm-brighthampton-field-600.jpg"
     },
     {
-      "name": "Willow Brooke",
+      "name": "Willowbrook",
       "grows": "Free-range eggs",
-      "website": "",
+      "website": "https://willowbrookfarm.co.uk",
       "photo": "/images/seedling-bed-600.jpg"
     },
     {
-      "name": "Proof Social Bakery",
+      "name": "Proof Social Bakehouse",
       "grows": "Sourdough and bakes",
-      "website": "",
+      "website": "https://www.proofbakehouse.com",
       "photo": "/images/rudbeckia-600.jpg"
     }
   ],
   "maryam": {
     "heading": "Hi, I'm Maryam",
-    "text": "I grew up around here and I've worked on local farms for years. I've just started Local Roots to get that food onto Cowley tables: grown nearby, with fewer food miles and no plastic, and priced so everyone can eat well. We're brand new, so come and say hello on a Sunday and tell me what you'd like to see on the stall."
+    "text": "I've been lucky enough to volunteer at local farms and allotments, getting local fresh veg for free in exchange. \nI grew up around here and I've worked on local farms for years. I've just started Local Roots to get that food onto Cowley tables: grown nearby, with fewer food miles and no plastic, and priced so everyone can eat well. We're brand new, so come and say hello on a Sunday and tell me what you'd like to see on the stall."
   },
   "name": "Local Roots",
-  "intro": "We are a new Sunday grocery stall at Workshop Cafe. Seasonal veg, eggs and sourdough from farms a short ride away, at a price you pick. No plastic.",
+  "intro": "We are a new Sunday grocery shop hosted by The Workshop Cafe. Selling seasonal veg, eggs and sourdough from local farms.",
   "tagline": "Fresh food, grown locally.",
   "font": 4,
   "url": "https://localrootsoxford.co.uk",
   "tiers": [
     {
       "name": "Supported",
-      "description": "For when money's tight. No questions, ever.",
-      "example": "£1.00"
+      "description": "For when money's tight. No questions asked.",
+      "example": "£1.50"
     },
     {
       "name": "Standard",
-      "description": "Covers a fair price to the farmer and the running of the stall.",
-      "example": "£1.80"
+      "description": "Covers a fair price to the farmer and the running of the shop.",
+      "example": "£2.50"
     },
     {
       "name": "Solidarity",
       "description": "If you can pay a little more, it keeps the Supported price possible for a neighbour.",
-      "example": "£2.50"
+      "example": "£3.50"
     }
   ],
   "location": {
-    "venue": "Workshop Cafe",
+    "venue": "The Workshop Cafe",
     "address": "Cowley Road, Oxford",
     "postcode": "",
     "mapsQuery": "Workshop Cafe, Cowley Road, Oxford",
@@ -81,5 +81,5 @@
     "notice": "",
     "noticeUntil": ""
   },
-  "exampleItem": "A bunch of rainbow chard"
+  "exampleItem": "A box of eggs"
 }
