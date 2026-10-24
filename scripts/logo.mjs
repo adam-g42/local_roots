@@ -1,4 +1,4 @@
-// Turns the logo drawing (dark lines on cream) into a transparent cut-out, plus icons.
+// Trims the colour logo drawing (on a transparent background) and saves it at web size, plus icons.
 // Source: src/images/brand/logo-source.png. Run `npm run logo` after replacing it.
 import { chromium } from "playwright-core";
 import { readFileSync, writeFileSync } from "node:fs";
@@ -12,29 +12,28 @@ const out = await page.evaluate(async (src) => {
   const img = new Image(); img.src = src; await img.decode();
   const c = document.createElement("canvas"); c.width = img.width; c.height = img.height;
   const x = c.getContext("2d"); x.drawImage(img, 0, 0);
-  const d = x.getImageData(0, 0, c.width, c.height);
-  // darkness becomes opacity; the cream background drops out
-  let minX = c.width, minY = c.height, maxX = 0, maxY = 0;
-  for (let i = 0; i < d.data.length; i += 4) {
-    const lum = (d.data[i] * .3 + d.data[i + 1] * .59 + d.data[i + 2] * .11) / 255;
-    const a = Math.max(0, Math.min(1, (0.93 - lum) / 0.6));
-    d.data[i] = d.data[i + 1] = d.data[i + 2] = 0; d.data[i + 3] = Math.round(a * 255);
-    if (a > .1) { const p = i / 4, px = p % c.width, py = Math.floor(p / c.width); minX = Math.min(minX, px); maxX = Math.max(maxX, px); minY = Math.min(minY, py); maxY = Math.max(maxY, py); }
-  }
-  x.putImageData(d, 0, 0);
-  const pad = 6, w = maxX - minX + pad * 2, h = maxY - minY + pad * 2;
-  const t = document.createElement("canvas"); t.width = w; t.height = h;
-  t.getContext("2d").drawImage(c, minX - pad, minY - pad, w, h, 0, 0, w, h);
+  const d = x.getImageData(0, 0, c.width, c.height).data;
+  // trim to the drawing: count solid pixels per row and column, and ignore rows and columns with only a few,
+  // so stray specks of paint far from the drawing don't widen the crop
+  const cols = new Uint32Array(c.width), rows = new Uint32Array(c.height);
+  for (let i = 3; i < d.length; i += 4) if (d[i] > 25) { const p = (i - 3) / 4; cols[p % c.width]++; rows[Math.floor(p / c.width)]++; }
+  const edges = (counts) => { const min = 6; let a = 0, b = counts.length - 1; while (a < b && counts[a] < min) a++; while (b > a && counts[b] < min) b--; return [a, b]; };
+  const [minX, maxX] = edges(cols), [minY, maxY] = edges(rows);
+  const pad = 8, cw = maxX - minX + pad * 2, ch = maxY - minY + pad * 2;
 
-  // square icons: drawing in forest green on linen
-  const icon = (size, bg = "#F6F0E6", ink = "#2E4A39") => {
+  // the page shows it at most 9rem (144px) tall, so 320px stays sharp on 2x screens
+  const s = Math.min(1, 320 / ch), w = Math.round(cw * s), h = Math.round(ch * s);
+  const t = document.createElement("canvas"); t.width = w; t.height = h;
+  const tg = t.getContext("2d"); tg.imageSmoothingQuality = "high";
+  tg.drawImage(c, minX - pad, minY - pad, cw, ch, 0, 0, w, h);
+
+  // square icons: the drawing on linen, scaled from the full-size source so the big icon stays sharp
+  const icon = (size, bg = "#F6F0E6") => {
     const k = document.createElement("canvas"); k.width = k.height = size;
-    const g = k.getContext("2d");
+    const g = k.getContext("2d"); g.imageSmoothingQuality = "high";
     g.fillStyle = bg; g.fillRect(0, 0, size, size);
-    const inner = size * .78, s = Math.min(inner / w, inner / h);
-    const tint = document.createElement("canvas"); tint.width = w; tint.height = h;
-    const tg = tint.getContext("2d"); tg.drawImage(t, 0, 0); tg.globalCompositeOperation = "source-in"; tg.fillStyle = ink; tg.fillRect(0, 0, w, h);
-    g.drawImage(tint, (size - w * s) / 2, (size - h * s) / 2, w * s, h * s);
+    const inner = size * .8, f = Math.min(inner / cw, inner / ch);
+    g.drawImage(c, minX - pad, minY - pad, cw, ch, (size - cw * f) / 2, (size - ch * f) / 2, cw * f, ch * f);
     return k.toDataURL("image/png");
   };
   return { mark: t.toDataURL("image/png"), w, h, i192: icon(192), i512: icon(512), i180: icon(180) };

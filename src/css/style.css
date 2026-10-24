@@ -148,7 +148,7 @@ p { margin: 0 0 1em; }
   transition: scale .45s var(--ease);
 }
 .scrolled .nav__mark { scale: 1; }
-.nav__mark .logo { height: 2.1em; margin-block: -.4em; color: var(--forest); }
+.nav__mark .logo { height: 2.1em; margin-block: -.4em; }
 .nav__name span { font-style: var(--accent-style); color: var(--leaf); font-variation-settings: "SOFT" 100, "WONK" 1; }
 .nav nav { display: none; gap: 2rem; margin-left: auto; }
 .nav .btn { display: none; }
@@ -440,17 +440,15 @@ p { margin: 0 0 1em; }
 @keyframes pulse { 0% { opacity: .35; scale: .6; } 100% { opacity: 0; scale: 3.2; } }
 @keyframes breathe { 50% { box-shadow: 0 0 0 5px rgb(239 190 158 / .35); } }
 
-/* ---------- the logo: Maryam's carrot and turnip drawing, used as a mask so it takes any colour ---------- */
+/* ---------- the logo: a colour drawing on a transparent background, shown as it is ---------- */
 
 .logo {
   display: inline-block; flex: none;
-  aspect-ratio: 403 / 488; height: 1em;
-  background: currentColor;
-  -webkit-mask: url(/images/brand/logo-mark.png) center / contain no-repeat;
-          mask: url(/images/brand/logo-mark.png) center / contain no-repeat;
+  aspect-ratio: 275 / 320; height: 1em;
+  background: url(/images/brand/logo-mark.png) center / contain no-repeat;
 }
-.logo--footer { height: 1.15em; color: var(--forest); }
-.logo--thanks { height: 9rem; color: var(--forest); margin: 0 auto 1.5rem; display: block; }
+.logo--footer { height: 1.15em; }
+.logo--thanks { height: 9rem; margin: 0 auto 1.5rem; display: block; }
 
 /* ---------- on the stall ---------- */
 
