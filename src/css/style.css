@@ -836,16 +836,17 @@ p { margin: 0 0 1em; }
                 radial-gradient(circle 1.375rem at 1.375rem var(--awning), #000 98%, transparent) 0 0 / 2.75rem 100% repeat-x;
   filter: drop-shadow(0 6px 6px rgb(0 0 0 / .15));
 }
-.visit__grid { display: grid; gap: 2.5rem; align-items: center; justify-content: center; }
+.visit__grid { display: grid; gap: 2.5rem; align-items: center; }
 .visit__when { font: var(--accent-style) var(--accent-weight) calc(var(--fs-m) * var(--accent-scale))/1 var(--accent); color: var(--clay-soft); margin: 0 0 1.25rem; }
 .visit address { font-style: normal; margin-bottom: 1rem; }
 .visit__notes { color: var(--paper); }
 .visit .actions { margin-top: 1.5rem; }
 .visit__map { width: 100%; aspect-ratio: 4 / 3; border: 0; border-radius: 16px; }
-.visit__photo { width: min(78%, 18rem); aspect-ratio: 1 / 1.05; margin-inline: auto; outline: 1px solid rgb(205 212 182 / .5); outline-offset: 12px; }
+/* the photo only ever stands beside the words: where there's no room for it there, it's left out rather than stacked underneath */
+.visit__photo { display: none; aspect-ratio: 1 / 1.05; outline: 1px solid rgb(205 212 182 / .5); outline-offset: 12px; }
 @media (min-width: 860px) {
-  .visit__grid { grid-template-columns: minmax(0, var(--visit-text)) minmax(0, var(--visit-side)); gap: var(--visit-gap); }
-  .visit__photo { width: 100%; }
+  .visit__grid { grid-template-columns: minmax(0, var(--visit-text)) minmax(0, var(--visit-side)); gap: var(--visit-gap); justify-content: center; }
+  .visit__photo { display: block; width: 100%; }
 }
 
 /* other places to buy local: a cream card, like the awning stripes, under the visit block, one line per place, so it reads as a tip rather than as us */

@@ -333,7 +333,7 @@ layout: base.njk
         src="https://www.openstreetmap.org/export/embed.html?bbox={{ lng - 0.006 }}%2C{{ lat - 0.003 }}%2C{{ lng + 0.006 }}%2C{{ lat + 0.003 }}&amp;layer=mapnik&amp;marker={{ lat }}%2C{{ lng }}"></iframe>
       {% else %}
       <figure class="frame frame--arch visit__photo">
-        <img src="{{ loc.photo }}" alt="{{ loc.photoAlt }}" sizes="18rem">
+        <img src="{{ loc.photo }}" alt="{{ loc.photoAlt }}" sizes="18rem" loading="lazy">
       </figure>
       {% endif %}
     </div>
