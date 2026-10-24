@@ -13,12 +13,23 @@ layout: base.njk
 <header class="nav">
   <a class="nav__mark" href="#top" aria-label="Local Roots, back to top"><span class="logo" aria-hidden="true"></span><span class="nav__name">Local <span>Roots</span></span></a>
   <nav aria-label="Sections">
-    <a class="ulink" href="#prices">Prices</a>
-    <a class="ulink" href="#farms">Farms</a>
+    <a class="ulink" href="#prices">Our veg</a>
+    <a class="ulink" href="#miles">Food miles</a>
+    <a class="ulink" href="#maryam">About</a>
     <a class="ulink" href="#help">Get involved</a>
     <a class="ulink" href="#visit">Visit</a>
   </nav>
   <button class="btn btn--small btn--ghost" type="button" data-share>Share</button>
+  {#- phones: the links and Share fold into one menu -#}
+  <button class="nav__toggle" type="button" popovertarget="nav-menu" aria-label="Menu"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18"/><path d="M3 12h18"/><path d="M3 18h18"/></svg></button>
+  <nav class="nav__menu" id="nav-menu" popover aria-label="Menu">
+    <a href="#prices">Our veg</a>
+    <a href="#miles">Food miles</a>
+    <a href="#maryam">About</a>
+    <a href="#help">Get involved</a>
+    <a href="#visit">Visit</a>
+    <button type="button" data-share>Share</button>
+  </nav>
 </header>
 
 <main id="main">
@@ -222,7 +233,7 @@ layout: base.njk
     <script src="/js/foodmiles.js" defer></script>
   </section>
 
-  <section class="maryam" aria-labelledby="maryam-title">
+  <section class="maryam" id="maryam" aria-labelledby="maryam-title">
     <div class="wrap maryam__grid">
       <figure class="frame frame--arch maryam__photo">
         <img src="{{ site.maryam.photo }}" alt="{{ site.maryam.photoAlt }}" sizes="(min-width: 900px) 360px, 75vw">

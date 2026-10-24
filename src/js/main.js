@@ -55,6 +55,10 @@ const setScrolled = () => document.body.classList.toggle("scrolled", scrollY > 1
 addEventListener("scroll", setScrolled, { passive: true });
 setScrolled();
 
+// Phone menu: close it once a link or Share is picked
+const menu = document.getElementById("nav-menu");
+menu?.querySelectorAll("a, button").forEach((el) => el.addEventListener("click", () => menu.hidePopover()));
+
 // Share: the phone's own share sheet where there is one, otherwise our dialog
 const dialog = document.getElementById("share-dialog");
 
