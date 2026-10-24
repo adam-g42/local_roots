@@ -375,6 +375,10 @@ layout: base.njk
       <dt>Keeping it</dt><dd data-recipe-keep></dd>
       <dt>What you can eat</dt><dd data-recipe-eat></dd>
     </dl>
+    <p class="recipe__save">
+      <button type="button" class="btn btn--ghost btn--small" data-recipe-save>Save this</button>
+      <span data-recipe-saved hidden role="status">Copied</span>
+    </p>
     <button class="recipe__close" value="close" aria-label="Close">×</button>
   </form>
 </dialog>

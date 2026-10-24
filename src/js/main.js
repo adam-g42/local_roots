@@ -85,11 +85,15 @@ dialog?.addEventListener("click", (e) => { if (e.target === dialog) dialog.close
 // "What do I do with this?": tap a vegetable in the strip to open its card
 const recipeDialog = document.getElementById("recipe-dialog");
 const recipes = JSON.parse(document.getElementById("recipes")?.textContent || "[]");
+const recipeSaved = recipeDialog?.querySelector("[data-recipe-saved]");
+let openRecipe;
 
 document.querySelectorAll("[data-recipe]").forEach((btn) => {
   btn.addEventListener("click", () => {
     const r = recipes[btn.dataset.recipe];
     if (!r || !recipeDialog) return;
+    openRecipe = r;
+    recipeSaved.hidden = true;
     // the same photo the strip has already loaded, in whichever size and format the browser picked
     const photo = btn.querySelector("img");
     recipeDialog.querySelector("[data-recipe-photo]").src = photo.currentSrc || photo.src;
@@ -102,6 +106,22 @@ document.querySelectorAll("[data-recipe]").forEach((btn) => {
 });
 
 recipeDialog?.addEventListener("click", (e) => { if (e.target === recipeDialog) recipeDialog.close(); });
+
+// Save: the recipe as plain text, into the phone's share sheet (Notes, WhatsApp…) or copied on a computer
+recipeDialog?.querySelector("[data-recipe-save]")?.addEventListener("click", async () => {
+  const r = openRecipe;
+  const text = `${r.label}\n\nTry this: ${r.meal}\n\nKeeping it: ${r.keep}\n\nWhat you can eat: ${r.eat}\n\nLocal Roots, ${location.origin}/`;
+  if (navigator.share && matchMedia("(pointer: coarse)").matches) {
+    try { await navigator.share({ title: r.label, text }); return; } catch (e) { if (e.name === "AbortError") return; }
+  }
+  try {
+    await navigator.clipboard.writeText(text);
+    recipeSaved.textContent = "Copied";
+  } catch {
+    recipeSaved.textContent = "Couldn't copy, try a screenshot";
+  }
+  recipeSaved.hidden = false;
+});
 
 // Font preview: /?font=3 tries pairing 3 from _data/fonts.json across the page
 const fontParam = Number(new URLSearchParams(location.search).get("font"));

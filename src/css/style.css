@@ -796,6 +796,8 @@ p { margin: 0 0 1em; }
 .recipe__lines dt { margin-top: 1.7rem; font: var(--accent-style) var(--accent-weight) calc(1.15rem * var(--accent-scale))/1.7rem var(--accent); color: var(--forest); }
 .recipe__lines dt:first-child { margin-top: 0; }
 .recipe__lines dd { margin: 0; }
+.recipe__save { display: flex; align-items: center; gap: 1rem; margin: 1.5rem 0 0; }
+.recipe__save [role="status"] { font-weight: 500; color: var(--forest); }
 
 /* ---------- thanks page ---------- */
 
