@@ -1,8 +1,8 @@
 # Decap CMS: the editing screen at /admin
-# Replace OWNER/REPO below with the GitHub repo, e.g. maryam-localroots/local-roots
+# The GitHub repo the editor saves to; change it if the repo moves
 backend:
   name: github
-  repo: OWNER/REPO
+  repo: adam-g42/local_roots
   branch: main
   commit_messages:
     update: "Update {{slug}} via the site editor"

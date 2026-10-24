@@ -18,7 +18,7 @@ In `src/_data/site.json`, or through `/admin` once that's set up:
 | `tiers[].example` | £1.00 / £1.80 / £2.50 | real prices for the example item |
 | `FARMS` in `src/_data/foodmiles.js` | rough pins for Brighthampton and Oxford City Farm | each farm's real location; these set the "Local Roots: N miles" figure in *How far it travels* |
 
-In `src/admin/config.yml`, set `repo: OWNER/REPO` to the GitHub repo name.
+`repo:` in `src/admin/config.yml` is `adam-g42/local_roots`; change it if the repo moves.
 
 ## Working on it locally
 
