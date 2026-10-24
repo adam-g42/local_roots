@@ -41,17 +41,9 @@
   ],
   "maryam": {
     "heading": "Hi, I'm Maryam",
-    "text": "We have some amazing farms in Oxfordshire. As well as growing tasty veg, they are restoring our soils, creating climate resilience, and working with nature. \n\nThe farmers I've spoken to have so much passion, but also struggle with the overtime and little pay, fighting to keep their farm business afloat. At the same time, the people I talked to in Oxford didn't know where to buy local veg and were keen to support local farms rather than supermarkets which exploit farms and consumers for profit.\n\nWe have some wonderful farmers markets in Oxford open on Saturdays 10-1pm which I also encourage you to visit (e.g. East Oxford Farmers Market round the corner, and Oxford City Farm down the road), and great veg boxes.\n\nOpen on Sundays, I'm hoping to help bridge the gap between supermarkets and farmers markets, with easy packaging and pricing, and lots of advice and recipes if you're not used to seasonal veg. So if you're not sure about muddy carrots or want to find out how to cook a celeriac please do come down! And if you're passionate about local veg and want to chat all things agroecology, I'm more than happy to natter away at the counter.\n\nOnce you've actually 'tasted the difference' (to steal Sainsbury's brand line), it will be hard to beat local eggs, bread, and veg all harvested/baked the day before eating it.",
+    "text": "*We have some amazing farms in Oxfordshire. As well as growing tasty veg, they are restoring our soils, creating climate resilience, and working with nature.*\n\nThe farmers I've spoken to have so much passion, but also struggle with the overtime and little pay, fighting to keep their farm business afloat. At the same time, the people I talked to in Oxford didn't know where to buy local veg and were keen to support local farms rather than supermarkets which exploit farms and consumers for profit.\n\nWe have some wonderful farmers markets in Oxford open on Saturdays 10-1pm which I also encourage you to visit (e.g. East Oxford Farmers Market round the corner, and Oxford City Farm down the road), and great veg boxes.\n\nOpen on Sundays, I'm hoping to help bridge the gap between supermarkets and farmers markets, with easy packaging and pricing, and lots of advice and recipes if you're not used to seasonal veg. So if you're not sure about muddy carrots or want to find out how to cook a celeriac please do come down! And if you're passionate about local veg and want to chat all things agroecology, I'm more than happy to natter away at the counter.\n\nOnce you've actually 'tasted the difference' (to steal Sainsbury's brand line), it will be hard to beat local eggs, bread, and veg all harvested/baked the day before eating it.",
     "photo": "/images/headshot.jpg",
     "photoAlt": "Maryam smiling, holding sunflowers on a farm"
-  },
-  "involve": {
-    "donateTitle": "Chip in",
-    "donateText": "A donation tops up the Supported price, so a neighbour can take home a full bag for less.",
-    "volunteerTitle": "Volunteer",
-    "volunteerText": "Even one Sunday a month is a big help.",
-    "helloTitle": "Say hello",
-    "helloText": "An idea for the stall, a question, or something you grow?"
   },
   "name": "Local Roots",
   "intro": "We are a new Sunday grocery shop hosted by The Workshop Cafe. Selling seasonal veg, eggs and sourdough from local farms.",
@@ -95,5 +87,13 @@
     "noticeUntil": ""
   },
   "heroPhoto": "/images/rainbow-chard-from-above.jpg",
+  "involve": {
+    "donateTitle": "Chip in",
+    "donateText": "A donation tops up the Supported price, so a neighbour can take home a full bag for less.",
+    "volunteerTitle": "Volunteer",
+    "volunteerText": "All skills are welcome. Get in touch to see how you can help.",
+    "helloTitle": "Say hello",
+    "helloText": "An idea for the stall, a question, or something you grow?"
+  },
   "exampleItem": "A box of eggs"
 }
