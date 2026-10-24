@@ -3,7 +3,7 @@
     {
       "photo": "/images/squash.jpg",
       "label": "Squash",
-      "meal": "Cut into wedges, toss with oil, salt and chilli flakes, and roast at 200°C for 35–40 minutes until the edges catch. Good with a spoon of yoghurt.",
+      "meal": "Cut into wedges, toss with oil, salt, paprika and chilli flakes, and roast at 200°C for 35–40 minutes until the edges catch. Good with a spoon of yoghurt, added into a tomato chickpea stew, or blended with broth into a soup.",
       "keep": "Whole, somewhere cool and dry, it keeps for months. Once cut, wrap it and use within a week.",
       "eat": "No need to peel: the skin of most squash goes soft when roasted. Scoop out the seeds and roast them too for a crunchy snack."
     },
@@ -92,8 +92,25 @@
       "eat": "The soft stems of parsley and coriander chop up with the leaves. Woody stems like rosemary go in whole and come out after cooking."
     },
     {
-      "photo": "/images/zinnia.jpg",
-      "label": "Cut flowers"
+      "photo": "/images/beet.jpg",
+      "label": "Beetroot",
+      "eat": "Use the leaves like chard, and wash and slice the rest of the root. Remove the top like with carrots.",
+      "meal": "Grate and use raw in a slaw. Or toss with oil and salt and roast at 200°C for 30 mins until soft, and add to salads or stews. ",
+      "keep": "Whole, somewhere cool and dry. Ideally in the fridge."
+    },
+    {
+      "label": "Potatoes",
+      "photo": "/images/potato.jpg",
+      "meal": "Boil em, mash em, stick em in a stew...\nNo but seriously, potatoes are very versatile. Use boiled potatoes in a salad with spring onions and a dressing of mustard, honey, lemon and olive oil. As part of a roast, or mashed to top or pie or serve with stew.",
+      "keep": "Keep in a cool dark place. Ideally a cupboard. Do not expose to sunlight.",
+      "eat": "Wash and eat the whole potato, including the skin. If it starts to sprout, just rub these off (or plant the potato in your garden!). Do not eat potatoes that have turned green from sun exposure."
+    },
+    {
+      "label": "Carrots",
+      "meal": "Fry onions, carrots, and garlic with cumin until soft (5-10 mins). Add vegetable broth, boil together for 30 mins then blend into a soup.",
+      "keep": "Leave carrots whole in the fridge.",
+      "eat": "Chop the ends of the carrot and eat the rest, including the skin.",
+      "photo": "/images/carrot.jpeg"
     }
   ]
 }
