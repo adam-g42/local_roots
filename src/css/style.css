@@ -268,11 +268,11 @@ p { margin: 0 0 1em; }
 }
 .when__where { margin-top: .9rem !important; line-height: 1.4; }
 .when .status { margin-top: .35rem; }
-.when__actions { display: flex; flex-wrap: wrap; align-items: center; gap: .7rem 1.25rem; margin-top: 1.1rem; }
-/* a plain underline, since it's the only way to tell it's a link; it darkens on hover */
-.when__cal { font-weight: 600; text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 4px; text-decoration-color: color-mix(in srgb, currentColor 40%, transparent); }
-.when__cal::before { content: none; }
-.when__cal:hover, .when__cal:focus-visible { text-decoration-color: currentColor; }
+.when__actions { display: flex; flex-wrap: wrap; align-items: center; gap: .6rem; margin-top: 1.1rem; }
+/* two buttons a size down, the same shape: one filled, one outlined in the same green */
+.when__actions .btn { min-height: 2.5rem; padding: .5rem 1.1rem; font-size: .92rem; }
+.when__actions .btn--ghost { color: var(--forest); border-color: var(--forest); }
+.when__actions .btn--ghost:hover { background: var(--forest); color: var(--paper); }
 
 .status:empty { display: none; }
 .status { font-size: .92rem; line-height: 1.35; color: var(--ink-soft); }
@@ -283,11 +283,6 @@ p { margin: 0 0 1em; }
 .btn--ink { background: var(--ink); border-color: var(--ink); }
 .btn--terra { background: var(--terra-deep); border-color: var(--terra-deep); }
 .btn--terra:hover { background: var(--forest); border-color: var(--forest); }
-
-/* narrow cards: the button and its link stack, and the button shrinks */
-@container (max-width: 13rem) {
-  .when__actions .btn { min-height: 2.6rem; padding: .5rem 1.15rem; font-size: .95rem; }
-}
 
 /* the plate: hand-drawn Oxford on the page's own colour, dissolving at its edge; only the paper texture sets it apart */
 .hero__plate {
@@ -337,7 +332,6 @@ p { margin: 0 0 1em; }
   .when__time br { display: none; }
   .when__where { margin-top: .9rem !important; }
   .when__actions { margin-top: .75rem; }
-  .when__actions .btn { min-height: 2.6rem; padding: .5rem 1.15rem; font-size: .95rem; }
 }
 /* on phones the map is the picture, so no chard; the map is zoomed in there, so the pin's words come back down a size */
 @media (max-width: 759px) {
