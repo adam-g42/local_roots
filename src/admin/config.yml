@@ -114,7 +114,7 @@ collections:
             widget: object
             fields:
               - { name: heading, label: Heading, widget: string }
-              - { name: text, label: Text, widget: text, hint: "Two or three sentences is plenty." }
+              - { name: text, label: Text, widget: text, hint: "Leave a blank line between paragraphs. Put *stars* around words to make them bold." }
               - { name: photo, label: Photo, widget: image, choose_url: false, hint: "Portrait photos look best." }
               - { name: photoAlt, label: Describe the photo, widget: string, hint: "For people who can't see it, e.g. 'Maryam holding sunflowers on a farm'." }
 

@@ -229,7 +229,7 @@ layout: base.njk
       </figure>
       <div class="maryam__text">
         <h2 id="maryam-title">{{ site.maryam.heading }}</h2>
-        <p>{{ site.maryam.text }}</p>
+        {{ site.maryam.text | paras | safe }}
       </div>
     </div>
   </section>

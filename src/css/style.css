@@ -657,6 +657,8 @@ p { margin: 0 0 1em; }
 .maryam__photo { width: min(62%, 17rem); margin-inline: auto; outline: 1px solid var(--sage); outline-offset: 14px; }
 .maryam h2 { font-family: var(--accent); font-style: var(--accent-style); font-weight: var(--accent-weight); font-size: calc(var(--fs-l) * var(--accent-scale)); color: var(--clay); }
 .maryam p { max-width: 34em; margin: 0; }
+.maryam p + p { margin-top: 1em; }
+.maryam strong { font-weight: 800; }
 @media (min-width: 820px) {
   .maryam__grid { grid-template-columns: 17rem minmax(0, 34rem); gap: 5rem; justify-content: center; }
   .maryam__photo { width: 100%; }

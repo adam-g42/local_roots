@@ -48,6 +48,13 @@ export default function (eleventyConfig) {
   // true once a "YYYY-MM-DD" day is over, in UK time
   eleventyConfig.addFilter("isPast", (ymd) => !!ymd && String(ymd).slice(0, 10) < new Date().toLocaleDateString("en-CA", { timeZone: "Europe/London" }));
   eleventyConfig.addFilter("commas", (n) => Number(n).toLocaleString("en-GB"));
+  // editor text -> HTML: a blank line starts a new paragraph, a single line break stays one, *words* go bold
+  eleventyConfig.addFilter("paras", (s) => {
+    const escape = (t) => t.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+    return String(s ?? "").trim().split(/\n\s*\n/).map((para) =>
+      `<p>${escape(para.trim()).replace(/\*([^*\n]+)\*/g, "<strong>$1</strong>").replace(/\n/g, "<br>")}</p>`
+    ).join("\n");
+  });
 
   return {
     dir: { input: "src", output: "_site" },
