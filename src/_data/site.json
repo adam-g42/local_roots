@@ -12,39 +12,43 @@
       "name": "Oxford City Farm",
       "grows": "Veg grown by volunteers in the middle of the city",
       "website": "https://www.oxfordcityfarm.org.uk",
-      "photo": "/images/uploads/ocf-logo.png"
+      "photo": "/images/ocf-logo.png"
     },
     {
       "name": "Blacklands Organic",
       "grows": "Certified organic salad and veg",
       "website": "https://www.blacklandsorganics.co.uk",
-      "photo": "/images/farm-blacklands-lettuce-600.jpg"
+      "photo": "/images/farm-blacklands-lettuce.jpg"
     },
     {
       "name": "Brighthampton",
       "grows": "Leafy greens and seasonal veg",
       "website": "https://www.eastoxfordmarket.com/post/brighthampton-veg",
-      "photo": "/images/farm-brighthampton-field-600.jpg"
+      "photo": "/images/farm-brighthampton-field.jpg"
     },
     {
       "name": "Willowbrook",
       "grows": "Free-range eggs",
       "website": "https://willowbrookfarm.co.uk",
-      "photo": "/images/seedling-bed-600.jpg"
+      "photo": "/images/seedling-bed.jpg"
     },
     {
       "name": "Proof Social Bakehouse",
       "grows": "Sourdough and bakes",
       "website": "https://www.proofbakehouse.com",
-      "photo": "/images/rudbeckia-600.jpg"
+      "photo": "/images/rudbeckia.jpg"
     }
   ],
   "maryam": {
     "heading": "Hi, I'm Maryam",
-    "text": "I've been lucky enough to volunteer at local farms and allotments, getting local fresh veg for free in exchange. \nI grew up around here and I've worked on local farms for years. I've just started Local Roots to get that food onto Cowley tables: grown nearby, with fewer food miles and no plastic, and priced so everyone can eat well. We're brand new, so come and say hello on a Sunday and tell me what you'd like to see on the stall."
+    "text": "I've been lucky enough to volunteer at local farms and allotments, getting local fresh veg for free in exchange. \nI grew up around here and I've worked on local farms for years. I've just started Local Roots to get that food onto Cowley tables: grown nearby, with fewer food miles and no plastic, and priced so everyone can eat well. We're brand new, so come and say hello on a Sunday and tell me what you'd like to see on the stall.",
+    "photo": "/images/headshot.jpg",
+    "photoAlt": "Maryam smiling, holding sunflowers on a farm"
   },
   "name": "Local Roots",
   "intro": "We are a new Sunday grocery shop hosted by The Workshop Cafe. Selling seasonal veg, eggs and sourdough from local farms.",
+  "heroPhoto": "/images/rainbow-chard-from-above.jpg",
+  "heroPhotoAlt": "Rainbow chard seen from above, red stems fanning out through crinkled leaves",
   "tagline": "Fresh food, grown locally.",
   "font": 4,
   "url": "https://localrootsoxford.co.uk",
@@ -72,7 +76,9 @@
     "mapsQuery": "Workshop Cafe, Cowley Road, Oxford",
     "lat": "",
     "lng": "",
-    "notes": "Cash and card welcome. Bring a bag if you can."
+    "notes": "Cash and card welcome. Bring a bag if you can.",
+    "photo": "/images/squash.jpg",
+    "photoAlt": "Crates of squash ready for the stall"
   },
   "opening": {
     "day": "Sunday",

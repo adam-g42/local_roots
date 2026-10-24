@@ -7,6 +7,12 @@
   [headers.values]
     Cache-Control = "public, max-age=604800"
 
+# resized photos: the file name changes whenever the photo does, so browsers can keep them for good
+[[headers]]
+  for = "/img/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
 [[headers]]
   for = "/local-roots.ics"
   [headers.values]

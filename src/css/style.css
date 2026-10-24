@@ -258,7 +258,7 @@ p { margin: 0 0 1em; }
 }
 .hero__plate .map { position: absolute; inset: 0; width: 100%; height: 100%; }
 /* a crumpled sheet showing faintly through, under the drawing (photo by SJ Objio on Unsplash) */
-.hero__plate::before { content: ""; position: absolute; inset: 0; z-index: -1; background: url(/images/paper.jpg) center / cover; opacity: .3; animation: appear 1.8s ease both .2s; }
+.hero__plate::before { content: ""; position: absolute; inset: 0; z-index: -1; background: url(/images/brand/paper.jpg) center / cover; opacity: .3; animation: appear 1.8s ease both .2s; }
 
 /* from tablets up, the words and card share a column with a tall arch of chard: it stands beside the intro and the card,
    and the card is laid over its edge, so the colour sits with the words and the map stays clear */

@@ -12,8 +12,8 @@ const PINS = {
   "Oxford City Farm": [-1.2306, 51.7348],     // Cornwallis Road, OX4 3NH
   "Blacklands Organic": [-1.6658, 51.6168],   // Blacklands Organics, Westmill, Watchfield, SN6 8TH
   "Brighthampton": [-1.4449, 51.7288],        // the hamlet by Standlake (OpenStreetMap); no farm address found
-  "Willow Brooke": [-1.2852, 51.8439],        // assumed to be Willowbrook Farm, Hampton Gay, OX5 2QQ
-  "Proof Social Bakery": [-1.2367, 51.7056],  // Proof Social Bakehouse, Sandford Lane, Kennington, OX1 5RP
+  "Willowbrook": [-1.2852, 51.8439],             // Willowbrook Farm, Hampton Gay, OX5 2QQ
+  "Proof Social Bakehouse": [-1.2367, 51.7056],  // Sandford Lane, Kennington, OX1 5RP: check, as its site is proofbakehouse.com
 };
 const site = JSON.parse(readFileSync(new URL("./site.json", import.meta.url), "utf8"));
 const FARMS = site.suppliers.flatMap(({ name }) => {

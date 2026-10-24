@@ -90,7 +90,9 @@ document.querySelectorAll("[data-recipe]").forEach((btn) => {
   btn.addEventListener("click", () => {
     const r = recipes[btn.dataset.recipe];
     if (!r || !recipeDialog) return;
-    recipeDialog.querySelector("[data-recipe-photo]").src = `/images/${r.img}-600.jpg`;
+    // the same photo the strip has already loaded, in whichever size and format the browser picked
+    const photo = btn.querySelector("img");
+    recipeDialog.querySelector("[data-recipe-photo]").src = photo.currentSrc || photo.src;
     recipeDialog.querySelector("[data-recipe-title]").textContent = r.label;
     recipeDialog.querySelector("[data-recipe-meal]").textContent = r.meal;
     recipeDialog.querySelector("[data-recipe-keep]").textContent = r.keep;

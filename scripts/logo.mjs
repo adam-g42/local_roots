@@ -1,10 +1,10 @@
 // Turns the logo drawing (dark lines on cream) into a transparent cut-out, plus icons.
-// Source: images/brand/logo-source.png. Run `npm run logo` after replacing it.
+// Source: src/images/brand/logo-source.png. Run `npm run logo` after replacing it.
 import { chromium } from "playwright-core";
 import { readFileSync, writeFileSync } from "node:fs";
 
 const chrome = process.env.CHROME_PATH || "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome";
-const src = "data:image/png;base64," + readFileSync("images/brand/logo-source.png").toString("base64");
+const src = "data:image/png;base64," + readFileSync("src/images/brand/logo-source.png").toString("base64");
 const browser = await chromium.launch({ executablePath: chrome });
 const page = await browser.newPage();
 
@@ -41,9 +41,9 @@ const out = await page.evaluate(async (src) => {
 }, src);
 
 const save = (file, url) => writeFileSync(file, Buffer.from(url.split(",")[1], "base64"));
-save("images/brand/logo-mark.png", out.mark);
-save("images/brand/icon-192.png", out.i192);
-save("images/brand/icon-512.png", out.i512);
-save("images/brand/apple-touch-icon.png", out.i180);
+save("src/images/brand/logo-mark.png", out.mark);
+save("src/images/brand/icon-192.png", out.i192);
+save("src/images/brand/icon-512.png", out.i512);
+save("src/images/brand/apple-touch-icon.png", out.i180);
 await browser.close();
-console.log(`Saved images/brand/ (mark ${out.w}×${out.h})`);
+console.log(`Saved src/images/brand/ (mark ${out.w}×${out.h})`);

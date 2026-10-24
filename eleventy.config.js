@@ -1,3 +1,5 @@
+import { eleventyImageTransformPlugin } from "@11ty/eleventy-img";
+
 // "15:00" -> "3pm", "10:30" -> "10:30am"
 function time12(hhmm) {
   const [h, m] = String(hhmm).split(":").map(Number);
@@ -7,7 +9,17 @@ function time12(hhmm) {
 }
 
 export default function (eleventyConfig) {
-  eleventyConfig.addPassthroughCopy("images");
+  // Photos are added as one full-size file each (by hand or through the editor). Every <img> pointing at one is turned
+  // into a <picture> with phone and desktop sizes, in WebP and JPEG, written to /img/. The originals are still copied to
+  // /images/ for the editor's thumbnails, and for logos and icons, which are used as they are.
+  eleventyConfig.addPlugin(eleventyImageTransformPlugin, {
+    formats: ["webp", "jpeg"],
+    widths: [450, 900],
+    sharpJpegOptions: { quality: 75, mozjpeg: true },
+    sharpWebpOptions: { quality: 72 },
+    htmlOptions: { imgAttributes: { loading: "lazy", decoding: "async" } },
+  });
+  eleventyConfig.addPassthroughCopy({ "src/images": "images" });
   eleventyConfig.addPassthroughCopy({ "src/css": "css", "src/js": "js" });
   eleventyConfig.addPassthroughCopy("src/admin/config.yml");
   // d3-geo draws the food-miles globe

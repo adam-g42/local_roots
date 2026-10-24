@@ -2,7 +2,7 @@
 permalink: /og-image/
 eleventyExcludeFromCollections: true
 ---
-{#- Rendered to images/og-share.jpg by `npm run og`. Not linked from the site. -#}
+{#- Rendered to images/brand/og-share.jpg by `npm run og`. Not linked from the site. -#}
 <!doctype html>
 <html lang="en-GB">
 <head>
@@ -34,7 +34,7 @@ eleventyExcludeFromCollections: true
     <p class="fact">{{ site.location.venue }}, {{ site.location.address }}</p>
   </div>
   <div class="og-right">
-    <figure class="frame frame--arch"><img src="/images/rainbow-chard-from-above-600.jpg" alt=""></figure>
+    <figure class="frame frame--arch"><img src="{{ site.heroPhoto }}" alt="" sizes="440px"></figure>
   </div>
 </body>
 </html>

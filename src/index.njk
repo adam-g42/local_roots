@@ -48,11 +48,8 @@ layout: base.njk
 
       <!-- the chard stands beside the card, the card laid over its edge -->
       <figure class="frame frame--arch hero__photo">
-        <img src="/images/rainbow-chard-from-above-600.jpg"
-             srcset="/images/rainbow-chard-from-above-600.jpg 600w, /images/rainbow-chard-from-above.jpg 900w"
-             sizes="(min-width: 760px) 13rem, 1px"
-             alt="Rainbow chard seen from above, red stems fanning out through crinkled leaves"
-             width="600" height="800" fetchpriority="high">
+        <img src="{{ site.heroPhoto }}" alt="{{ site.heroPhotoAlt }}"
+             sizes="(min-width: 760px) 13rem, 1px" loading="eager" fetchpriority="high">
       </figure>
     </div>
 
@@ -136,7 +133,8 @@ layout: base.njk
         <ul class="farms" role="list">
           {% for s in site.suppliers %}
           <li class="farm{% if not s.photo %} farm--plain{% endif %}">
-            {% if s.photo %}<img src="{{ s.photo }}" alt="" width="600" height="800" loading="lazy">{% endif %}
+            {#- the photo sits under a dark wash behind the name, so the small size is plenty -#}
+            {% if s.photo %}<img src="{{ s.photo }}" alt="" eleventy:widths="450">{% endif %}
             <p class="farm__name">{% if s.website %}<a href="{{ s.website }}" target="_blank" rel="noopener">{{ s.name }}</a>{% else %}{{ s.name }}{% endif %}</p>
             <p class="farm__grows">{{ s.grows }}</p>
           </li>
@@ -154,18 +152,18 @@ layout: base.njk
     <div class="strip">
       <ul class="strip__track">
         {%- for n in [1, 2] %}
-        {%- for p in produce %}
+        {%- for p in produce.items %}
         <li class="bubble-{{ loop.index0 % 4 }}{% if loop.index0 % 2 %} low{% endif %}"{% if n == 2 %} aria-hidden="true"{% endif %}>
           {%- if p.meal %}
           <button type="button" data-recipe="{{ loop.index0 }}" aria-haspopup="dialog" aria-label="{{ p.label }}: recipe idea"{% if n == 2 %} tabindex="-1"{% endif %}>
             <span class="strip__pic">
-              <img src="/images/{{ p.img }}-600.jpg" alt="" width="600" height="800" loading="lazy">
+              <img src="{{ p.photo }}" alt="" sizes="(max-width: 453px) 8.5rem, (max-width: 586px) 30vw, 11rem">
               <span class="strip__tag" aria-hidden="true">Recipe idea</span>
             </span>
             <span class="strip__name">{{ p.label }}</span>
           </button>
           {%- else %}
-          <img src="/images/{{ p.img }}-600.jpg" alt="" width="600" height="800" loading="lazy">
+          <img src="{{ p.photo }}" alt="" sizes="(max-width: 453px) 8.5rem, (max-width: 586px) 30vw, 11rem">
           <span class="strip__name">{{ p.label }}</span>
           {%- endif %}
         </li>
@@ -231,9 +229,7 @@ layout: base.njk
   <section class="maryam" aria-labelledby="maryam-title">
     <div class="wrap maryam__grid">
       <figure class="frame frame--arch maryam__photo">
-        <img src="/images/headshot-600.jpg" srcset="/images/headshot-600.jpg 600w, /images/headshot.jpg 900w"
-             sizes="(min-width: 900px) 360px, 75vw"
-             alt="Maryam smiling, holding sunflowers on a farm" width="600" height="800" loading="lazy">
+        <img src="{{ site.maryam.photo }}" alt="{{ site.maryam.photoAlt }}" sizes="(min-width: 900px) 360px, 75vw">
       </figure>
       <div class="maryam__text">
         <h2 id="maryam-title">{{ site.maryam.heading }}</h2>
@@ -324,7 +320,7 @@ layout: base.njk
         src="https://www.openstreetmap.org/export/embed.html?bbox={{ lng - 0.006 }}%2C{{ lat - 0.003 }}%2C{{ lng + 0.006 }}%2C{{ lat + 0.003 }}&amp;layer=mapnik&amp;marker={{ lat }}%2C{{ lng }}"></iframe>
       {% else %}
       <figure class="frame frame--arch visit__photo">
-        <img src="/images/squash-600.jpg" alt="Crates of squash ready for the stall" width="600" height="800" loading="lazy">
+        <img src="{{ loc.photo }}" alt="{{ loc.photoAlt }}" sizes="18rem">
       </figure>
       {% endif %}
     </div>
@@ -366,12 +362,12 @@ layout: base.njk
   </form>
 </dialog>
 
-<!-- "What do I do with this?": one card, filled in from produce.json by main.js -->
+<!-- "What do I do with this?": one card, filled in from produce.json by main.js, with the photo the strip already loaded -->
 <dialog class="recipe" id="recipe-dialog" aria-labelledby="recipe-title">
   <form method="dialog">
     <p class="recipe__kicker">What do I do with this?</p>
     <div class="recipe__head">
-      <img class="recipe__photo" data-recipe-photo src="" alt="" width="600" height="800">
+      <img class="recipe__photo" data-recipe-photo src="" alt="" width="450" height="600" eleventy:ignore>
       <h2 id="recipe-title" data-recipe-title></h2>
     </div>
     <dl class="recipe__lines">
@@ -382,7 +378,7 @@ layout: base.njk
     <button class="recipe__close" value="close" aria-label="Close">×</button>
   </form>
 </dialog>
-<script id="recipes" type="application/json">{{ produce | dump | safe }}</script>
+<script id="recipes" type="application/json">{{ produce.items | dump | safe }}</script>
 
 <script type="application/ld+json">
 {
@@ -391,7 +387,7 @@ layout: base.njk
   "name": {{ site.name | dump | safe }},
   "description": {{ site.intro | dump | safe }},
   "url": {{ site.url | dump | safe }},
-  "image": {{ (site.url + "/images/og-share.jpg") | dump | safe }},
+  "image": {{ (site.url + "/images/brand/og-share.jpg") | dump | safe }},
   "email": {{ c.email | dump | safe }},
   "priceRange": "£",
   "address": {

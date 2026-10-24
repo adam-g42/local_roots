@@ -60,14 +60,16 @@ The form at **https://localrootsoxford.co.uk/admin** edits everything in `site.j
    Click *Register*, then *Generate a new client secret*. Keep this page open.
 2. **Connect it to Netlify.** In Netlify, go to **Site configuration → Access & security → OAuth → Install provider → GitHub**. Paste the Client ID and Client secret.
 3. **Give Maryam access.** She makes a free GitHub account. In the repo, go to **Settings → Collaborators → Add people** and invite her. She accepts the email invite.
-4. Make sure `repo:` in `src/admin/config.yml` matches the repo, e.g. `yourname/local-roots`.
+4. Make sure `repo:` in `src/admin/config.yml` matches the repo, e.g. `yourname/local-roots`. The repo is private, so the config also asks GitHub for private-repo access (`auth_scope: repo`).
 
 ### Day to day
 
 1. Go to `/admin` and click **Login with GitHub**.
 2. Open **Website → Opening times, contact & everything else**.
-3. Change what you need: hours, a "no stall this week" notice, prices, a new farm and so on.
+3. Change what you need: hours, a "no stall this week" notice, prices, a new farm, photos and so on. The veg in the moving strip, with their recipe ideas, are under **Website → In season**.
 4. Click **Publish → Publish now**.
+
+**Photos:** upload one full-size photo; the site makes the smaller phone and desktop versions itself. Use JPEG or PNG. iPhones convert their photos to JPEG when uploading from the phone, but a `.heic` file dragged in from a Mac can't be read, and the site won't update until it's swapped for a JPEG.
 
 **Made a mistake?** Change it back in the form and publish again. Every save is also kept in the repo's history on GitHub, so any old version can be restored.
 
@@ -81,7 +83,7 @@ Then open http://localhost:8080/admin/.
 
 ## The share image
 
-`images/og-share.jpg` is the picture shown when someone shares the link on WhatsApp, Facebook and so on. It's drawn from `site.json`. After changing the hours or tagline, redraw it with:
+`src/images/brand/og-share.jpg` is the picture shown when someone shares the link on WhatsApp, Facebook and so on. It's drawn from `site.json`. After changing the hours or tagline, redraw it with:
 
 ```sh
 npm start          # in one terminal
@@ -93,7 +95,7 @@ Then commit the new image. Social apps cache previews, so a changed image can ta
 
 ```
 src/_data/site.json      all the editable details
-src/_data/produce.json   photos in the "On the stall" strip
+src/_data/produce.json   the veg in the "In season" strip, with their photos and recipe ideas
 src/index.njk            the page
 src/_includes/map.svg    the hand-drawn Oxford map in the hero (generated, don't edit directly)
 scripts/map-source.svg   the map to edit; then run `npm run map` to bake in the pen wobble
@@ -103,5 +105,6 @@ src/js/main.js           "open now" line and the share button
 src/admin/               Decap CMS editor
 src/local-roots.ics.njk  "Add to calendar" file (repeats every week)
 src/og-image.njk         template for the share image
-images/                  photos; uploads from the editor go in images/uploads
+src/images/              photos, one full-size file each; the build makes the smaller sizes into /img/
+src/images/brand/        logo, icons, the paper texture and the share image, used as they are
 ```

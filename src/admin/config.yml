@@ -16,8 +16,10 @@ site_url: https://localrootsoxford.co.uk
 display_url: https://localrootsoxford.co.uk
 logo_url: /images/brand/icon-192.png
 
-media_folder: images/uploads
-public_folder: /images/uploads
+# Every photo lives in src/images, one full-size file each; the site makes the smaller sizes itself when it builds.
+# Logos and icons are kept apart in src/images/brand so they don't clutter the photo library.
+media_folder: src/images
+public_folder: /images
 
 collections:
   - name: settings
@@ -61,6 +63,8 @@ collections:
           - { name: badge, label: "\"New\" badge", widget: string, required: false, hint: "Small line above the tagline, e.g. 'New in Cowley'. Leave empty once the stall is well known." }
           - { name: tagline, label: Tagline, widget: string, hint: "Short and punchy, shown on the label at the top." }
           - { name: intro, label: One-line introduction, widget: text }
+          - { name: heroPhoto, label: Top photo, widget: image, choose_url: false, hint: "The tall photo beside the opening times. Portrait photos look best." }
+          - { name: heroPhotoAlt, label: Describe the top photo, widget: string, hint: "For people who can't see it, e.g. 'Rainbow chard seen from above'." }
 
           - name: location
             label: Location
@@ -73,6 +77,8 @@ collections:
               - { name: lat, label: Map latitude, widget: string, required: false, hint: "Optional. Right-click the spot in Google Maps to copy it. Leave empty to show a photo instead of a map." }
               - { name: lng, label: Map longitude, widget: string, required: false }
               - { name: notes, label: Handy notes, widget: string, required: false, hint: "e.g. payment methods, bring a bag" }
+              - { name: photo, label: Photo, widget: image, choose_url: false, hint: "Shown in the Visit section when there's no map pin." }
+              - { name: photoAlt, label: Describe the photo, widget: string, hint: "For people who can't see it, e.g. 'Crates of squash ready for the stall'." }
 
           - name: contact
             label: Contact, socials and donations
@@ -103,7 +109,7 @@ collections:
               - { name: name, label: Name, widget: string }
               - { name: grows, label: What they supply, widget: string }
               - { name: website, label: Website, widget: string, required: false }
-              - { name: photo, label: Photo, widget: image, required: false, hint: "Optional. Portrait photos look best." }
+              - { name: photo, label: Photo, widget: image, choose_url: false, required: false, hint: "Optional. Shown behind the farm's name." }
 
           - name: maryam
             label: About Maryam
@@ -111,3 +117,23 @@ collections:
             fields:
               - { name: heading, label: Heading, widget: string }
               - { name: text, label: Text, widget: text, hint: "Two or three sentences is plenty." }
+              - { name: photo, label: Photo, widget: image, choose_url: false, hint: "Portrait photos look best." }
+              - { name: photoAlt, label: Describe the photo, widget: string, hint: "For people who can't see it, e.g. 'Maryam holding sunflowers on a farm'." }
+
+      - name: produce
+        label: In season (the moving strip of veg)
+        file: src/_data/produce.json
+        format: json
+        fields:
+          - name: items
+            label: Veg in the strip
+            label_singular: veg
+            widget: list
+            summary: "{{fields.label}}"
+            hint: "Drag to reorder. Leave the recipe lines empty for something that doesn't need one, like flowers."
+            fields:
+              - { name: label, label: Name, widget: string }
+              - { name: photo, label: Photo, widget: image, choose_url: false, hint: "Shown in a round frame, so keep the veg in the middle." }
+              - { name: meal, label: "Recipe idea: try this", widget: text, required: false, hint: "Fill this in to make the photo tappable." }
+              - { name: keep, label: "Recipe idea: keeping it", widget: text, required: false }
+              - { name: eat, label: "Recipe idea: what you can eat", widget: text, required: false }
