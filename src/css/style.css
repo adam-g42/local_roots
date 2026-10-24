@@ -790,6 +790,20 @@ p { margin: 0 0 1em; }
   .visit__photo { width: 100%; }
 }
 
+/* other places to buy local: a cream card, like the awning stripes, under the visit block, one line per place, so it reads as a tip rather than as us */
+.elsewhere {
+  max-width: calc(42rem + clamp(3rem, 6vw, 5rem)); margin: clamp(2.5rem, 6vw, 3.5rem) auto 0;
+  padding: 1.1rem 1.25rem 1.25rem; border-radius: 16px;
+  background: var(--paper); color: var(--ink);
+}
+.elsewhere h3 { font-size: var(--fs-s); font-family: var(--sans); font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--terra-deep); margin-bottom: .5rem; }
+.elsewhere ul { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr)); column-gap: 2rem; }
+.elsewhere li { display: flex; flex-direction: column; gap: .1rem; padding-block: .55rem; border-top: 1px solid rgb(214 200 174 / .7); }
+.elsewhere__name { font-weight: 700; text-decoration: none; }
+a.elsewhere__name:hover { text-decoration: underline; text-underline-offset: 3px; }
+.elsewhere__info { font-size: var(--fs-s); color: var(--ink-soft); }
+.elsewhere__about { margin-top: .15rem; }
+
 /* ---------- footer ---------- */
 
 .footer { padding-block: clamp(2.5rem, 6vw, 3.5rem); }

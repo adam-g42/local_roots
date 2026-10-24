@@ -329,6 +329,25 @@ layout: base.njk
       </figure>
       {% endif %}
     </div>
+
+    {#- other markets and shops worth a visit: a card of their own, so it's clear they aren't us -#}
+    {%- set ew = site.elsewhere -%}
+    {% if ew and ew.places and ew.places.length %}
+    <div class="wrap">
+    <aside class="elsewhere" aria-labelledby="elsewhere-title">
+      <h3 id="elsewhere-title">{{ ew.heading }}</h3>
+      <ul role="list">
+        {% for pl in ew.places %}
+        <li>
+          {% if pl.website %}<a class="elsewhere__name" href="{{ pl.website }}" target="_blank" rel="noopener">{{ pl.name }}<span class="vh"> (opens in a new tab)</span> <span aria-hidden="true">↗</span></a>{% else %}<span class="elsewhere__name">{{ pl.name }}</span>{% endif %}
+          {% if pl.when %}<span class="elsewhere__info">{{ pl.when }}</span>{% endif %}
+          {% if pl.about %}<span class="elsewhere__about">{{ pl.about }}</span>{% endif %}
+        </li>
+        {% endfor %}
+      </ul>
+    </aside>
+    </div>
+    {% endif %}
   </section>
 
 </main>
