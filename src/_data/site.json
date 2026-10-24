@@ -45,6 +45,14 @@
     "photo": "/images/headshot.jpg",
     "photoAlt": "Maryam smiling, holding sunflowers on a farm"
   },
+  "involve": {
+    "donateTitle": "Chip in",
+    "donateText": "A donation tops up the Supported price, so a neighbour can take home a full bag for less.",
+    "volunteerTitle": "Volunteer",
+    "volunteerText": "Even one Sunday a month is a big help.",
+    "helloTitle": "Say hello",
+    "helloText": "An idea for the stall, a question, or something you grow?"
+  },
   "name": "Local Roots",
   "intro": "We are a new Sunday grocery shop hosted by The Workshop Cafe. Selling seasonal veg, eggs and sourdough from local farms.",
   "tagline": "Fresh food, grown locally.",

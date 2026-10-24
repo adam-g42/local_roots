@@ -118,6 +118,17 @@ collections:
               - { name: photo, label: Photo, widget: image, choose_url: false, hint: "Portrait photos look best." }
               - { name: photoAlt, label: Describe the photo, widget: string, hint: "For people who can't see it, e.g. 'Maryam holding sunflowers on a farm'." }
 
+          - name: involve
+            label: Get involved
+            widget: object
+            fields:
+              - { name: donateTitle, label: Donate heading, widget: string }
+              - { name: donateText, label: Donate text, widget: string }
+              - { name: volunteerTitle, label: Volunteer heading, widget: string }
+              - { name: volunteerText, label: Volunteer text, widget: string }
+              - { name: helloTitle, label: Say hello heading, widget: string }
+              - { name: helloText, label: Say hello text, widget: string }
+
       - name: produce
         label: In season (the moving strip of veg)
         file: src/_data/produce.json

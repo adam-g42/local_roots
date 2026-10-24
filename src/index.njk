@@ -240,15 +240,15 @@ layout: base.njk
       <div class="help__grid">
 
         <div class="pitch pitch--clay">
-          <h3>Chip in</h3>
-          <p>A donation tops up the Supported price, so a neighbour can take home a full bag for less.</p>
+          <h3>{{ site.involve.donateTitle }}</h3>
+          <p>{{ site.involve.donateText }}</p>
           <a class="btn btn--terra" href="{{ c.donate }}" target="_blank" rel="noopener">Donate with PayPal</a>
         </div>
 
         <details class="pitch pitch--sage" name="involve">
           <summary>
-            <h3>Volunteer</h3>
-            <span class="pitch__text">Even one Sunday a month is a big help.</span>
+            <h3>{{ site.involve.volunteerTitle }}</h3>
+            <span class="pitch__text">{{ site.involve.volunteerText }}</span>
             <span class="btn">Offer to volunteer</span>
           </summary>
           <form class="form" name="volunteer" method="POST" action="/api/form">
@@ -270,8 +270,8 @@ layout: base.njk
 
         <details class="pitch pitch--bone" name="involve">
           <summary>
-            <h3>Say hello</h3>
-            <span class="pitch__text">An idea for the stall, a question, or something you grow?</span>
+            <h3>{{ site.involve.helloTitle }}</h3>
+            <span class="pitch__text">{{ site.involve.helloText }}</span>
             <span class="btn">Send a message</span>
           </summary>
           <form class="form" name="contact" method="POST" action="/api/form">
