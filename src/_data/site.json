@@ -4,7 +4,7 @@
     "instagram": "localrootsoxford",
     "facebook": "",
     "whatsapp": "",
-    "donate": "https://www.paypal.com/donate/?hosted_button_id=TODO"
+    "donate": "https://www.paypal.com/donate/?hosted_button_id=KYPWU6N8NGCKL"
   },
   "badge": "New Sunday veg shop in Cowley",
   "suppliers": [
@@ -41,13 +41,35 @@
   ],
   "maryam": {
     "heading": "Hi, I'm Maryam",
-    "text": "*We have some amazing farms in Oxfordshire. As well as growing tasty veg, they are restoring our soils, creating climate resilience, and working with nature.*\n\nThe farmers I've spoken to have so much passion, but also struggle with the overtime and little pay, fighting to keep their farm business afloat. At the same time, the people I talked to in Oxford didn't know where to buy local veg and were keen to support local farms rather than supermarkets which exploit farms and consumers for profit.\n\nOpen on Sundays, I'm hoping to help bridge the gap between supermarkets and farmers markets, with easy packaging and pricing, and lots of advice and recipes if you're not used to seasonal veg. So if you're not sure about muddy carrots or want to find out how to cook a celeriac please do come down! And if you're passionate about local veg and want to chat all things agroecology, I'm more than happy to natter away at the counter.\n\nOnce you've actually 'tasted the difference' (to steal Sainsbury's brand line), it will be hard to beat local eggs, bread, and veg all harvested/baked the day before eating it.",
+    "text": "*We have some amazing farms in Oxfordshire. As well as growing tasty veg, they are restoring our soils, creating climate resilience, and working with nature.*\n\nThe farmers I've spoken to have so much passion, but also struggle with overtime and low pay, fighting to keep their farm business afloat. At the same time, many people don't know where to buy local veg yet are keen to support local farms rather than supermarkets which exploit farms and consumers for profit.\n\n(There are many Saturday markets you should visit - scroll to the bottom of this page to find them.)\n\nOpen on Sundays, I'm hoping to bridge a gap between supermarkets and farmers markets, with easy packaging, sliding scale pricing, and lots of seasonal recipes. So if you're not sure about muddy carrots or want to learn how to cook a celeriac please do come down! And if you're already passionate, I'm more than happy to natter away about agroecology at the counter.\n\nOnce you've actually 'tasted the difference' (to steal Sainsbury's brand line), it will be hard to beat local eggs, bread, and veg all harvested/baked the day before eating it.",
     "photo": "/images/headshot.jpg",
     "photoAlt": "Maryam smiling, holding sunflowers on a farm"
   },
   "name": "Local Roots",
   "intro": "We are a new Sunday grocery shop hosted by The Workshop Cafe. Selling seasonal veg, eggs and sourdough from local farms.",
   "tagline": "Fresh food, grown locally.",
+  "elsewhere": {
+    "places": [
+      {
+        "name": "East Oxford Farmers' Market",
+        "when": "Saturdays 10am–1pm",
+        "about": "Local food and crafts",
+        "website": "https://www.eastoxfordmarket.com/"
+      },
+      {
+        "name": "Oxford City Farm",
+        "when": "Saturdays 10am–1pm",
+        "about": "Community farm with a veg market",
+        "website": "https://www.oxfordcityfarm.org.uk/"
+      },
+      {
+        "name": "Headington Market",
+        "when": "Saturdays 9am-2pm",
+        "website": "https://www.headingtonaction.org/headington-market.html",
+        "about": "Local veg, treats, and hot food."
+      }
+    ]
+  },
   "font": 4,
   "url": "https://localrootsoxford.co.uk",
   "heroPhotoAlt": "Rainbow chard seen from above, red stems fanning out through crinkled leaves",
@@ -78,22 +100,6 @@
     "address": "Cowley Road, Oxford",
     "photoAlt": "Crates of squash ready for the stall",
     "lat": ""
-  },
-  "elsewhere": {
-    "places": [
-      {
-        "name": "East Oxford Farmers' Market",
-        "when": "Saturdays 10am–1pm",
-        "about": "Local food and crafts",
-        "website": "https://www.eastoxfordmarket.com/"
-      },
-      {
-        "name": "Oxford City Farm",
-        "when": "Saturdays 10am–1pm",
-        "about": "Community farm with a veg market",
-        "website": "https://www.oxfordcityfarm.org.uk/"
-      }
-    ]
   },
   "opening": {
     "day": "Sunday",
