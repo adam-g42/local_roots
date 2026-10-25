@@ -99,9 +99,9 @@
     "day": "Sunday",
     "opens": "10:00",
     "closes": "14:30",
-    "nextOpen": "",
-    "notice": "",
-    "noticeUntil": ""
+    "nextOpen": "2026-11-01",
+    "notice": "We're not open yet. Our first Sunday is 1 November, see you there!",
+    "noticeUntil": "2026-11-01"
   },
   "heroPhoto": "/images/rainbow-chard-from-above.jpg",
   "involve": {
