@@ -175,7 +175,7 @@ layout: base.njk
           {%- if p.meal %}
           <button type="button" data-recipe="{{ loop.index0 }}" aria-haspopup="dialog" aria-label="{{ p.label }}: recipe idea"{% if n == 2 %} tabindex="-1"{% endif %}>
             <span class="strip__pic">
-              <img src="{{ p.photo }}" alt="" sizes="(max-width: 453px) 8.5rem, (max-width: 586px) 30vw, 11rem">
+              <img src="{{ p.photo }}" alt="{{ p.label }} from a local farm" sizes="(max-width: 453px) 8.5rem, (max-width: 586px) 30vw, 11rem">
               <span class="strip__tag" aria-hidden="true">Recipe idea</span>
             </span>
             <span class="strip__name">{{ p.label }}</span>
@@ -421,18 +421,55 @@ layout: base.njk
 {
   "@context": "https://schema.org",
   "@type": "GroceryStore",
+  "@id": {{ (site.url + "/#shop") | dump | safe }},
   "name": {{ site.name | dump | safe }},
+  "alternateName": {{ (site.name + " Oxford") | dump | safe }},
   "description": {{ site.intro | dump | safe }},
   "url": {{ site.url | dump | safe }},
   "image": {{ (site.url + "/images/brand/og-share.jpg") | dump | safe }},
+  "logo": {{ (site.url + "/images/brand/icon-192.png") | dump | safe }},
   "email": {{ c.email | dump | safe }},
   "priceRange": "£",
+  "currenciesAccepted": "GBP",
+  {#- the address field is "street, town"; the town has its own line below -#}
+  {%- set street = loc.address | replace(", Oxford", "") %}
   "address": {
     "@type": "PostalAddress",
-    "streetAddress": {{ (loc.venue + ", " + loc.address) | dump | safe }},
+    "streetAddress": {{ street | dump | safe }},
     "addressLocality": "Oxford",
     "postalCode": {{ loc.postcode | dump | safe }},
     "addressCountry": "GB"
+  },
+  {%- if loc.lat and loc.lng %}
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": {{ loc.lat | float }},
+    "longitude": {{ loc.lng | float }}
+  },
+  {%- endif %}
+  "containedInPlace": {
+    "@type": "CafeOrCoffeeShop",
+    "name": {{ loc.venue | dump | safe }},
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": {{ street | dump | safe }},
+      "addressLocality": "Oxford",
+      "postalCode": {{ loc.postcode | dump | safe }},
+      "addressCountry": "GB"
+    }
+  },
+  "areaServed": ["Cowley", "East Oxford", "Oxford"],
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "Local food from Oxfordshire farms",
+    "itemListElement": [
+      {%- for name in ["Seasonal vegetables", "Free-range eggs", "Sourdough bread"] %}
+      { "@type": "Offer", "itemOffered": { "@type": "Product", "name": {{ name | dump | safe }} } },
+      {%- endfor %}
+      {%- for p in produce.items %}
+      { "@type": "Offer", "itemOffered": { "@type": "Product", "name": {{ p.label | dump | safe }} } }{% if not loop.last %},{% endif %}
+      {%- endfor %}
+    ]
   },
   "openingHoursSpecification": [{
     "@type": "OpeningHoursSpecification",

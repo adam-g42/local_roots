@@ -46,7 +46,7 @@
     "photoAlt": "Maryam smiling, holding sunflowers on a farm"
   },
   "name": "Local Roots",
-  "intro": "We are a new Sunday grocery shop hosted by The Workshop Cafe. Selling seasonal veg, eggs and sourdough from local farms.",
+  "intro": "We are a new Sunday grocery shop hosted by The Workshop Cafe on Cowley Road, Oxford. Selling seasonal veg, eggs and sourdough from local Oxfordshire farms.",
   "tagline": "Fresh food, grown locally.",
   "elsewhere": {
     "places": [
@@ -92,14 +92,14 @@
   ],
   "location": {
     "notes": "Cash and card welcome. Bring a bag if you can.",
-    "lng": "",
-    "postcode": "",
+    "lng": "-1.23905",
+    "postcode": "OX4 1JE",
     "venue": "The Workshop Cafe",
-    "mapsQuery": "Workshop Cafe, Cowley Road, Oxford",
+    "mapsQuery": "The Workshop Cafe, 118 Cowley Road, Oxford OX4 1JE",
     "photo": "/images/squash.jpg",
-    "address": "Cowley Road, Oxford",
+    "address": "118 Cowley Road, Oxford",
     "photoAlt": "Crates of squash ready for the stall",
-    "lat": ""
+    "lat": "51.74832"
   },
   "opening": {
     "day": "Sunday",
